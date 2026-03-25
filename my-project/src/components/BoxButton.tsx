@@ -1,19 +1,18 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
 
 export type BoxButtonColor = "primary" | "gray";
-export type BoxButtonTinted = false | true;
+export type BoxButtonVariants = "solid" | "out-line";
 export type BoxButtonSize = "lg" | "md" | "sm" | "xs";
 export type BoxButtonState = "enabled" | "pressed" | "disabled";
-export type BoxButtonVariants = "solid" | "out-line";
 
 export interface BoxButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children?: ReactNode;
   color?: BoxButtonColor;
-  tinted?: BoxButtonTinted;
+  tinted?: boolean;
+  variants?: BoxButtonVariants;
   size?: BoxButtonSize;
   state?: BoxButtonState;
-  variants?: BoxButtonVariants;
   ShowStartIcon?: boolean;
   ShowEndIcon?: boolean;
   startIcon?: ReactNode;
@@ -28,16 +27,15 @@ const sizeStyleMap: Record<
     borderRadius: number;
     gap: string;
     iconSize: number;
-    textStyleClass: string;
   }
 > = {
-  lg: { height: "var(--height-container-lg, 56px)", paddingX: "var(--spacing-16, 16px)", borderRadius: 12, gap: "var(--spacing-8, 8px)", iconSize: 20, textStyleClass: "text-style-notosanskr-label-18-medium" },
-  md: { height: "var(--height-container-md, 48px)", paddingX: "var(--spacing-16, 16px)", borderRadius: 12, gap: "var(--spacing-6, 6px)", iconSize: 18, textStyleClass: "text-style-notosanskr-label-16-medium" },
-  sm: { height: "var(--height-container-sm, 40px)", paddingX: "var(--spacing-12, 12px)", borderRadius: 8, gap: "var(--spacing-4, 4px)", iconSize: 16, textStyleClass: "text-style-notosanskr-label-15-medium" },
-  xs: { height: "var(--height-container-xs, 32px)", paddingX: "var(--spacing-10, 10px)", borderRadius: 8, gap: "var(--spacing-2, 2px)", iconSize: 14, textStyleClass: "text-style-notosanskr-label-13-medium" },
+  lg: { height: "var(--height-container-lg, 56px)", paddingX: "var(--spacing-16, 16px)", borderRadius: 12, gap: "var(--spacing-8, 8px)", iconSize: 20 },
+  md: { height: "var(--height-container-md, 48px)", paddingX: "var(--spacing-14, 14px)", borderRadius: 10, gap: "var(--spacing-6, 6px)", iconSize: 18 },
+  sm: { height: "var(--height-container-sm, 40px)", paddingX: "var(--spacing-12, 12px)", borderRadius: 8, gap: "var(--spacing-4, 4px)", iconSize: 16 },
+  xs: { height: "var(--height-container-xs, 32px)", paddingX: "var(--spacing-10, 10px)", borderRadius: 6, gap: "var(--spacing-4, 4px)", iconSize: 14 },
 };
 
-const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variants: BoxButtonVariants) => {
+const getVariantStyle = (color: BoxButtonColor, variants: BoxButtonVariants, tinted: boolean) => {
   if (variants === "out-line") {
     if (color === "primary") {
       if (tinted) {
@@ -55,7 +53,7 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
         pressedOverlay: "var(--state-pressed-black)",
       };
     }
-    // gray
+    // gray outline
     if (tinted) {
       return {
         background: "transparent",
@@ -103,7 +101,7 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
     background: "var(--container-gray-strong)",
     color: "var(--text-icon-gray-white)",
     border: "none",
-    pressedOverlay: "var(--state-pressed-black)",
+    pressedOverlay: "var(--state-pressed-white)",
   };
 };
 
@@ -117,9 +115,9 @@ const BoxButtonComponent = ({
   children,
   color = "primary",
   tinted = false,
+  variants = "solid",
   size = "lg",
   state = "enabled",
-  variants = "solid",
   ShowStartIcon = true,
   ShowEndIcon = true,
   startIcon,
@@ -129,16 +127,15 @@ const BoxButtonComponent = ({
   ...props
 }: BoxButtonProps) => {
   const sizeConfig = sizeStyleMap[size];
-  const variantConfig = getVariantStyle(color, tinted, variants);
+  const vConfig = getVariantStyle(color, variants, tinted);
 
   const isDisabled = state === "disabled";
   const isPressed = state === "pressed";
 
-  const iconColor = isDisabled ? disabledStyle.color : variantConfig.color;
+  const iconColor = isDisabled ? disabledStyle.color : vConfig.color;
 
   const renderIcon = (icon: ReactNode, show: boolean) => {
     if (!show || !icon) return null;
-    
     if (React.isValidElement(icon)) {
       return React.cloneElement(icon as React.ReactElement<{ size?: number; color?: string }>, {
         size: sizeConfig.iconSize,
@@ -158,35 +155,34 @@ const BoxButtonComponent = ({
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     borderRadius: sizeConfig.borderRadius,
-    border: isDisabled ? disabledStyle.border : variantConfig.border,
-    backgroundColor: isDisabled ? disabledStyle.background : variantConfig.background,
-    color: isDisabled ? disabledStyle.color : variantConfig.color,
+    border: isDisabled ? disabledStyle.border : vConfig.border,
     cursor: isDisabled ? "not-allowed" : "pointer",
     overflow: "hidden",
     whiteSpace: "nowrap",
+    backgroundColor: isDisabled ? disabledStyle.background : vConfig.background,
+    color: isDisabled ? disabledStyle.color : vConfig.color,
+    fontSize: "15px",
+    fontWeight: "500",
+    lineHeight: "22px",
+    fontFamily: "NotoSansKR",
     ...style,
   };
 
-  const textColor = isDisabled ? disabledStyle.color : variantConfig.color;
-
   return (
-    <button
-      className={`${sizeConfig.textStyleClass} ${className}`}
-      style={buttonStyle}
-      disabled={isDisabled}
-      {...props}
-    >
-      {renderIcon(startIcon, ShowStartIcon)}
-      <span style={{ color: textColor, margin: 0 }}>{children}</span>
-      {renderIcon(endIcon, ShowEndIcon)}
+    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
+      {ShowStartIcon && renderIcon(startIcon, true)}
+      <span style={{ color: isDisabled ? disabledStyle.color : vConfig.color }}>
+        {children}
+      </span>
+      {ShowEndIcon && renderIcon(endIcon, true)}
       {isPressed && !isDisabled && (
-        <span
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: variantConfig.pressedOverlay,
-            pointerEvents: "none",
-          }}
+        <span 
+          style={{ 
+            position: "absolute", 
+            inset: 0, 
+            backgroundColor: vConfig.pressedOverlay, 
+            pointerEvents: "none" 
+          }} 
         />
       )}
     </button>
