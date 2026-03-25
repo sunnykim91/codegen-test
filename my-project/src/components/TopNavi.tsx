@@ -1,4 +1,4 @@
-import React, { memo, HTMLAttributes } from "react";
+import React, { memo, ReactNode, HTMLAttributes } from "react";
 import { IconButton } from "./IconButton";
 import { User, Menu, DirectionLeftLg, CloseLarge } from "../icons";
 
@@ -8,32 +8,40 @@ export interface TopNaviProps extends HTMLAttributes<HTMLDivElement> {
   variants?: TopNaviVariants;
   closeButton?: boolean;
   centerHeading?: boolean;
-  title?: string;
+  heading?: ReactNode;
 }
 
 const variantStyleMap: Record<TopNaviVariants, {
   height: string;
   fontSize: string;
   fontWeight: string;
-  textStyle: string;
+  padding: string;
+  gap: string;
+  headingTextStyle: string;
 }> = {
   main: {
     height: "var(--height-container-lg, 56px)",
     fontSize: "24px",
     fontWeight: "bold",
-    textStyle: "text-style-notosanskr-24-bold",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
+    gap: "var(--spacing-16, 16px)",
+    headingTextStyle: "text-style-notosanskr-heading-24-bold",
   },
   sub: {
     height: "var(--height-container-md, 48px)",
     fontSize: "16px",
     fontWeight: "medium",
-    textStyle: "text-style-notosanskr-16-medium",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
+    gap: "var(--spacing-16, 16px)",
+    headingTextStyle: "text-style-notosanskr-heading-16-medium",
   },
   popup: {
     height: "var(--height-container-md, 48px)",
     fontSize: "16px",
     fontWeight: "medium",
-    textStyle: "text-style-notosanskr-16-medium",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
+    gap: "var(--spacing-16, 16px)",
+    headingTextStyle: "text-style-notosanskr-heading-16-medium",
   },
 };
 
@@ -41,42 +49,60 @@ const TopNaviComponent = ({
   variants = "main",
   closeButton = true,
   centerHeading = true,
-  title = "LOGO",
+  heading = "heading",
   className = "",
   style,
   ...props
 }: TopNaviProps) => {
-  const variantConfig = variantStyleMap[variants];
+  const config = variantStyleMap[variants];
 
   const containerStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     width: 375,
-    height: variantConfig.height,
-    paddingLeft: "var(--spacing-global-side, 20px)",
-    paddingRight: "var(--spacing-global-side, 20px)",
-    gap: "var(--spacing-16, 16px)",
+    height: config.height,
+    padding: config.padding,
+    gap: config.gap,
     borderRadius: 0,
     color: "var(--text-icon-gray-default)",
     ...style,
   };
 
-  const textStyle: React.CSSProperties = {
-    color: "var(--text-icon-gray-default)",
-    fontSize: variantConfig.fontSize,
-    fontWeight: variantConfig.fontWeight,
+  const leftStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+    height: "100%",
+  };
+
+  const centerStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+    height: "100%",
+  };
+
+  const rightStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+    height: "100%",
+  };
+
+  const headingStyle: React.CSSProperties = {
     margin: 0,
+    color: "var(--text-icon-gray-default)",
   };
 
   if (variants === "main") {
     return (
       <div className={className} style={containerStyle} {...props}>
-        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-12, 12px)" }}>
-          <h2 style={{ ...textStyle, width: 67, height: 36 }}>
-            {title}
+        <div style={{ ...leftStyle, gap: "var(--spacing-12, 12px)" }}>
+          <h2 className="text-style-notosanskr-heading-24-bold" style={headingStyle}>
+            LOGO
           </h2>
         </div>
-        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+        <div style={{ ...rightStyle, gap: "var(--spacing-20, 20px)", justifyContent: "flex-end" }}>
           <IconButton variants="gray" state="enabled" size={20} icon={<User />} />
           <IconButton variants="gray" state="enabled" size={20} icon={<Menu />} />
         </div>
@@ -87,39 +113,42 @@ const TopNaviComponent = ({
   if (variants === "sub") {
     return (
       <div className={className} style={containerStyle} {...props}>
-        <div style={{ display: "flex", flex: 1 }}>
-          <div style={{ display: "flex", width: "var(--width-container-detail-12, 12px)" }}>
+        <div style={leftStyle}>
+          <div style={{ width: "var(--width-container-detail-12, 12px)", height: "100%", display: "flex" }}>
             <IconButton variants="gray" state="enabled" size={24} icon={<DirectionLeftLg />} />
           </div>
         </div>
-        <div style={{ display: "flex", flex: 1 }}>
-          <span style={{ ...textStyle, width: 62, height: 24 }}>
-            {title}
-          </span>
+        <div style={centerStyle}>
+          <h1 className="text-style-notosanskr-heading-16-medium" style={headingStyle}>
+            {heading}
+          </h1>
         </div>
-        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+        <div style={{ ...rightStyle, gap: "var(--spacing-20, 20px)" }}>
         </div>
       </div>
     );
   }
 
-  // popup variant
-  return (
-    <div className={className} style={containerStyle} {...props}>
-      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+  if (variants === "popup") {
+    return (
+      <div className={className} style={containerStyle} {...props}>
+        <div style={{ ...leftStyle, gap: "var(--spacing-20, 20px)" }}>
+        </div>
+        <div style={centerStyle}>
+          <h1 className="text-style-notosanskr-heading-16-medium" style={headingStyle}>
+            {heading}
+          </h1>
+        </div>
+        <div style={{ ...rightStyle, justifyContent: "flex-end" }}>
+          {closeButton && (
+            <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
+          )}
+        </div>
       </div>
-      <div style={{ display: "flex", flex: 1 }}>
-        <span style={{ ...textStyle, width: 62, height: 24 }}>
-          {title}
-        </span>
-      </div>
-      <div style={{ display: "flex", flex: 1 }}>
-        {closeButton && (
-          <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
-        )}
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return null;
 };
 
 const TopNavi = memo(TopNaviComponent);
