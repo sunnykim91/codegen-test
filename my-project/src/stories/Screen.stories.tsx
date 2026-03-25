@@ -13,7 +13,7 @@ const meta: Meta<typeof Screen> = {
   },
   args: {
     children: "Screen",
-    variants: "sub"
+    variants: "main"
   },
 };
 
