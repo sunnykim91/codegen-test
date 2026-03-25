@@ -10,10 +10,14 @@ const meta: Meta<typeof TopNavi> = {
       control: "select",
       options: ["main", "sub", "popup"],
     },
+    closeButton: { control: "boolean" },
+    centerHeading: { control: "boolean" },
     heading: { control: "text" }
   },
   args: {
-    variants: "main"
+    variants: "main",
+    closeButton: true,
+    centerHeading: true
   },
 };
 
