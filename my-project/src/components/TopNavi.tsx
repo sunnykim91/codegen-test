@@ -1,4 +1,4 @@
-import React, { memo, ReactNode, HTMLAttributes } from "react";
+import React, { memo, HTMLAttributes } from "react";
 import { IconButton } from "./IconButton";
 import { User, Menu, DirectionLeftLg, CloseLarge } from "../icons";
 
@@ -13,47 +13,35 @@ export interface TopNaviProps extends HTMLAttributes<HTMLDivElement> {
 
 const variantStyleMap: Record<TopNaviVariants, {
   height: string;
-  paddingY: number;
-  paddingX: string;
+  padding: string;
   gap: string;
-  textSize: string;
+  fontSize: string;
+  fontWeight: string;
   textStyle: string;
-  showLeftButton: boolean;
-  showRightButtons: boolean;
-  leftButtonIcon?: ReactNode;
-  rightButtons?: ReactNode[];
 }> = {
   main: {
     height: "var(--height-container-lg, 56px)",
-    paddingY: 0,
-    paddingX: "var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    textSize: "24px",
-    textStyle: "text-style-notosanskr-24-bold",
-    showLeftButton: false,
-    showRightButtons: true,
-    rightButtons: [<User key="user" />, <Menu key="menu" />],
+    fontSize: "24px",
+    fontWeight: "bold",
+    textStyle: "text-style-notosanskr-heading-24-bold",
   },
   sub: {
     height: "var(--height-container-md, 48px)",
-    paddingY: 0,
-    paddingX: "var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    textSize: "16px",
-    textStyle: "text-style-notosanskr-16-medium",
-    showLeftButton: true,
-    showRightButtons: false,
-    leftButtonIcon: <DirectionLeftLg />,
+    fontSize: "16px",
+    fontWeight: "medium",
+    textStyle: "text-style-notosanskr-heading-16-medium",
   },
   popup: {
     height: "var(--height-container-md, 48px)",
-    paddingY: 0,
-    paddingX: "var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    textSize: "16px",
-    textStyle: "text-style-notosanskr-16-medium",
-    showLeftButton: false,
-    showRightButtons: false,
+    fontSize: "16px",
+    fontWeight: "medium",
+    textStyle: "text-style-notosanskr-heading-16-medium",
   },
 };
 
@@ -66,89 +54,108 @@ const TopNaviComponent = ({
   style,
   ...props
 }: TopNaviProps) => {
-  const config = variantStyleMap[variants];
+  const variantConfig = variantStyleMap[variants];
 
-  const containerStyle: React.CSSProperties = {
+  const naviStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
     width: 375,
-    height: config.height,
-    paddingTop: config.paddingY,
-    paddingBottom: config.paddingY,
-    paddingLeft: config.paddingX,
-    paddingRight: config.paddingX,
-    gap: config.gap,
+    height: variantConfig.height,
+    padding: variantConfig.padding,
+    gap: variantConfig.gap,
     borderRadius: 0,
     color: "var(--text-icon-gray-default)",
     ...style,
   };
 
-  const leftStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    gap: variants === "main" ? "var(--spacing-12, 12px)" : 0,
-  };
-
-  const centerStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    justifyContent: centerHeading ? "center" : "flex-start",
-  };
-
-  const rightStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    gap: variants === "main" ? "var(--spacing-20, 20px)" : 0,
-  };
-
-  const titleStyle: React.CSSProperties = {
-    margin: 0,
-    fontSize: config.textSize,
-    fontWeight: variants === "main" ? "bold" : "500",
-    color: "var(--text-icon-gray-default)",
-  };
-
-  return (
-    <div className={`${className}`} style={containerStyle} {...props}>
-      {/* Left */}
-      <div style={leftStyle}>
-        {variants === "main" ? (
-          <h2 style={titleStyle} className={config.textStyle}>
-            {title}
-          </h2>
-        ) : config.showLeftButton ? (
-          <div style={{ width: "var(--width-container-detail-12, 12px)", height: "100%", display: "flex", alignItems: "center" }}>
-            <IconButton variants="gray" state="enabled" size={24} icon={config.leftButtonIcon} />
-          </div>
-        ) : null}
+  const renderMainVariant = () => (
+    <>
+      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-12, 12px)" }}>
+        <h2 
+          className={variantConfig.textStyle}
+          style={{ 
+            margin: 0, 
+            fontSize: variantConfig.fontSize, 
+            fontWeight: variantConfig.fontWeight,
+            color: "var(--text-icon-gray-default)"
+          }}
+        >
+          {title}
+        </h2>
       </div>
-
-      {/* Center */}
-      <div style={centerStyle}>
-        {variants !== "main" && (
-          <span style={titleStyle} className={config.textStyle}>
-            {title}
-          </span>
-        )}
+      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+        <IconButton variants="gray" state="enabled" size={20} icon={<User />} />
+        <IconButton variants="gray" state="enabled" size={20} icon={<Menu />} />
       </div>
+    </>
+  );
 
-      {/* Right */}
-      <div style={rightStyle}>
-        {variants === "main" && config.showRightButtons && config.rightButtons?.map((icon, index) => (
-          <IconButton key={index} variants="gray" state="enabled" size={20} icon={icon} />
-        ))}
-        {variants === "popup" && closeButton && (
+  const renderSubVariant = () => (
+    <>
+      <div style={{ display: "flex", flex: 1 }}>
+        <div style={{ display: "flex", width: "var(--width-container-detail-12, 12px)", height: "100%" }}>
+          <IconButton variants="gray" state="enabled" size={24} icon={<DirectionLeftLg />} />
+        </div>
+      </div>
+      <div style={{ display: "flex", flex: 1 }}>
+        <span 
+          className={variantConfig.textStyle}
+          style={{ 
+            margin: 0, 
+            fontSize: variantConfig.fontSize, 
+            fontWeight: variantConfig.fontWeight,
+            color: "var(--text-icon-gray-default)"
+          }}
+        >
+          {title}
+        </span>
+      </div>
+      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+      </div>
+    </>
+  );
+
+  const renderPopupVariant = () => (
+    <>
+      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+      </div>
+      <div style={{ display: "flex", flex: 1 }}>
+        <span 
+          className={variantConfig.textStyle}
+          style={{ 
+            margin: 0, 
+            fontSize: variantConfig.fontSize, 
+            fontWeight: variantConfig.fontWeight,
+            color: "var(--text-icon-gray-default)"
+          }}
+        >
+          {title}
+        </span>
+      </div>
+      <div style={{ display: "flex", flex: 1 }}>
+        {closeButton && (
           <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
         )}
       </div>
+    </>
+  );
+
+  const renderContent = () => {
+    switch (variants) {
+      case "main":
+        return renderMainVariant();
+      case "sub":
+        return renderSubVariant();
+      case "popup":
+        return renderPopupVariant();
+      default:
+        return renderMainVariant();
+    }
+  };
+
+  return (
+    <div className={className} style={naviStyle} {...props}>
+      {renderContent()}
     </div>
   );
 };
