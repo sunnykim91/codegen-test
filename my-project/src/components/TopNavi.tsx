@@ -1,4 +1,4 @@
-import React, { memo, ReactNode, HTMLAttributes } from "react";
+import React, { memo, HTMLAttributes } from "react";
 import { IconButton } from "./IconButton";
 import { User, Menu, DirectionLeftLg, CloseLarge } from "../icons";
 
@@ -8,7 +8,7 @@ export interface TopNaviProps extends HTMLAttributes<HTMLDivElement> {
   variants?: TopNaviVariants;
   closeButton?: boolean;
   centerHeading?: boolean;
-  heading?: string;
+  title?: string;
 }
 
 const variantStyleMap: Record<TopNaviVariants, {
@@ -41,7 +41,7 @@ const TopNaviComponent = ({
   variants = "main",
   closeButton = true,
   centerHeading = true,
-  heading = "heading",
+  title = "LOGO",
   className = "",
   style,
   ...props
@@ -51,111 +51,72 @@ const TopNaviComponent = ({
   const containerStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    gap: "var(--spacing-16, 16px)",
     width: 375,
     height: variantConfig.height,
-    padding: `0 var(--spacing-global-side, 20px)`,
+    paddingLeft: "var(--spacing-global-side, 20px)",
+    paddingRight: "var(--spacing-global-side, 20px)",
+    gap: "var(--spacing-16, 16px)",
     borderRadius: 0,
     color: "var(--text-icon-gray-default)",
     ...style,
   };
 
-  const leftStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    gap: variants === "main" ? "var(--spacing-12, 12px)" : 0,
-  };
-
-  const centerStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const rightStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    gap: "var(--spacing-20, 20px)",
-  };
-
-  const headingStyle: React.CSSProperties = {
+  const textStyle: React.CSSProperties = {
+    color: "var(--text-icon-gray-default)",
     fontSize: variantConfig.fontSize,
     fontWeight: variantConfig.fontWeight,
-    color: "var(--text-icon-gray-default)",
     margin: 0,
   };
 
-  const renderLeftContent = () => {
-    if (variants === "main") {
-      return (
-        <span className={variantConfig.textStyle} style={headingStyle}>
-          LOGO
-        </span>
-      );
-    }
-    
-    if (variants === "sub") {
-      return (
-        <div style={{ width: "var(--width-container-detail-12, 12px)", height: "100%", display: "flex", alignItems: "center" }}>
-          <IconButton variants="gray" state="enabled" size={24} icon={<DirectionLeftLg />} />
+  if (variants === "main") {
+    return (
+      <div className={className} style={containerStyle} {...props}>
+        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-12, 12px)" }}>
+          <h2 style={{ ...textStyle, width: 67, height: 36 }}>
+            {title}
+          </h2>
         </div>
-      );
-    }
-    
-    return null;
-  };
-
-  const renderCenterContent = () => {
-    if (variants === "main") return null;
-    
-    if (centerHeading) {
-      return (
-        <span className={variantConfig.textStyle} style={headingStyle}>
-          {heading}
-        </span>
-      );
-    }
-    
-    return null;
-  };
-
-  const renderRightContent = () => {
-    if (variants === "main") {
-      return (
-        <>
+        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
           <IconButton variants="gray" state="enabled" size={20} icon={<User />} />
           <IconButton variants="gray" state="enabled" size={20} icon={<Menu />} />
-        </>
-      );
-    }
-    
-    if (variants === "popup" && closeButton) {
-      return (
-        <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
-      );
-    }
-    
-    return null;
-  };
+        </div>
+      </div>
+    );
+  }
 
+  if (variants === "sub") {
+    return (
+      <div className={className} style={containerStyle} {...props}>
+        <div style={{ display: "flex", flex: 1 }}>
+          <div style={{ display: "flex", width: "var(--width-container-detail-12, 12px)" }}>
+            <IconButton variants="gray" state="enabled" size={24} icon={<DirectionLeftLg />} />
+          </div>
+        </div>
+        <div style={{ display: "flex", flex: 1 }}>
+          <span style={{ ...textStyle, width: 62, height: 24 }}>
+            {title}
+          </span>
+        </div>
+        <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+        </div>
+      </div>
+    );
+  }
+
+  // popup variant
   return (
     <div className={className} style={containerStyle} {...props}>
-      <div style={leftStyle}>
-        {renderLeftContent()}
+      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
       </div>
-      <div style={centerStyle}>
-        {renderCenterContent()}
+      <div style={{ display: "flex", flex: 1 }}>
+        <span style={{ ...textStyle, width: 62, height: 24 }}>
+          {title}
+        </span>
       </div>
-      <div style={rightStyle}>
-        {renderRightContent()}
+      <div style={{ display: "flex", flex: 1 }}>
+        {closeButton && (
+          <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
+        )}
       </div>
     </div>
   );
