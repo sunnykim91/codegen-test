@@ -21,38 +21,38 @@ type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {};
 
-export const 14: Story = {
+export const Size14: Story = {
   args: { size: "14" },
 };
 
-export const 16: Story = {
+export const Size16: Story = {
   args: { size: "16" },
 };
 
-export const 18: Story = {
+export const Size18: Story = {
   args: { size: "18" },
 };
 
-export const 20: Story = {
+export const Size20: Story = {
   args: { size: "20" },
 };
 
-export const 22: Story = {
+export const Size22: Story = {
   args: { size: "22" },
 };
 
-export const 24: Story = {
+export const Size24: Story = {
   args: { size: "24" },
 };
 
-export const 28: Story = {
+export const Size28: Story = {
   args: { size: "28" },
 };
 
-export const 32: Story = {
+export const Size32: Story = {
   args: { size: "32" },
 };
 
-export const 40: Story = {
+export const Size40: Story = {
   args: { size: "40" },
 };
