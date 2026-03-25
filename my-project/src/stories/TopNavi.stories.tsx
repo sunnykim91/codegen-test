@@ -12,7 +12,7 @@ const meta: Meta<typeof TopNavi> = {
     },
     closeButton: { control: "boolean" },
     centerHeading: { control: "boolean" },
-    heading: { control: "text" }
+    title: { control: "text" }
   },
   args: {
     variants: "main",
