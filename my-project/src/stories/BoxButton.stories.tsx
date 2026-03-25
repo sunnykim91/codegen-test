@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BoxButton } from "./BoxButton";
+import { BoxButton } from "../components/BoxButton";
 
 const meta: Meta<typeof BoxButton> = {
   title: "UI/BoxButton",
@@ -11,10 +11,6 @@ const meta: Meta<typeof BoxButton> = {
       options: ["primary", "gray"],
     },
     tinted: { control: "boolean" },
-    variants: {
-      control: "select",
-      options: ["solid", "out-line"],
-    },
     size: {
       control: "select",
       options: ["lg", "md", "sm", "xs"],
@@ -23,6 +19,10 @@ const meta: Meta<typeof BoxButton> = {
       control: "select",
       options: ["enabled", "pressed", "disabled"],
     },
+    variants: {
+      control: "select",
+      options: ["solid", "out-line"],
+    },
     ShowStartIcon: { control: "boolean" },
     ShowEndIcon: { control: "boolean" }
   },
@@ -30,9 +30,9 @@ const meta: Meta<typeof BoxButton> = {
     children: "BoxButton",
     color: "primary",
     tinted: false,
-    variants: "solid",
     size: "lg",
     state: "enabled",
+    variants: "solid",
     ShowStartIcon: true,
     ShowEndIcon: true
   },
@@ -49,14 +49,6 @@ export const Primary: Story = {
 
 export const Gray: Story = {
   args: { color: "gray" },
-};
-
-export const Solid: Story = {
-  args: { variants: "solid" },
-};
-
-export const OutLine: Story = {
-  args: { variants: "out-line" },
 };
 
 export const Lg: Story = {
@@ -87,10 +79,14 @@ export const Disabled: Story = {
   args: { state: "disabled" },
 };
 
-export const Tinted: Story = {
-  args: { tinted: true },
+export const Solid: Story = {
+  args: { variants: "solid" },
 };
 
-export const Disabled: Story = {
-  args: { state: "disabled" },
+export const OutLine: Story = {
+  args: { variants: "out-line" },
+};
+
+export const Tinted: Story = {
+  args: { tinted: true },
 };
