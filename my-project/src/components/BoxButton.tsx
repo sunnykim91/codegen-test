@@ -1,6 +1,6 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
 import { Icon } from "./Icon";
-import { Pressed } from "./Pressed";
+import { Blank } from "../icons";
 
 export type BoxButtonColor = "primary" | "gray";
 export type BoxButtonTinted = false | true;
@@ -17,44 +17,48 @@ export interface BoxButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElem
   variants?: BoxButtonVariants;
   showStartIcon?: boolean;
   showEndIcon?: boolean;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  label?: string;
 }
 
 const sizeStyleMap: Record<BoxButtonSize, {
   height: string;
-  padding: string;
+  paddingX: string;
   borderRadius: number;
   gap: string;
   iconSize: number;
+  textStyleClass: string;
 }> = {
   lg: {
     height: "var(--height-container-lg, 56px)",
-    padding: "0 var(--spacing-16, 16px) 0 var(--spacing-16, 16px)",
+    paddingX: "var(--spacing-16, 16px)",
     borderRadius: 12,
     gap: "var(--spacing-8, 8px)",
     iconSize: 16,
+    textStyleClass: "text-style-notosanskr-label-18-medium"
   },
   md: {
     height: "var(--height-container-md, 48px)",
-    padding: "0 var(--spacing-16, 16px) 0 var(--spacing-16, 16px)",
+    paddingX: "var(--spacing-16, 16px)",
     borderRadius: 12,
     gap: "var(--spacing-6, 6px)",
     iconSize: 16,
+    textStyleClass: "text-style-notosanskr-label-16-medium"
   },
   sm: {
     height: "var(--height-container-sm, 40px)",
-    padding: "0 var(--spacing-12, 12px) 0 var(--spacing-12, 12px)",
+    paddingX: "var(--spacing-12, 12px)",
     borderRadius: 8,
     gap: "var(--spacing-4, 4px)",
     iconSize: 16,
+    textStyleClass: "text-style-notosanskr-label-15-medium"
   },
   xs: {
     height: "var(--height-container-xs, 32px)",
-    padding: "0 var(--spacing-10, 10px) 0 var(--spacing-10, 10px)",
+    paddingX: "var(--spacing-8, 8px)",
     borderRadius: 8,
     gap: "var(--spacing-4, 4px)",
     iconSize: 14,
+    textStyleClass: "text-style-notosanskr-label-13-medium"
   },
 };
 
@@ -67,7 +71,6 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-primary-subtle)",
           border: "none",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: false,
         };
       } else {
         return {
@@ -75,17 +78,15 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-static-white-primary)",
           border: "none",
           pressedOverlay: "var(--state-pressed-static-white)",
-          pressedStatic: true,
         };
       }
-    } else {
+    } else { // out-line
       if (tinted) {
         return {
           background: "transparent",
           color: "var(--text-icon-primary-subtle-2)",
           border: "1px solid var(--stroke-primary-default)",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: false,
         };
       } else {
         return {
@@ -93,11 +94,10 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-primary-subtle-2)",
           border: "1px solid var(--stroke-primary-strong-3)",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: true,
         };
       }
     }
-  } else {
+  } else { // gray
     if (variants === "solid") {
       if (tinted) {
         return {
@@ -105,7 +105,6 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-gray-subtle)",
           border: "none",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: false,
         };
       } else {
         return {
@@ -113,17 +112,15 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-gray-white)",
           border: "none",
           pressedOverlay: "var(--state-pressed-white)",
-          pressedStatic: false,
         };
       }
-    } else {
+    } else { // out-line
       if (tinted) {
         return {
           background: "transparent",
           color: "var(--text-icon-gray-subtle-2)",
           border: "1px solid var(--stroke-gray-strong)",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: false,
         };
       } else {
         return {
@@ -131,7 +128,6 @@ const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variant
           color: "var(--text-icon-gray-default)",
           border: "1px solid var(--stroke-gray-strong-2)",
           pressedOverlay: "var(--state-pressed-black)",
-          pressedStatic: false,
         };
       }
     }
@@ -148,13 +144,12 @@ const BoxButtonComponent = ({
   children,
   color = "primary",
   tinted = false,
-  size = "lg",
+  size = "sm",
   state = "enabled",
   variants = "solid",
   showStartIcon = true,
   showEndIcon = true,
-  startIcon,
-  endIcon,
+  label = "버튼 라벨",
   className = "",
   style,
   ...props
@@ -169,39 +164,47 @@ const BoxButtonComponent = ({
 
   const buttonStyle: React.CSSProperties = {
     position: "relative",
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
     gap: sizeConfig.gap,
     height: sizeConfig.height,
-    padding: sizeConfig.padding,
+    paddingLeft: sizeConfig.paddingX,
+    paddingRight: sizeConfig.paddingX,
     borderRadius: sizeConfig.borderRadius,
     border: isDisabled ? disabledStyle.border : variantConfig.border,
-    backgroundColor: isDisabled ? disabledStyle.background : variantConfig.background,
-    color: isDisabled ? disabledStyle.color : variantConfig.color,
     cursor: isDisabled ? "not-allowed" : "pointer",
     overflow: "hidden",
+    whiteSpace: "nowrap",
+    backgroundColor: isDisabled ? disabledStyle.background : variantConfig.background,
+    color: isDisabled ? disabledStyle.color : variantConfig.color,
     ...style,
   };
 
-  const textStyle: React.CSSProperties = {
-    color: isDisabled ? disabledStyle.color : variantConfig.color,
-    margin: 0,
-  };
+  const textColor = isDisabled ? disabledStyle.color : variantConfig.color;
 
   return (
     <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
-      {showStartIcon && startIcon && (
-        <Icon size={sizeConfig.iconSize} icon={React.isValidElement(startIcon) ? React.cloneElement(startIcon as React.ReactElement<{ color?: string }>, { color: iconColor }) : startIcon} />
+      {showStartIcon && (
+        <Icon size={sizeConfig.iconSize} color={iconColor}>
+          <Blank />
+        </Icon>
       )}
-      <span className="text-style-notosanskr-label-15-medium" style={textStyle}>
-        {children}
+      <span className={sizeConfig.textStyleClass} style={{ color: textColor }}>
+        {children || label}
       </span>
-      {showEndIcon && endIcon && (
-        <Icon size={sizeConfig.iconSize} icon={React.isValidElement(endIcon) ? React.cloneElement(endIcon as React.ReactElement<{ color?: string }>, { color: iconColor }) : endIcon} />
+      {showEndIcon && (
+        <Icon size={sizeConfig.iconSize} color={iconColor}>
+          <Blank />
+        </Icon>
       )}
       {isPressed && !isDisabled && (
-        <Pressed color="gray" static={variantConfig.pressedStatic} />
+        <span style={{ 
+          position: "absolute", 
+          inset: 0, 
+          backgroundColor: variantConfig.pressedOverlay, 
+          pointerEvents: "none" 
+        }} />
       )}
     </button>
   );
