@@ -1,29 +1,32 @@
-import React, { memo, ReactNode, HTMLAttributes, isValidElement } from "react";
+import React, { memo, ReactNode, HTMLAttributes, cloneElement, isValidElement } from "react";
 import { Blank } from "./Blank";
 
 export type IconSize = 14 | 16 | 18 | 20 | 22 | 24 | 28 | 32 | 40;
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {
-  size?: IconSize;
   children?: ReactNode;
+  size?: IconSize;
   color?: string;
 }
 
-const sizeStyleMap: Record<IconSize, { width: string; height: string }> = {
-  14: { width: "var(--square-14, 14px)", height: "var(--square-14, 14px)" },
-  16: { width: "var(--square-16, 16px)", height: "var(--square-16, 16px)" },
-  18: { width: "var(--square-18, 18px)", height: "var(--square-18, 18px)" },
-  20: { width: "var(--square-20, 20px)", height: "var(--square-20, 20px)" },
-  22: { width: "var(--square-22, 22px)", height: "var(--square-22, 22px)" },
-  24: { width: "var(--square-24, 24px)", height: "var(--square-24, 24px)" },
-  28: { width: "var(--square-28, 28px)", height: "var(--square-28, 28px)" },
-  32: { width: "var(--square-32, 32px)", height: "var(--square-32, 32px)" },
-  40: { width: "var(--square-40, 40px)", height: "var(--square-40, 40px)" },
+const sizeStyleMap: Record<IconSize, {
+  containerSize: string;
+  iconSize: number;
+}> = {
+  14: { containerSize: "var(--square-14, 14px)", iconSize: 11 },
+  16: { containerSize: "var(--square-16, 16px)", iconSize: 12 },
+  18: { containerSize: "var(--square-18, 18px)", iconSize: 14 },
+  20: { containerSize: "var(--square-20, 20px)", iconSize: 15 },
+  22: { containerSize: "var(--square-22, 22px)", iconSize: 17 },
+  24: { containerSize: "var(--square-24, 24px)", iconSize: 18 },
+  28: { containerSize: "var(--square-28, 28px)", iconSize: 21 },
+  32: { containerSize: "var(--square-32, 32px)", iconSize: 24 },
+  40: { containerSize: "var(--square-40, 40px)", iconSize: 30 },
 };
 
 const IconComponent = ({
-  size = 16,
   children,
+  size = 16,
   color = "currentColor",
   className = "",
   style,
@@ -31,34 +34,29 @@ const IconComponent = ({
 }: IconProps) => {
   const sizeConfig = sizeStyleMap[size];
 
-  const containerStyle: React.CSSProperties = {
+  const iconStyle: React.CSSProperties = {
     display: "flex",
-    padding: 0,
-    gap: 0,
-    width: sizeConfig.width,
-    height: sizeConfig.height,
+    width: sizeConfig.containerSize,
+    height: sizeConfig.containerSize,
     borderRadius: 0,
     ...style,
   };
 
   const renderIcon = () => {
-    if (!children) {
-      return <Blank />;
-    }
-    
     if (isValidElement(children)) {
-      return React.cloneElement(children as React.ReactElement<{ size?: number; color?: string }>, {
-        size: typeof size === 'number' ? size : parseInt(sizeConfig.width.replace(/[^\d]/g, '')),
+      return cloneElement(children as React.ReactElement<{ size?: number; color?: string }>, {
+        size: sizeConfig.iconSize,
         color,
       });
     }
-    
     return children;
   };
 
   return (
-    <div className={className} style={containerStyle} {...props}>
-      {renderIcon()}
+    <div className={className} style={iconStyle} {...props}>
+      <Blank style={{ width: sizeConfig.containerSize, height: sizeConfig.containerSize }}>
+        {renderIcon()}
+      </Blank>
     </div>
   );
 };
