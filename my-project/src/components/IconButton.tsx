@@ -1,17 +1,17 @@
-import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
+import React, { memo, ReactNode, ButtonHTMLAttributes, cloneElement, isValidElement } from "react";
+import { Icon } from "./Icon";
 
 export type IconButtonVariants = "primary" | "gray" | "invert";
 export type IconButtonState = "enabled" | "disabled";
-export type IconButtonSize = 20 | 24;
 
-export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size"> {
+export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
+  icon?: ReactNode;
   variants?: IconButtonVariants;
   state?: IconButtonState;
-  size?: IconButtonSize;
-  icon?: ReactNode;
+  size?: number;
 }
 
-const sizeStyleMap: Record<IconButtonSize, { width: number; height: number; borderRadius: number }> = {
+const sizeStyleMap: Record<number, { width: number; height: number; borderRadius: number }> = {
   20: { width: 20, height: 20, borderRadius: 2 },
   24: { width: 24, height: 24, borderRadius: 2 },
 };
@@ -27,31 +27,20 @@ const disabledStyle = {
 };
 
 const IconButtonComponent = ({
+  icon,
   variants = "primary",
   state = "enabled",
-  size = 24,
-  icon,
+  size = 20,
   className = "",
   style,
   ...props
 }: IconButtonProps) => {
-  const sizeConfig = sizeStyleMap[size];
+  const sizeConfig = sizeStyleMap[size] || sizeStyleMap[20];
   const variantConfig = variantStyleMap[variants];
-  
-  const isDisabled = state === "disabled";
-  
-  const iconColor = isDisabled ? disabledStyle.color : variantConfig.color;
 
-  const renderIcon = () => {
-    if (!icon) return null;
-    if (React.isValidElement(icon)) {
-      return React.cloneElement(icon as React.ReactElement<{ size?: number; color?: string }>, {
-        size,
-        color: iconColor,
-      });
-    }
-    return icon;
-  };
+  const isDisabled = state === "disabled";
+
+  const iconColor = isDisabled ? disabledStyle.color : variantConfig.color;
 
   const buttonStyle: React.CSSProperties = {
     display: "flex",
@@ -68,13 +57,10 @@ const IconButtonComponent = ({
   };
 
   return (
-    <button
-      className={className}
-      style={buttonStyle}
-      disabled={isDisabled}
-      {...props}
-    >
-      {renderIcon()}
+    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
+      <Icon size={size} color={iconColor}>
+        {icon}
+      </Icon>
     </button>
   );
 };
