@@ -1,6 +1,5 @@
-import React, { memo, ReactNode, ButtonHTMLAttributes, cloneElement, isValidElement } from "react";
-import { Icon } from "./Icon";
-import { Blank } from "../icons";
+import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
+import { Icon, IconSize } from "./Icon";
 
 export type BoxButtonColor = "primary" | "gray";
 export type BoxButtonVariants = "solid" | "out-line";
@@ -11,13 +10,14 @@ export interface BoxButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children?: ReactNode;
   color?: BoxButtonColor;
-  tinted?: boolean;
+  variants?: BoxButtonVariants;
   size?: BoxButtonSize;
   state?: BoxButtonState;
-  variants?: BoxButtonVariants;
+  tinted?: boolean;
   showStartIcon?: boolean;
   showEndIcon?: boolean;
-  label?: string;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
 }
 
 const sizeStyleMap: Record<
@@ -25,96 +25,66 @@ const sizeStyleMap: Record<
   {
     height: string;
     paddingX: string;
-    borderRadius: number;
     gap: string;
-    iconSize: 14 | 16 | 18 | 20 | 22 | 24 | 28 | 32 | 40;
-    typography: string;
+    borderRadius: number;
+    iconSize: IconSize;
+    fontSize: string;
+    textStyle: string;
   }
 > = {
   lg: {
     height: "var(--height-container-lg, 56px)",
     paddingX: "var(--spacing-16, 16px)",
-    borderRadius: 12,
     gap: "var(--spacing-8, 8px)",
-    iconSize: 16,
-    typography: "text-style-notosanskr-label-18-medium",
+    borderRadius: 12,
+    iconSize: 20,
+    fontSize: "18px",
+    textStyle: "text-style-notosanskr-label-18-medium",
   },
   md: {
     height: "var(--height-container-md, 48px)",
     paddingX: "var(--spacing-16, 16px)",
-    borderRadius: 12,
     gap: "var(--spacing-6, 6px)",
-    iconSize: 16,
-    typography: "text-style-notosanskr-label-16-medium",
+    borderRadius: 12,
+    iconSize: 18,
+    fontSize: "16px",
+    textStyle: "text-style-notosanskr-label-16-medium",
   },
   sm: {
     height: "var(--height-container-sm, 40px)",
     paddingX: "var(--spacing-12, 12px)",
-    borderRadius: 8,
     gap: "var(--spacing-4, 4px)",
+    borderRadius: 8,
     iconSize: 16,
-    typography: "text-style-notosanskr-label-15-medium",
+    fontSize: "15px",
+    textStyle: "text-style-notosanskr-label-15-medium",
   },
   xs: {
     height: "var(--height-container-xs, 32px)",
     paddingX: "var(--spacing-10, 10px)",
-    borderRadius: 8,
-    gap: "var(--spacing-2, 2px)",
+    gap: "var(--spacing-4, 4px)",
+    borderRadius: 6,
     iconSize: 14,
-    typography: "text-style-notosanskr-label-14-medium",
+    fontSize: "14px",
+    textStyle: "text-style-notosanskr-label-14-medium",
   },
 };
 
 const getVariantStyle = (
   color: BoxButtonColor,
-  tinted: boolean,
-  variants: BoxButtonVariants
+  variants: BoxButtonVariants,
+  tinted: boolean
 ) => {
-  if (variants === "out-line") {
-    if (color === "primary") {
-      if (tinted) {
-        return {
-          background: "transparent",
-          color: "var(--text-icon-primary-subtle-2)",
-          border: "1px solid var(--stroke-primary-default)",
-          pressedOverlay: "var(--state-pressed-black)",
-        };
-      } else {
-        return {
-          background: "transparent",
-          color: "var(--text-icon-primary-subtle-2)",
-          border: "1px solid var(--stroke-primary-strong-3)",
-          pressedOverlay: "var(--state-pressed-black)",
-        };
-      }
-    } else {
-      if (tinted) {
-        return {
-          background: "transparent",
-          color: "var(--text-icon-gray-subtle-2)",
-          border: "1px solid var(--stroke-gray-strong)",
-          pressedOverlay: "var(--state-pressed-black)",
-        };
-      } else {
-        return {
-          background: "transparent",
-          color: "var(--text-icon-gray-default)",
-          border: "1px solid var(--stroke-gray-strong-2)",
-          pressedOverlay: "var(--state-pressed-black)",
-        };
-      }
-    }
-  }
-  // solid
   if (color === "primary") {
-    if (tinted) {
-      return {
-        background: "var(--container-primary-subtle)",
-        color: "var(--text-icon-primary-subtle)",
-        border: "none",
-        pressedOverlay: "var(--state-pressed-black)",
-      };
-    } else {
+    if (variants === "solid") {
+      if (tinted) {
+        return {
+          background: "var(--container-primary-subtle)",
+          color: "var(--text-icon-primary-subtle)",
+          border: "none",
+          pressedOverlay: "var(--state-pressed-black)",
+        };
+      }
       return {
         background: "var(--container-primary-default)",
         color: "var(--text-icon-static-white-primary)",
@@ -122,16 +92,33 @@ const getVariantStyle = (
         pressedOverlay: "var(--state-pressed-static-white)",
       };
     }
-  }
-  // gray solid
-  if (tinted) {
+    // out-line
+    if (tinted) {
+      return {
+        background: "transparent",
+        color: "var(--text-icon-primary-subtle-2)",
+        border: "1px solid var(--stroke-primary-default)",
+        pressedOverlay: "var(--state-pressed-black)",
+      };
+    }
     return {
-      background: "var(--container-gray-subtle-2)",
-      color: "var(--text-icon-gray-subtle)",
-      border: "none",
+      background: "transparent",
+      color: "var(--text-icon-primary-subtle-2)",
+      border: "1px solid var(--stroke-primary-strong-3)",
       pressedOverlay: "var(--state-pressed-black)",
     };
-  } else {
+  }
+  
+  // gray
+  if (variants === "solid") {
+    if (tinted) {
+      return {
+        background: "var(--container-gray-subtle-2)",
+        color: "var(--text-icon-gray-subtle)",
+        border: "none",
+        pressedOverlay: "var(--state-pressed-black)",
+      };
+    }
     return {
       background: "var(--container-gray-strong)",
       color: "var(--text-icon-gray-white)",
@@ -139,6 +126,22 @@ const getVariantStyle = (
       pressedOverlay: "var(--state-pressed-white)",
     };
   }
+  
+  // out-line
+  if (tinted) {
+    return {
+      background: "transparent",
+      color: "var(--text-icon-gray-subtle-2)",
+      border: "1px solid var(--stroke-gray-strong)",
+      pressedOverlay: "var(--state-pressed-black)",
+    };
+  }
+  return {
+    background: "transparent",
+    color: "var(--text-icon-gray-default)",
+    border: "1px solid var(--stroke-gray-strong-2)",
+    pressedOverlay: "var(--state-pressed-black)",
+  };
 };
 
 const disabledStyle = {
@@ -150,35 +153,25 @@ const disabledStyle = {
 const BoxButtonComponent = ({
   children,
   color = "primary",
-  tinted = false,
+  variants = "solid",
   size = "lg",
   state = "enabled",
-  variants = "solid",
+  tinted = false,
   showStartIcon = true,
   showEndIcon = true,
-  label = "버튼 라벨",
+  startIcon,
+  endIcon,
   className = "",
   style,
   ...props
 }: BoxButtonProps) => {
   const sizeConfig = sizeStyleMap[size];
-  const variantConfig = getVariantStyle(color, tinted, variants);
+  const variantConfig = getVariantStyle(color, variants, tinted);
 
   const isDisabled = state === "disabled";
   const isPressed = state === "pressed";
 
   const iconColor = isDisabled ? disabledStyle.color : variantConfig.color;
-
-  const renderIcon = (icon: ReactNode) => {
-    if (!icon) return null;
-    if (isValidElement(icon)) {
-      return cloneElement(icon as React.ReactElement<{ size?: number; color?: string }>, {
-        size: sizeConfig.iconSize,
-        color: iconColor,
-      });
-    }
-    return icon;
-  };
 
   const buttonStyle: React.CSSProperties = {
     position: "relative",
@@ -191,38 +184,29 @@ const BoxButtonComponent = ({
     paddingRight: sizeConfig.paddingX,
     borderRadius: sizeConfig.borderRadius,
     border: isDisabled ? disabledStyle.border : variantConfig.border,
+    backgroundColor: isDisabled ? disabledStyle.background : variantConfig.background,
+    color: isDisabled ? disabledStyle.color : variantConfig.color,
     cursor: isDisabled ? "not-allowed" : "pointer",
     overflow: "hidden",
     whiteSpace: "nowrap",
-    backgroundColor: isDisabled ? disabledStyle.background : variantConfig.background,
-    color: isDisabled ? disabledStyle.color : variantConfig.color,
     ...style,
   };
 
   const textColor = isDisabled ? disabledStyle.color : variantConfig.color;
-  const displayText = children || label;
 
   return (
-    <button
-      className={className}
-      style={buttonStyle}
-      disabled={isDisabled}
-      {...props}
-    >
-      {showStartIcon && (
-        <Icon size={sizeConfig.iconSize}>
-          <Blank />
+    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
+      {showStartIcon && startIcon && (
+        <Icon size={sizeConfig.iconSize} color={iconColor}>
+          {startIcon}
         </Icon>
       )}
-      <span
-        className={sizeConfig.typography}
-        style={{ color: textColor, margin: 0 }}
-      >
-        {displayText}
+      <span className={sizeConfig.textStyle} style={{ color: textColor }}>
+        {children}
       </span>
-      {showEndIcon && (
-        <Icon size={sizeConfig.iconSize}>
-          <Blank />
+      {showEndIcon && endIcon && (
+        <Icon size={sizeConfig.iconSize} color={iconColor}>
+          {endIcon}
         </Icon>
       )}
       {isPressed && !isDisabled && (
