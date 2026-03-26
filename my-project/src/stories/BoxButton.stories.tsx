@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { BoxButton } from "../components/BoxButton";
 
 const meta: Meta<typeof BoxButton> = {
@@ -10,7 +11,10 @@ const meta: Meta<typeof BoxButton> = {
       control: "select",
       options: ["primary", "gray"],
     },
-    tinted: { control: "boolean" },
+    variants: {
+      control: "select",
+      options: ["solid", "out-line"],
+    },
     size: {
       control: "select",
       options: ["lg", "md", "sm", "xs"],
@@ -19,22 +23,30 @@ const meta: Meta<typeof BoxButton> = {
       control: "select",
       options: ["enabled", "pressed", "disabled"],
     },
-    variants: {
-      control: "select",
-      options: ["solid", "out-line"],
+    tinted: {
+      control: "boolean",
     },
-    ShowStartIcon: { control: "boolean" },
-    ShowEndIcon: { control: "boolean" }
+    showStartIcon: {
+      control: "boolean",
+    },
+    showEndIcon: {
+      control: "boolean",
+    },
+    children: {
+      control: "text",
+    },
+    onClick: { action: "clicked" },
   },
   args: {
-    children: "BoxButton",
     color: "primary",
-    tinted: false,
+    variants: "solid",
     size: "lg",
     state: "enabled",
-    variants: "solid",
-    ShowStartIcon: true,
-    ShowEndIcon: true
+    tinted: false,
+    showStartIcon: true,
+    showEndIcon: true,
+    children: "Button",
+    onClick: action("clicked"),
   },
 };
 
@@ -43,50 +55,105 @@ type Story = StoryObj<typeof BoxButton>;
 
 export const Default: Story = {};
 
-export const Primary: Story = {
-  args: { color: "primary" },
+export const PrimarySolid: Story = {
+  args: {
+    color: "primary",
+    variants: "solid",
+  },
 };
 
-export const Gray: Story = {
-  args: { color: "gray" },
+export const PrimaryOutline: Story = {
+  args: {
+    color: "primary",
+    variants: "out-line",
+  },
 };
 
-export const Lg: Story = {
-  args: { size: "lg" },
+export const GraySolid: Story = {
+  args: {
+    color: "gray",
+    variants: "solid",
+  },
 };
 
-export const Md: Story = {
-  args: { size: "md" },
-};
-
-export const Sm: Story = {
-  args: { size: "sm" },
-};
-
-export const Xs: Story = {
-  args: { size: "xs" },
-};
-
-export const Enabled: Story = {
-  args: { state: "enabled" },
-};
-
-export const Pressed: Story = {
-  args: { state: "pressed" },
-};
-
-export const Disabled: Story = {
-  args: { state: "disabled" },
-};
-
-export const Solid: Story = {
-  args: { variants: "solid" },
-};
-
-export const OutLine: Story = {
-  args: { variants: "out-line" },
+export const GrayOutline: Story = {
+  args: {
+    color: "gray",
+    variants: "out-line",
+  },
 };
 
 export const Tinted: Story = {
-  args: { tinted: true },
+  args: {
+    tinted: true,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: "md",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "sm",
+  },
+};
+
+export const ExtraSmall: Story = {
+  args: {
+    size: "xs",
+  },
+};
+
+export const Pressed: Story = {
+  args: {
+    state: "pressed",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    state: "disabled",
+  },
+};
+
+export const WithoutIcons: Story = {
+  args: {
+    showStartIcon: false,
+    showEndIcon: false,
+  },
+};
+
+export const WithStartIconOnly: Story = {
+  args: {
+    showStartIcon: true,
+    showEndIcon: false,
+    startIcon: <div>🚀</div>,
+  },
+};
+
+export const WithEndIconOnly: Story = {
+  args: {
+    showStartIcon: false,
+    showEndIcon: true,
+    endIcon: <div>➡️</div>,
+  },
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    showStartIcon: true,
+    showEndIcon: true,
+    startIcon: <div>📄</div>,
+    endIcon: <div>📎</div>,
+    children: "Download File",
+  },
 };
