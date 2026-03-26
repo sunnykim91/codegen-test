@@ -20,7 +20,7 @@ const meta: Meta<typeof Icon> = {
   args: {
     size: 16,
     color: "currentColor",
-    children: "🎯",
+    children: "🏠",
   },
 };
 
@@ -32,12 +32,6 @@ export const Default: Story = {};
 export const Size14: Story = {
   args: {
     size: 14,
-  },
-};
-
-export const Size16: Story = {
-  args: {
-    size: 16,
   },
 };
 
@@ -71,21 +65,27 @@ export const Size40: Story = {
   },
 };
 
-export const ColoredIcon: Story = {
+export const WithCustomColor: Story = {
   args: {
+    color: "#ff6b6b",
     size: 24,
-    color: "#3b82f6",
-    children: "⭐",
   },
 };
 
-export const WithSVG: Story = {
+export const WithSVGIcon: Story = {
   args: {
     size: 24,
     children: (
       <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"/>
       </svg>
     ),
+  },
+};
+
+export const WithTextIcon: Story = {
+  args: {
+    size: 28,
+    children: "⭐",
   },
 };
