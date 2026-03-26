@@ -1,41 +1,53 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { BoxButton } from "../components/BoxButton";
+import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { BoxButton } from '../components/BoxButton';
+import { Home, Search, Settings } from '../icons';
 
 const meta: Meta<typeof BoxButton> = {
-  title: "UI/BoxButton",
+  title: 'UI/BoxButton',
   component: BoxButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     color: {
-      control: "select",
-      options: ["primary", "gray"],
+      control: 'select',
+      options: ['primary', 'gray']
     },
     variants: {
-      control: "select",
-      options: ["solid", "out-line"],
+      control: 'select',
+      options: ['solid', 'out-line']
     },
     size: {
-      control: "select",
-      options: ["lg", "md", "sm", "xs"],
+      control: 'select',
+      options: ['lg', 'md', 'sm', 'xs']
     },
     state: {
-      control: "select",
-      options: ["enabled", "pressed", "disabled"],
+      control: 'select',
+      options: ['enabled', 'pressed', 'disabled']
     },
-    tinted: { control: "boolean" },
-    showStartIcon: { control: "boolean" },
-    showEndIcon: { control: "boolean" }
+    tinted: {
+      control: 'boolean'
+    },
+    showStartIcon: {
+      control: 'boolean'
+    },
+    showEndIcon: {
+      control: 'boolean'
+    },
+    children: {
+      control: 'text'
+    }
   },
   args: {
-    children: "BoxButton",
-    color: "primary",
-    variants: "solid",
-    size: "lg",
-    state: "enabled",
+    children: 'Button Text',
+    color: 'primary',
+    variants: 'solid',
+    size: 'lg',
+    state: 'enabled',
     tinted: false,
     showStartIcon: true,
-    showEndIcon: true
-  },
+    showEndIcon: true,
+    onClick: action('clicked')
+  }
 };
 
 export default meta;
@@ -43,50 +55,100 @@ type Story = StoryObj<typeof BoxButton>;
 
 export const Default: Story = {};
 
-export const Primary: Story = {
-  args: { color: "primary" },
+export const PrimarySolid: Story = {
+  args: {
+    color: 'primary',
+    variants: 'solid'
+  }
 };
 
-export const Gray: Story = {
-  args: { color: "gray" },
+export const PrimaryOutLine: Story = {
+  args: {
+    color: 'primary',
+    variants: 'out-line'
+  }
 };
 
-export const Solid: Story = {
-  args: { variants: "solid" },
+export const GraySolid: Story = {
+  args: {
+    color: 'gray',
+    variants: 'solid'
+  }
 };
 
-export const OutLine: Story = {
-  args: { variants: "out-line" },
-};
-
-export const Lg: Story = {
-  args: { size: "lg" },
-};
-
-export const Md: Story = {
-  args: { size: "md" },
-};
-
-export const Sm: Story = {
-  args: { size: "sm" },
-};
-
-export const Xs: Story = {
-  args: { size: "xs" },
-};
-
-export const Enabled: Story = {
-  args: { state: "enabled" },
-};
-
-export const Pressed: Story = {
-  args: { state: "pressed" },
-};
-
-export const Disabled: Story = {
-  args: { state: "disabled" },
+export const GrayOutLine: Story = {
+  args: {
+    color: 'gray',
+    variants: 'out-line'
+  }
 };
 
 export const Tinted: Story = {
-  args: { tinted: true },
+  args: {
+    tinted: true
+  }
+};
+
+export const SizeLg: Story = {
+  args: {
+    size: 'lg'
+  }
+};
+
+export const SizeMd: Story = {
+  args: {
+    size: 'md'
+  }
+};
+
+export const SizeSm: Story = {
+  args: {
+    size: 'sm'
+  }
+};
+
+export const SizeXs: Story = {
+  args: {
+    size: 'xs'
+  }
+};
+
+export const Pressed: Story = {
+  args: {
+    state: 'pressed'
+  }
+};
+
+export const Disabled: Story = {
+  args: {
+    state: 'disabled'
+  }
+};
+
+export const WithStartIcon: Story = {
+  args: {
+    startIcon: <Home />,
+    showEndIcon: false
+  }
+};
+
+export const WithEndIcon: Story = {
+  args: {
+    endIcon: <Search />,
+    showStartIcon: false
+  }
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    startIcon: <Home />,
+    endIcon: <Settings />
+  }
+};
+
+export const NoIcons: Story = {
+  args: {
+    showStartIcon: false,
+    showEndIcon: false
+  }
 };
