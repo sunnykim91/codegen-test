@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { BoxButton } from '../components/BoxButton';
-import { Home, Search, Settings } from '../icons';
 
 const meta: Meta<typeof BoxButton> = {
   title: 'UI/BoxButton',
@@ -10,44 +9,47 @@ const meta: Meta<typeof BoxButton> = {
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'gray']
+      options: ['primary', 'gray'],
     },
     variants: {
       control: 'select',
-      options: ['solid', 'out-line']
+      options: ['solid', 'out-line'],
     },
     size: {
       control: 'select',
-      options: ['lg', 'md', 'sm', 'xs']
+      options: ['lg', 'md', 'sm', 'xs'],
     },
     state: {
       control: 'select',
-      options: ['enabled', 'pressed', 'disabled']
+      options: ['enabled', 'pressed', 'disabled'],
     },
     tinted: {
-      control: 'boolean'
+      control: 'boolean',
     },
     showStartIcon: {
-      control: 'boolean'
+      control: 'boolean',
     },
     showEndIcon: {
-      control: 'boolean'
+      control: 'boolean',
+    },
+    label: {
+      control: 'text',
     },
     children: {
-      control: 'text'
-    }
+      control: 'text',
+    },
   },
   args: {
-    children: 'Button Text',
     color: 'primary',
-    variants: 'solid',
+    tinted: false,
     size: 'lg',
     state: 'enabled',
-    tinted: false,
+    variants: 'solid',
     showStartIcon: true,
     showEndIcon: true,
-    onClick: action('clicked')
-  }
+    label: '버튼 라벨',
+    onClick: action('clicked'),
+  },
 };
 
 export default meta;
@@ -58,97 +60,132 @@ export const Default: Story = {};
 export const PrimarySolid: Story = {
   args: {
     color: 'primary',
-    variants: 'solid'
-  }
+    variants: 'solid',
+    tinted: false,
+  },
+};
+
+export const PrimarySolidTinted: Story = {
+  args: {
+    color: 'primary',
+    variants: 'solid',
+    tinted: true,
+  },
 };
 
 export const PrimaryOutLine: Story = {
   args: {
     color: 'primary',
-    variants: 'out-line'
-  }
+    variants: 'out-line',
+    tinted: false,
+  },
+};
+
+export const PrimaryOutLineTinted: Story = {
+  args: {
+    color: 'primary',
+    variants: 'out-line',
+    tinted: true,
+  },
 };
 
 export const GraySolid: Story = {
   args: {
     color: 'gray',
-    variants: 'solid'
-  }
+    variants: 'solid',
+    tinted: false,
+  },
+};
+
+export const GraySolidTinted: Story = {
+  args: {
+    color: 'gray',
+    variants: 'solid',
+    tinted: true,
+  },
 };
 
 export const GrayOutLine: Story = {
   args: {
     color: 'gray',
-    variants: 'out-line'
-  }
+    variants: 'out-line',
+    tinted: false,
+  },
 };
 
-export const Tinted: Story = {
+export const GrayOutLineTinted: Story = {
   args: {
-    tinted: true
-  }
+    color: 'gray',
+    variants: 'out-line',
+    tinted: true,
+  },
 };
 
-export const SizeLg: Story = {
+export const SizeLarge: Story = {
   args: {
-    size: 'lg'
-  }
+    size: 'lg',
+  },
 };
 
-export const SizeMd: Story = {
+export const SizeMedium: Story = {
   args: {
-    size: 'md'
-  }
+    size: 'md',
+  },
 };
 
-export const SizeSm: Story = {
+export const SizeSmall: Story = {
   args: {
-    size: 'sm'
-  }
+    size: 'sm',
+  },
 };
 
-export const SizeXs: Story = {
+export const SizeExtraSmall: Story = {
   args: {
-    size: 'xs'
-  }
+    size: 'xs',
+  },
 };
 
 export const Pressed: Story = {
   args: {
-    state: 'pressed'
-  }
+    state: 'pressed',
+  },
 };
 
 export const Disabled: Story = {
   args: {
-    state: 'disabled'
-  }
+    state: 'disabled',
+  },
 };
 
-export const WithStartIcon: Story = {
-  args: {
-    startIcon: <Home />,
-    showEndIcon: false
-  }
-};
-
-export const WithEndIcon: Story = {
-  args: {
-    endIcon: <Search />,
-    showStartIcon: false
-  }
-};
-
-export const WithBothIcons: Story = {
-  args: {
-    startIcon: <Home />,
-    endIcon: <Settings />
-  }
-};
-
-export const NoIcons: Story = {
+export const WithoutIcons: Story = {
   args: {
     showStartIcon: false,
-    showEndIcon: false
-  }
+    showEndIcon: false,
+  },
+};
+
+export const StartIconOnly: Story = {
+  args: {
+    showStartIcon: true,
+    showEndIcon: false,
+  },
+};
+
+export const EndIconOnly: Story = {
+  args: {
+    showStartIcon: false,
+    showEndIcon: true,
+  },
+};
+
+export const CustomLabel: Story = {
+  args: {
+    label: '사용자 정의 버튼',
+  },
+};
+
+export const WithChildren: Story = {
+  args: {
+    children: '자식 요소로 설정된 텍스트',
+  },
 };
