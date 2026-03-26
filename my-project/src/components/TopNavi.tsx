@@ -1,6 +1,7 @@
-import React, { memo, HTMLAttributes } from "react";
+import React, { memo, ReactNode, HTMLAttributes } from "react";
 import { IconButton } from "./IconButton";
-import { User, Menu, DirectionLeftLg, CloseLarge } from "../icons";
+import { Icon } from "./Icon";
+import { User, Menu, DirectionLeft, CloseLarge } from "../icons";
 
 export type TopNaviVariants = "main" | "sub" | "popup";
 
@@ -9,39 +10,39 @@ export interface TopNaviProps extends HTMLAttributes<HTMLDivElement> {
   closeButton?: boolean;
   centerHeading?: boolean;
   title?: string;
+  onBackClick?: () => void;
+  onCloseClick?: () => void;
+  onUserClick?: () => void;
+  onMenuClick?: () => void;
 }
 
 const variantStyleMap: Record<TopNaviVariants, {
   height: string;
   padding: string;
   gap: string;
-  fontSize: string;
-  fontWeight: string;
-  textStyle: string;
+  titleSize: string;
+  titleClass: string;
 }> = {
   main: {
     height: "var(--height-container-lg, 56px)",
-    padding: "0 var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    fontSize: "24px",
-    fontWeight: "bold",
-    textStyle: "text-style-notosanskr-heading-24-bold",
+    titleSize: "24px",
+    titleClass: "text-style-notosanskr-heading-24-bold",
   },
   sub: {
     height: "var(--height-container-md, 48px)",
-    padding: "0 var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    fontSize: "16px",
-    fontWeight: "medium",
-    textStyle: "text-style-notosanskr-heading-16-medium",
+    titleSize: "16px",
+    titleClass: "text-style-notosanskr-heading-16-medium",
   },
   popup: {
     height: "var(--height-container-md, 48px)",
-    padding: "0 var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    fontSize: "16px",
-    fontWeight: "medium",
-    textStyle: "text-style-notosanskr-heading-16-medium",
+    titleSize: "16px",
+    titleClass: "text-style-notosanskr-heading-16-medium",
   },
 };
 
@@ -49,113 +50,138 @@ const TopNaviComponent = ({
   variants = "main",
   closeButton = true,
   centerHeading = true,
-  title = variants === "main" ? "LOGO" : "heading",
+  title = "heading",
+  onBackClick,
+  onCloseClick,
+  onUserClick,
+  onMenuClick,
   className = "",
   style,
   ...props
 }: TopNaviProps) => {
-  const variantConfig = variantStyleMap[variants];
+  const config = variantStyleMap[variants];
 
-  const naviStyle: React.CSSProperties = {
+  const containerStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
-    width: 375,
-    height: variantConfig.height,
-    padding: variantConfig.padding,
-    gap: variantConfig.gap,
+    height: config.height,
+    padding: config.padding,
+    gap: config.gap,
     borderRadius: 0,
     color: "var(--text-icon-gray-default)",
     ...style,
   };
 
-  const renderMainVariant = () => (
-    <>
-      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-12, 12px)" }}>
-        <h2 
-          className={variantConfig.textStyle}
-          style={{ 
-            margin: 0, 
-            fontSize: variantConfig.fontSize, 
-            fontWeight: variantConfig.fontWeight,
-            color: "var(--text-icon-gray-default)"
-          }}
-        >
-          {title}
-        </h2>
-      </div>
-      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
-        <IconButton variants="gray" state="enabled" size={20} icon={<User />} />
-        <IconButton variants="gray" state="enabled" size={20} icon={<Menu />} />
-      </div>
-    </>
-  );
-
-  const renderSubVariant = () => (
-    <>
-      <div style={{ display: "flex", flex: 1 }}>
-        <div style={{ display: "flex", width: "var(--width-container-detail-12, 12px)", height: "100%" }}>
-          <IconButton variants="gray" state="enabled" size={24} icon={<DirectionLeftLg />} />
+  const renderLeftSection = () => {
+    if (variants === "main") {
+      return (
+        <div style={{ flex: 1, display: "flex", gap: "var(--spacing-12, 12px)" }}>
+          <span 
+            className={config.titleClass}
+            style={{ 
+              color: "var(--text-icon-gray-default)",
+              width: 67,
+              height: 36
+            }}
+          >
+            LOGO
+          </span>
         </div>
-      </div>
-      <div style={{ display: "flex", flex: 1 }}>
-        <span 
-          className={variantConfig.textStyle}
-          style={{ 
-            margin: 0, 
-            fontSize: variantConfig.fontSize, 
-            fontWeight: variantConfig.fontWeight,
-            color: "var(--text-icon-gray-default)"
-          }}
-        >
-          {title}
-        </span>
-      </div>
-      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
-      </div>
-    </>
-  );
+      );
+    }
 
-  const renderPopupVariant = () => (
-    <>
-      <div style={{ display: "flex", flex: 1, gap: "var(--spacing-20, 20px)" }}>
+    if (variants === "sub") {
+      return (
+        <div style={{ flex: 1, display: "flex", gap: 0 }}>
+          <div style={{ width: "var(--width-container-detail-12, 12px)", display: "flex" }}>
+            <IconButton
+              variants="gray"
+              state="enabled"
+              size={24}
+              icon={<DirectionLeft />}
+              onClick={onBackClick}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    // popup
+    return (
+      <div style={{ flex: 1, display: "flex", gap: "var(--spacing-20, 20px)" }}>
       </div>
-      <div style={{ display: "flex", flex: 1 }}>
+    );
+  };
+
+  const renderCenterSection = () => {
+    if (variants === "main") return null;
+
+    return (
+      <div style={{ flex: 1, display: "flex", gap: 0 }}>
         <span 
-          className={variantConfig.textStyle}
+          className={config.titleClass}
           style={{ 
-            margin: 0, 
-            fontSize: variantConfig.fontSize, 
-            fontWeight: variantConfig.fontWeight,
-            color: "var(--text-icon-gray-default)"
+            color: "var(--text-icon-gray-default)",
+            width: 62,
+            height: 24
           }}
         >
           {title}
         </span>
       </div>
-      <div style={{ display: "flex", flex: 1 }}>
+    );
+  };
+
+  const renderRightSection = () => {
+    if (variants === "main") {
+      return (
+        <div style={{ flex: 1, display: "flex", gap: "var(--spacing-20, 20px)" }}>
+          <IconButton
+            variants="gray"
+            state="enabled"
+            size={20}
+            icon={<User />}
+            onClick={onUserClick}
+          />
+          <IconButton
+            variants="gray"
+            state="enabled"
+            size={20}
+            icon={<Menu />}
+            onClick={onMenuClick}
+          />
+        </div>
+      );
+    }
+
+    if (variants === "sub") {
+      return (
+        <div style={{ flex: 1, display: "flex", gap: "var(--spacing-20, 20px)" }}>
+        </div>
+      );
+    }
+
+    // popup
+    return (
+      <div style={{ flex: 1, display: "flex", gap: 0 }}>
         {closeButton && (
-          <IconButton variants="gray" state="enabled" size={20} icon={<CloseLarge />} />
+          <IconButton
+            variants="gray"
+            state="enabled"
+            size={20}
+            icon={<CloseLarge />}
+            onClick={onCloseClick}
+          />
         )}
       </div>
-    </>
-  );
-
-  const renderContent = () => {
-    switch (variants) {
-      case "main":
-        return renderMainVariant();
-      case "sub":
-        return renderSubVariant();
-      case "popup":
-        return renderPopupVariant();
-      default:
-        return renderMainVariant();
-    }
+    );
   };
 
   return (
-    <div className={className} style={naviStyle} {...props}>
-      {renderContent()}
+    <div className={className} style={containerStyle} {...props}>
+      {renderLeftSection()}
+      {renderCenterSection()}
+      {renderRightSection()}
     </div>
   );
 };
