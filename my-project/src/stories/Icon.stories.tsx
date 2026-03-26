@@ -1,93 +1,83 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { Icon } from '../components/Icon';
-
-// Mock SVG icon for demonstration
-const MockIcon = ({ size, color }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-  </svg>
-);
+import type { Meta, StoryObj } from "@storybook/react";
+import { Icon } from "../components/Icon";
 
 const meta: Meta<typeof Icon> = {
-  title: 'UI/Icon',
+  title: "UI/Icon",
   component: Icon,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     size: {
-      control: 'select',
+      control: "select",
       options: [14, 16, 18, 20, 22, 24, 28, 32, 40],
     },
     color: {
-      control: 'text',
+      control: "text",
     },
-    children: {
-      control: false,
-    },
-    onClick: { action: 'clicked' },
+    onClick: { action: "clicked" },
   },
   args: {
     size: 16,
-    color: 'currentColor',
-    onClick: action('clicked'),
+    color: "currentColor",
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Icon>;
+type Story = StoryObj<typeof meta>;
+
+const MockSVGIcon = ({ size = 12, color = "currentColor" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M2 17L12 22L22 17" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M2 12L12 17L22 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export const Default: Story = {
   args: {
-    children: <MockIcon />,
+    children: <MockSVGIcon />,
   },
 };
 
 export const Size14: Story = {
   args: {
     size: 14,
-    children: <MockIcon />,
+    children: <MockSVGIcon />,
   },
 };
 
 export const Size24: Story = {
   args: {
     size: 24,
-    children: <MockIcon />,
-  },
-};
-
-export const Size32: Story = {
-  args: {
-    size: 32,
-    children: <MockIcon />,
+    children: <MockSVGIcon />,
   },
 };
 
 export const Size40: Story = {
   args: {
     size: 40,
-    children: <MockIcon />,
+    children: <MockSVGIcon />,
   },
 };
 
 export const CustomColor: Story = {
   args: {
     size: 24,
-    color: '#ff6b6b',
-    children: <MockIcon />,
+    color: "#3b82f6",
+    children: <MockSVGIcon />,
   },
 };
 
-export const WithoutChildren: Story = {
-  args: {
-    size: 24,
-  },
-};
-
-export const Clickable: Story = {
-  args: {
-    size: 24,
-    children: <MockIcon />,
-    style: { cursor: 'pointer' },
-  },
+export const AllSizes: Story = {
+  render: () => (
+    <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+      {[14, 16, 18, 20, 22, 24, 28, 32, 40].map((size) => (
+        <div key={size} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
+          <Icon size={size}>
+            <MockSVGIcon />
+          </Icon>
+          <span style={{ fontSize: "12px", color: "#666" }}>{size}px</span>
+        </div>
+      ))}
+    </div>
+  ),
 };
