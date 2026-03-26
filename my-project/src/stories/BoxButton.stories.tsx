@@ -10,6 +10,10 @@ const meta: Meta<typeof BoxButton> = {
       control: "select",
       options: ["primary", "gray"],
     },
+    variants: {
+      control: "select",
+      options: ["solid", "out-line"],
+    },
     size: {
       control: "select",
       options: ["lg", "md", "sm", "xs"],
@@ -18,20 +22,17 @@ const meta: Meta<typeof BoxButton> = {
       control: "select",
       options: ["enabled", "pressed", "disabled"],
     },
-    variants: {
-      control: "select",
-      options: ["solid", "out-line"],
-    },
+    tinted: { control: "boolean" },
     showStartIcon: { control: "boolean" },
-    showEndIcon: { control: "boolean" },
-    label: { control: "text" }
+    showEndIcon: { control: "boolean" }
   },
   args: {
     children: "BoxButton",
     color: "primary",
-    size: "sm",
-    state: "enabled",
     variants: "solid",
+    size: "lg",
+    state: "enabled",
+    tinted: false,
     showStartIcon: true,
     showEndIcon: true
   },
@@ -48,6 +49,14 @@ export const Primary: Story = {
 
 export const Gray: Story = {
   args: { color: "gray" },
+};
+
+export const Solid: Story = {
+  args: { variants: "solid" },
+};
+
+export const OutLine: Story = {
+  args: { variants: "out-line" },
 };
 
 export const Lg: Story = {
@@ -78,10 +87,6 @@ export const Disabled: Story = {
   args: { state: "disabled" },
 };
 
-export const Solid: Story = {
-  args: { variants: "solid" },
-};
-
-export const OutLine: Story = {
-  args: { variants: "out-line" },
+export const Tinted: Story = {
+  args: { tinted: true },
 };
