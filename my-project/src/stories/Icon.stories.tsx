@@ -13,71 +13,79 @@ const meta: Meta<typeof Icon> = {
     color: {
       control: "text",
     },
-    onClick: { action: "clicked" },
-  },
-  args: {
-    size: 16,
-    color: "currentColor",
+    children: {
+      control: "text",
+    },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-const MockSVGIcon = ({ size = 12, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M2 17L12 22L22 17" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M2 12L12 17L22 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {
   args: {
-    children: <MockSVGIcon />,
+    size: 16,
+    color: "currentColor",
+    children: "📍",
   },
 };
 
 export const Size14: Story = {
   args: {
     size: 14,
-    children: <MockSVGIcon />,
+    color: "currentColor",
+    children: "⭐",
+  },
+};
+
+export const Size20: Story = {
+  args: {
+    size: 20,
+    color: "currentColor",
+    children: "❤️",
   },
 };
 
 export const Size24: Story = {
   args: {
     size: 24,
-    children: <MockSVGIcon />,
+    color: "currentColor",
+    children: "🎯",
+  },
+};
+
+export const Size32: Story = {
+  args: {
+    size: 32,
+    color: "currentColor",
+    children: "🚀",
   },
 };
 
 export const Size40: Story = {
   args: {
     size: 40,
-    children: <MockSVGIcon />,
+    color: "currentColor",
+    children: "🌟",
   },
 };
 
 export const CustomColor: Story = {
   args: {
     size: 24,
-    color: "#3b82f6",
-    children: <MockSVGIcon />,
+    color: "#ff6b6b",
+    children: "💎",
   },
 };
 
-export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
-      {[14, 16, 18, 20, 22, 24, 28, 32, 40].map((size) => (
-        <div key={size} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
-          <Icon size={size}>
-            <MockSVGIcon />
-          </Icon>
-          <span style={{ fontSize: "12px", color: "#666" }}>{size}px</span>
-        </div>
-      ))}
-    </div>
-  ),
+export const WithSvgIcon: Story = {
+  args: {
+    size: 24,
+    color: "#4f46e5",
+    children: (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+    ),
+  },
 };
