@@ -1,17 +1,14 @@
-import React, { memo, ReactElement, cloneElement, HTMLAttributes } from "react";
-import { Blank } from "./Blank";
+import React, { memo, ReactNode, HTMLAttributes, cloneElement, isValidElement } from "react";
 
 export type IconSize = 14 | 16 | 18 | 20 | 22 | 24 | 28 | 32 | 40;
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {
-  icon?: ReactElement;
+  children?: ReactNode;
   size?: IconSize;
+  color?: string;
 }
 
-const sizeStyleMap: Record<IconSize, {
-  width: string;
-  height: string;
-}> = {
+const sizeStyleMap: Record<IconSize, { width: string; height: string }> = {
   14: { width: "var(--square-14, 14px)", height: "var(--square-14, 14px)" },
   16: { width: "var(--square-16, 16px)", height: "var(--square-16, 16px)" },
   18: { width: "var(--square-18, 18px)", height: "var(--square-18, 18px)" },
@@ -24,8 +21,9 @@ const sizeStyleMap: Record<IconSize, {
 };
 
 const IconComponent = ({
-  icon,
+  children,
   size = 16,
+  color = "currentColor",
   className = "",
   style,
   ...props
@@ -36,18 +34,26 @@ const IconComponent = ({
     display: "flex",
     width: sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: 0,
+    color,
     ...style,
+  };
+
+  const renderIcon = () => {
+    if (!children) return null;
+    
+    if (isValidElement(children)) {
+      return cloneElement(children as React.ReactElement<{ size?: number; color?: string }>, {
+        size: Number(sizeConfig.width.match(/\d+/)?.[0]) || size,
+        color,
+      });
+    }
+    
+    return children;
   };
 
   return (
     <div className={className} style={iconStyle} {...props}>
-      <Blank>
-        {icon && cloneElement(icon, { 
-          size,
-          color: icon.props.color || "currentColor" 
-        })}
-      </Blank>
+      {renderIcon()}
     </div>
   );
 };
