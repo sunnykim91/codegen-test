@@ -1,80 +1,69 @@
-import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
-import { Icon, IconSize } from "./Icon";
+import React, { memo, ReactNode, ButtonHTMLAttributes, cloneElement, isValidElement } from "react";
+import { Icon } from "./Icon";
 
 export type BoxButtonColor = "primary" | "gray";
-export type BoxButtonVariants = "solid" | "out-line";
+export type BoxButtonTinted = false | true;
 export type BoxButtonSize = "lg" | "md" | "sm" | "xs";
 export type BoxButtonState = "enabled" | "pressed" | "disabled";
+export type BoxButtonVariants = "solid" | "out-line";
 
-export interface BoxButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
+export interface BoxButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children?: ReactNode;
   color?: BoxButtonColor;
-  variants?: BoxButtonVariants;
+  tinted?: BoxButtonTinted;
   size?: BoxButtonSize;
   state?: BoxButtonState;
-  tinted?: boolean;
+  variants?: BoxButtonVariants;
   showStartIcon?: boolean;
   showEndIcon?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  fullWidth?: boolean;
 }
 
-const sizeStyleMap: Record<
-  BoxButtonSize,
-  {
-    height: string;
-    paddingX: string;
-    gap: string;
-    borderRadius: number;
-    iconSize: IconSize;
-    fontSize: string;
-    textStyle: string;
-  }
-> = {
+const sizeStyleMap: Record<BoxButtonSize, {
+  height: string;
+  paddingX: string;
+  borderRadius: number;
+  gap: string;
+  iconSize: number;
+  typography: string;
+}> = {
   lg: {
     height: "var(--height-container-lg, 56px)",
     paddingX: "var(--spacing-16, 16px)",
-    gap: "var(--spacing-8, 8px)",
     borderRadius: 12,
-    iconSize: 20,
-    fontSize: "18px",
-    textStyle: "text-style-notosanskr-label-18-medium",
+    gap: "var(--spacing-8, 8px)",
+    iconSize: 16,
+    typography: "text-style-notosanskr-label-18-medium",
   },
   md: {
     height: "var(--height-container-md, 48px)",
     paddingX: "var(--spacing-16, 16px)",
-    gap: "var(--spacing-6, 6px)",
     borderRadius: 12,
-    iconSize: 18,
-    fontSize: "16px",
-    textStyle: "text-style-notosanskr-label-16-medium",
+    gap: "var(--spacing-6, 6px)",
+    iconSize: 16,
+    typography: "text-style-notosanskr-label-16-medium",
   },
   sm: {
     height: "var(--height-container-sm, 40px)",
     paddingX: "var(--spacing-12, 12px)",
-    gap: "var(--spacing-4, 4px)",
     borderRadius: 8,
+    gap: "var(--spacing-4, 4px)",
     iconSize: 16,
-    fontSize: "15px",
-    textStyle: "text-style-notosanskr-label-15-medium",
+    typography: "text-style-notosanskr-label-15-medium",
   },
   xs: {
     height: "var(--height-container-xs, 32px)",
     paddingX: "var(--spacing-10, 10px)",
+    borderRadius: 8,
     gap: "var(--spacing-4, 4px)",
-    borderRadius: 6,
     iconSize: 14,
-    fontSize: "14px",
-    textStyle: "text-style-notosanskr-label-14-medium",
+    typography: "text-style-notosanskr-label-14-medium",
   },
 };
 
-const getVariantStyle = (
-  color: BoxButtonColor,
-  variants: BoxButtonVariants,
-  tinted: boolean
-) => {
+const getVariantStyle = (color: BoxButtonColor, tinted: BoxButtonTinted, variants: BoxButtonVariants) => {
   if (color === "primary") {
     if (variants === "solid") {
       if (tinted) {
@@ -127,7 +116,7 @@ const getVariantStyle = (
     };
   }
   
-  // out-line
+  // gray out-line
   if (tinted) {
     return {
       background: "transparent",
@@ -153,29 +142,41 @@ const disabledStyle = {
 const BoxButtonComponent = ({
   children,
   color = "primary",
-  variants = "solid",
+  tinted = false,
   size = "lg",
   state = "enabled",
-  tinted = false,
+  variants = "solid",
   showStartIcon = true,
   showEndIcon = true,
   startIcon,
   endIcon,
+  fullWidth = false,
   className = "",
   style,
   ...props
 }: BoxButtonProps) => {
   const sizeConfig = sizeStyleMap[size];
-  const variantConfig = getVariantStyle(color, variants, tinted);
+  const variantConfig = getVariantStyle(color, tinted, variants);
 
   const isDisabled = state === "disabled";
   const isPressed = state === "pressed";
 
   const iconColor = isDisabled ? disabledStyle.color : variantConfig.color;
 
+  const renderIcon = (icon: ReactNode) => {
+    if (!icon) return null;
+    if (isValidElement(icon)) {
+      return cloneElement(icon as React.ReactElement<{ size?: number; color?: string }>, {
+        size: sizeConfig.iconSize,
+        color: iconColor,
+      });
+    }
+    return icon;
+  };
+
   const buttonStyle: React.CSSProperties = {
     position: "relative",
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
     gap: sizeConfig.gap,
@@ -189,24 +190,33 @@ const BoxButtonComponent = ({
     cursor: isDisabled ? "not-allowed" : "pointer",
     overflow: "hidden",
     whiteSpace: "nowrap",
+    width: fullWidth ? "100%" : "auto",
     ...style,
   };
 
   const textColor = isDisabled ? disabledStyle.color : variantConfig.color;
 
   return (
-    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
+    <button
+      className={className}
+      style={buttonStyle}
+      disabled={isDisabled}
+      {...props}
+    >
       {showStartIcon && startIcon && (
-        <Icon size={sizeConfig.iconSize} color={iconColor}>
-          {startIcon}
+        <Icon size={sizeConfig.iconSize}>
+          {renderIcon(startIcon)}
         </Icon>
       )}
-      <span className={sizeConfig.textStyle} style={{ color: textColor }}>
+      <span
+        className={sizeConfig.typography}
+        style={{ color: textColor, margin: 0 }}
+      >
         {children}
       </span>
       {showEndIcon && endIcon && (
-        <Icon size={sizeConfig.iconSize} color={iconColor}>
-          {endIcon}
+        <Icon size={sizeConfig.iconSize}>
+          {renderIcon(endIcon)}
         </Icon>
       )}
       {isPressed && !isDisabled && (
