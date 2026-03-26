@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { IconButton } from "../components/IconButton";
 
 const meta: Meta<typeof IconButton> = {
@@ -6,23 +7,27 @@ const meta: Meta<typeof IconButton> = {
   component: IconButton,
   tags: ["autodocs"],
   argTypes: {
-    variants: {
-      control: "select",
-      options: ["primary", "gray", "invert"],
+    icon: { control: "text" },
+    variants: { 
+      control: "select", 
+      options: ["primary", "gray", "invert"] 
     },
-    state: {
-      control: "select",
-      options: ["enabled", "disabled"],
+    state: { 
+      control: "select", 
+      options: ["enabled", "disabled"] 
     },
-    size: {
-      control: "select",
-      options: ["20", "24"],
-    }
+    size: { 
+      control: "select", 
+      options: [20, 24] 
+    },
+    onClick: { action: "clicked" },
   },
   args: {
+    icon: "⭐",
     variants: "primary",
     state: "enabled",
-    size: "20"
+    size: 20,
+    onClick: action("clicked"),
   },
 };
 
@@ -32,29 +37,51 @@ type Story = StoryObj<typeof IconButton>;
 export const Default: Story = {};
 
 export const Primary: Story = {
-  args: { variants: "primary" },
+  args: {
+    variants: "primary",
+  },
 };
 
 export const Gray: Story = {
-  args: { variants: "gray" },
+  args: {
+    variants: "gray",
+  },
 };
 
 export const Invert: Story = {
-  args: { variants: "invert" },
-};
-
-export const Enabled: Story = {
-  args: { state: "enabled" },
+  args: {
+    variants: "invert",
+  },
 };
 
 export const Disabled: Story = {
-  args: { state: "disabled" },
+  args: {
+    state: "disabled",
+  },
 };
 
-export const 20: Story = {
-  args: { size: "20" },
+export const Size20: Story = {
+  args: {
+    size: 20,
+  },
 };
 
-export const 24: Story = {
-  args: { size: "24" },
+export const Size24: Story = {
+  args: {
+    size: 24,
+  },
+};
+
+export const GrayDisabled: Story = {
+  args: {
+    variants: "gray",
+    state: "disabled",
+  },
+};
+
+export const InvertSize24: Story = {
+  args: {
+    variants: "invert",
+    size: 24,
+  },
 };
