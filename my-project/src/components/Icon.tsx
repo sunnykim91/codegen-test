@@ -8,7 +8,10 @@ export interface IconProps extends HTMLAttributes<HTMLDivElement> {
   color?: string;
 }
 
-const sizeStyleMap: Record<IconSize, { width: string; height: string }> = {
+const sizeStyleMap: Record<IconSize, {
+  width: string;
+  height: string;
+}> = {
   14: { width: "var(--square-14, 14px)", height: "var(--square-14, 14px)" },
   16: { width: "var(--square-16, 16px)", height: "var(--square-16, 16px)" },
   18: { width: "var(--square-18, 18px)", height: "var(--square-18, 18px)" },
@@ -39,15 +42,12 @@ const IconComponent = ({
   };
 
   const renderIcon = () => {
-    if (!children) return null;
-    
     if (isValidElement(children)) {
       return cloneElement(children as React.ReactElement<{ size?: number; color?: string }>, {
-        size: Number(sizeConfig.width.match(/\d+/)?.[0]) || size,
+        size: typeof size === "number" ? size : parseInt(size.toString()),
         color,
       });
     }
-    
     return children;
   };
 
