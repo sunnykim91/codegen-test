@@ -1,34 +1,39 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { BoxButton } from '../components/BoxButton';
+import type { Meta, StoryObj } from "@storybook/react";
+import { BoxButton } from "../components/BoxButton";
 
 const meta: Meta<typeof BoxButton> = {
-  title: 'UI/BoxButton',
+  title: "UI/BoxButton",
   component: BoxButton,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    children: { control: 'text' },
-    color: { control: 'select', options: ['primary', 'gray'] },
-    tinted: { control: 'boolean' },
-    size: { control: 'select', options: ['lg', 'md', 'sm', 'xs'] },
-    state: { control: 'select', options: ['enabled', 'pressed', 'disabled'] },
-    variants: { control: 'select', options: ['solid', 'out-line'] },
-    showStartIcon: { control: 'boolean' },
-    showEndIcon: { control: 'boolean' },
-    startIcon: { control: 'text' },
-    endIcon: { control: 'text' },
-    onClick: { action: 'clicked' },
+    color: {
+      control: "select",
+      options: ["primary", "gray"],
+    },
+    size: {
+      control: "select",
+      options: ["lg", "md", "sm", "xs"],
+    },
+    state: {
+      control: "select",
+      options: ["enabled", "pressed", "disabled"],
+    },
+    variants: {
+      control: "select",
+      options: ["solid", "out-line"],
+    },
+    showStartIcon: { control: "boolean" },
+    showEndIcon: { control: "boolean" },
+    label: { control: "text" }
   },
   args: {
-    children: 'Button',
-    color: 'primary',
-    tinted: false,
-    size: 'lg',
-    state: 'enabled',
-    variants: 'solid',
+    children: "BoxButton",
+    color: "primary",
+    size: "sm",
+    state: "enabled",
+    variants: "solid",
     showStartIcon: true,
-    showEndIcon: true,
-    onClick: action('clicked'),
+    showEndIcon: true
   },
 };
 
@@ -37,120 +42,46 @@ type Story = StoryObj<typeof BoxButton>;
 
 export const Default: Story = {};
 
-export const PrimarySolid: Story = {
-  args: {
-    color: 'primary',
-    variants: 'solid',
-    tinted: false,
-  },
+export const Primary: Story = {
+  args: { color: "primary" },
 };
 
-export const PrimarySolidTinted: Story = {
-  args: {
-    color: 'primary',
-    variants: 'solid',
-    tinted: true,
-  },
+export const Gray: Story = {
+  args: { color: "gray" },
 };
 
-export const PrimaryOutline: Story = {
-  args: {
-    color: 'primary',
-    variants: 'out-line',
-    tinted: false,
-  },
+export const Lg: Story = {
+  args: { size: "lg" },
 };
 
-export const PrimaryOutlineTinted: Story = {
-  args: {
-    color: 'primary',
-    variants: 'out-line',
-    tinted: true,
-  },
+export const Md: Story = {
+  args: { size: "md" },
 };
 
-export const GraySolid: Story = {
-  args: {
-    color: 'gray',
-    variants: 'solid',
-    tinted: false,
-  },
+export const Sm: Story = {
+  args: { size: "sm" },
 };
 
-export const GraySolidTinted: Story = {
-  args: {
-    color: 'gray',
-    variants: 'solid',
-    tinted: true,
-  },
+export const Xs: Story = {
+  args: { size: "xs" },
 };
 
-export const GrayOutline: Story = {
-  args: {
-    color: 'gray',
-    variants: 'out-line',
-    tinted: false,
-  },
-};
-
-export const GrayOutlineTinted: Story = {
-  args: {
-    color: 'gray',
-    variants: 'out-line',
-    tinted: true,
-  },
-};
-
-export const SizeLarge: Story = {
-  args: {
-    size: 'lg',
-  },
-};
-
-export const SizeMedium: Story = {
-  args: {
-    size: 'md',
-  },
-};
-
-export const SizeSmall: Story = {
-  args: {
-    size: 'sm',
-  },
-};
-
-export const SizeXSmall: Story = {
-  args: {
-    size: 'xs',
-  },
+export const Enabled: Story = {
+  args: { state: "enabled" },
 };
 
 export const Pressed: Story = {
-  args: {
-    state: 'pressed',
-  },
+  args: { state: "pressed" },
 };
 
 export const Disabled: Story = {
-  args: {
-    state: 'disabled',
-  },
+  args: { state: "disabled" },
 };
 
-export const WithIcons: Story = {
-  args: {
-    children: 'Button with Icons',
-    showStartIcon: true,
-    showEndIcon: true,
-    startIcon: '⭐',
-    endIcon: '→',
-  },
+export const Solid: Story = {
+  args: { variants: "solid" },
 };
 
-export const WithoutIcons: Story = {
-  args: {
-    children: 'Button without Icons',
-    showStartIcon: false,
-    showEndIcon: false,
-  },
+export const OutLine: Story = {
+  args: { variants: "out-line" },
 };
