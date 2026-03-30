@@ -2,7 +2,7 @@
 /* Variables, Text Styles, Effect Styles */
 
 /* ==================== VARIABLES ==================== */
-/* Total: 264 variables in 7 collections */
+/* Total: 278 variables in 7 collections */
 
 :root {
   /* Theme-independent variables (spacing, radius, colors, etc.) */
@@ -47,17 +47,17 @@
   --colors-red-700: rgba(185, 28, 28, 1);
   --colors-red-800: rgba(153, 27, 27, 1);
   --colors-red-900: rgba(127, 29, 29, 1);
-  --colors-sky-blue-100: rgba(224, 239, 255, 1);
-  --colors-sky-blue-200: rgba(186, 218, 255, 1);
-  --colors-sky-blue-300: rgba(133, 191, 255, 1);
-  --colors-sky-blue-400: rgba(77, 163, 255, 1);
-  --colors-sky-blue-50: rgba(240, 247, 255, 1);
-  --colors-sky-blue-500: rgba(26, 124, 255, 1);
-  --colors-sky-blue-600: rgba(0, 102, 255, 1);
-  --colors-sky-blue-700: rgba(0, 82, 204, 1);
-  --colors-sky-blue-800: rgba(0, 61, 153, 1);
-  --colors-sky-blue-900: rgba(0, 41, 102, 1);
-  --colors-sky-blue-950: rgba(0, 20, 51, 1);
+  --colors-skyblue-100: rgba(224, 239, 255, 1);
+  --colors-skyblue-200: rgba(186, 218, 255, 1);
+  --colors-skyblue-300: rgba(133, 191, 255, 1);
+  --colors-skyblue-400: rgba(77, 163, 255, 1);
+  --colors-skyblue-50: rgba(240, 247, 255, 1);
+  --colors-skyblue-500: rgba(26, 124, 255, 1);
+  --colors-skyblue-600: rgba(0, 102, 255, 1);
+  --colors-skyblue-700: rgba(0, 82, 204, 1);
+  --colors-skyblue-800: rgba(0, 61, 153, 1);
+  --colors-skyblue-900: rgba(0, 41, 102, 1);
+  --colors-skyblue-950: rgba(0, 20, 51, 1);
   --common-black: rgba(0, 0, 0, 1);
   --common-overlay-black-100: rgba(0, 0, 0, 0.10000000149011612);
   --common-overlay-black-120: rgba(0, 0, 0, 0.11999999731779099);
@@ -82,34 +82,34 @@
   --common-overlay-white-700: rgba(255, 255, 255, 0.699999988079071);
   --common-overlay-white-800: rgba(255, 255, 255, 0.800000011920929);
   --common-white: rgba(255, 255, 255, 1);
-  --corner-radius-2xl: 20px;
-  --corner-radius-2xs: 4px;
-  --corner-radius-3xl: 24px;
-  --corner-radius-3xs: 2px;
-  --corner-radius-full: 9999px;
-  --corner-radius-lg: 12px;
-  --corner-radius-md: 10px;
-  --corner-radius-sm: 8px;
-  --corner-radius-xl: 16px;
-  --corner-radius-xs: 6px;
-  --font-family-inter: "Inter";
-  --font-family-noto-sans-kr: "Noto Sans KR";
-  --font-size-12: 12px;
-  --font-size-14: 14px;
-  --font-size-15: 15px;
-  --font-size-16: 16px;
-  --font-size-18: 18px;
-  --font-size-20: 20px;
-  --font-size-24: 24px;
-  --font-size-28: 28px;
-  --font-size-32: 32px;
-  --font-size-36: 36px;
-  --font-size-40: 40px;
-  --font-size-60: 60px;
-  --font-weight-300: "light";
-  --font-weight-400: "regular";
-  --font-weight-500: "medium";
-  --font-weight-700: "bold";
+  --cornerradius-2xl: 20px;
+  --cornerradius-2xs: 4px;
+  --cornerradius-3xl: 24px;
+  --cornerradius-3xs: 2px;
+  --cornerradius-full: 9999px;
+  --cornerradius-lg: 12px;
+  --cornerradius-md: 10px;
+  --cornerradius-sm: 8px;
+  --cornerradius-xl: 16px;
+  --cornerradius-xs: 6px;
+  --fontfamily-inter: "Inter";
+  --fontfamily-notosanskr: "Noto Sans KR";
+  --fontsize-12: 12px;
+  --fontsize-14: 14px;
+  --fontsize-15: 15px;
+  --fontsize-16: 16px;
+  --fontsize-18: 18px;
+  --fontsize-20: 20px;
+  --fontsize-24: 24px;
+  --fontsize-28: 28px;
+  --fontsize-32: 32px;
+  --fontsize-36: 36px;
+  --fontsize-40: 40px;
+  --fontsize-60: 60px;
+  --fontweight-300: "light";
+  --fontweight-400: "regular";
+  --fontweight-500: "medium";
+  --fontweight-700: "bold";
   --height-container-2xl: 72px;
   --height-container-2xs: 24px;
   --height-container-3xs: 20px;
@@ -130,36 +130,36 @@
   --height-container-sm: 40px;
   --height-container-xl: 64px;
   --height-container-xs: 32px;
-  --height-popup-lg: 640px;
+  --height-popup-lg: 648px;
   --height-popup-md: 480px;
-  --letter-spacing-12: 0px;
-  --letter-spacing-14: 0px;
-  --letter-spacing-15: 0px;
-  --letter-spacing-16: 0px;
-  --letter-spacing-18: 0px;
-  --letter-spacing-20: 0px;
-  --letter-spacing-24: 0px;
-  --letter-spacing-28: 0px;
-  --letter-spacing-32: 0px;
-  --letter-spacing-36: 0px;
-  --letter-spacing-40: 0px;
-  --letter-spacing-60: 1px;
-  --line-height-140-28: 40px;
-  --line-height-140-32: 44px;
-  --line-height-140-36: 50px;
-  --line-height-140-40: 56px;
-  --line-height-140-60: 84px;
-  --line-height-150-12: 18px;
-  --line-height-150-14: 20px;
-  --line-height-150-15: 22px;
-  --line-height-150-16: 24px;
-  --line-height-150-18: 26px;
-  --line-height-150-20: 30px;
-  --line-height-150-24: 36px;
-  --line-height-175-12: 20px;
-  --line-height-175-14: 24px;
-  --line-height-175-15: 26px;
-  --line-height-175-16: 28px;
+  --letterspacing-12: 0px;
+  --letterspacing-14: 0px;
+  --letterspacing-15: 0px;
+  --letterspacing-16: 0px;
+  --letterspacing-18: 0px;
+  --letterspacing-20: 0px;
+  --letterspacing-24: 0px;
+  --letterspacing-28: 0px;
+  --letterspacing-32: 0px;
+  --letterspacing-36: 0px;
+  --letterspacing-40: 0px;
+  --letterspacing-60: 1px;
+  --lineheight-140-28: 40px;
+  --lineheight-140-32: 44px;
+  --lineheight-140-36: 50px;
+  --lineheight-140-40: 56px;
+  --lineheight-140-60: 84px;
+  --lineheight-150-12: 18px;
+  --lineheight-150-14: 20px;
+  --lineheight-150-15: 22px;
+  --lineheight-150-16: 24px;
+  --lineheight-150-18: 26px;
+  --lineheight-150-20: 30px;
+  --lineheight-150-24: 36px;
+  --lineheight-175-12: 20px;
+  --lineheight-175-14: 24px;
+  --lineheight-175-15: 26px;
+  --lineheight-175-16: 28px;
   --opacity-10: 10;
   --opacity-20: 20;
   --opacity-30: 30;
@@ -199,7 +199,7 @@
   --square-36: 36px;
   --square-40: 40px;
   --square-48: 48px;
-  --square-6: 6px;
+  --square-5: 5px;
   --square-60: 60px;
   --square-72: 72px;
   --square-8: 8px;
@@ -225,16 +225,16 @@
   --container-gray-black: var(--common-black);
   --container-gray-default: var(--colors-gray-500);
   --container-gray-strong: var(--colors-gray-700);
-  --container-gray-strong-2: var(--colors-gray-900);
+  --container-gray-strong2: var(--colors-gray-900);
   --container-gray-subtle: var(--colors-gray-150);
-  --container-gray-subtle-2: var(--colors-gray-100);
-  --container-gray-subtle-3: var(--colors-gray-50);
-  --container-gray-subtle-4: var(--colors-gray-25);
+  --container-gray-subtle2: var(--colors-gray-100);
+  --container-gray-subtle3: var(--colors-gray-50);
+  --container-gray-subtle4: var(--colors-gray-25);
   --container-gray-white: var(--common-white);
-  --container-primary-default: var(--colors-sky-blue-500);
-  --container-primary-strong: var(--colors-sky-blue-700);
-  --container-primary-subtle: var(--colors-sky-blue-100);
-  --container-primary-subtle-2: var(--colors-sky-blue-50);
+  --container-primary-default: var(--colors-skyblue-500);
+  --container-primary-strong: var(--colors-skyblue-700);
+  --container-primary-subtle: var(--colors-skyblue-100);
+  --container-primary-subtle2: var(--colors-skyblue-50);
   --container-system-critical-default: var(--colors-red-600);
   --container-system-critical-subtle: var(--colors-red-100);
   --divider-strong: var(--common-overlay-black-100);
@@ -242,36 +242,50 @@
   --scrollbar-handle: var(--common-overlay-black-180);
   --state-disabled-container-default: var(--common-overlay-black-100);
   --state-disabled-container-strong: var(--common-overlay-black-240);
-  --state-disabled-stroke-stroke: var(--common-overlay-black-120);
-  --state-disabled-text-icon-default: var(--common-overlay-black-440);
-  --state-pressed-black: var(--common-overlay-black-100);
-  --state-pressed-static-black: var(--common-overlay-black-100);
+  --state-disabled-container-strong2: var(--common-overlay-black-440);
+  --state-disabled-stroke-default: var(--common-overlay-black-120);
+  --state-disabled-stroke-strong: var(--common-overlay-black-300);
+  --state-disabled-texticon-default: var(--common-overlay-black-440);
+  --state-disabled-texticon-invert: var(--common-overlay-white-500);
+  --state-pressed-black: var(--common-overlay-black-300);
+  --state-pressed-gray: var(--common-overlay-black-100);
+  --state-pressed-static-black: var(--common-overlay-black-300);
+  --state-pressed-static-gray: var(--common-overlay-black-100);
   --state-pressed-static-white: var(--common-overlay-white-180);
   --state-pressed-white: var(--common-overlay-white-180);
+  --state-readonly-container-default: var(--common-overlay-black-50);
+  --state-readonly-container-invert: var(--common-overlay-white-700);
+  --state-readonly-container-strong: var(--common-overlay-black-100);
+  --state-readonly-container-strong2: var(--common-overlay-black-440);
+  --state-readonly-stroke-default: var(--common-overlay-black-120);
+  --state-readonly-stroke-invert: var(--common-overlay-white-700);
+  --state-readonly-stroke-strong: var(--common-overlay-black-300);
+  --state-readonly-texticon-default: var(--common-overlay-black-440);
+  --state-readonly-texticon-invert: var(--common-overlay-white-700);
   --stroke-gray-default: var(--colors-gray-150);
   --stroke-gray-strong: var(--colors-gray-300);
-  --stroke-gray-strong-2: var(--colors-gray-400);
-  --stroke-gray-strong-3: var(--colors-gray-600);
-  --stroke-primary-default: var(--colors-sky-blue-200);
-  --stroke-primary-strong: var(--colors-sky-blue-300);
-  --stroke-primary-strong-2: var(--colors-sky-blue-400);
-  --stroke-primary-strong-3: var(--colors-sky-blue-500);
+  --stroke-gray-strong2: var(--colors-gray-400);
+  --stroke-gray-strong3: var(--colors-gray-600);
+  --stroke-primary-default: var(--colors-skyblue-200);
+  --stroke-primary-strong: var(--colors-skyblue-300);
+  --stroke-primary-strong2: var(--colors-skyblue-400);
+  --stroke-primary-strong3: var(--colors-skyblue-500);
   --stroke-system-critical-default: var(--colors-red-300);
   --stroke-system-critical-strong: var(--colors-red-600);
-  --text-icon-gray-black: var(--common-black);
-  --text-icon-gray-default: var(--colors-gray-950);
-  --text-icon-gray-subtle: var(--colors-gray-700);
-  --text-icon-gray-subtle-2: var(--colors-gray-500);
-  --text-icon-gray-subtle-3: var(--colors-gray-400);
-  --text-icon-gray-white: var(--common-white);
-  --text-icon-primary-default: var(--colors-sky-blue-800);
-  --text-icon-primary-subtle: var(--colors-sky-blue-700);
-  --text-icon-primary-subtle-2: var(--colors-sky-blue-500);
-  --text-icon-static-white: var(--common-white);
-  --text-icon-static-white-primary: var(--common-white);
-  --text-icon-system-critical-default: var(--colors-red-900);
-  --text-icon-system-critical-subtle: var(--colors-red-800);
-  --text-icon-system-critical-subtle-2: var(--colors-red-600);
+  --texticon-gray-black: var(--common-black);
+  --texticon-gray-default: var(--colors-gray-950);
+  --texticon-gray-invert: var(--common-white);
+  --texticon-gray-subtle: var(--colors-gray-700);
+  --texticon-gray-subtle2: var(--colors-gray-500);
+  --texticon-gray-subtle3: var(--colors-gray-400);
+  --texticon-primary-default: var(--colors-skyblue-800);
+  --texticon-primary-subtle: var(--colors-skyblue-700);
+  --texticon-primary-subtle2: var(--colors-skyblue-500);
+  --texticon-static-white: var(--common-white);
+  --texticon-static-whiteprimary: var(--common-white);
+  --texticon-system-critical-default: var(--colors-red-900);
+  --texticon-system-critical-subtle: var(--colors-red-800);
+  --texticon-system-critical-subtle2: var(--colors-red-600);
 }
 
 [data-mode="dark"] {
@@ -281,886 +295,900 @@
   --bg-floating: var(--common-black);
   --bg-soft: var(--colors-gray-900);
   --container-gray-black: var(--common-white);
-  --container-gray-default: var(--colors-gray-600);
-  --container-gray-strong: var(--colors-gray-400);
-  --container-gray-strong-2: var(--colors-gray-200);
+  --container-gray-default: var(--colors-gray-400);
+  --container-gray-strong: var(--colors-gray-200);
+  --container-gray-strong2: var(--colors-gray-100);
   --container-gray-subtle: var(--colors-gray-700);
-  --container-gray-subtle-2: var(--colors-gray-800);
-  --container-gray-subtle-3: var(--colors-gray-900);
-  --container-gray-subtle-4: var(--colors-gray-950);
+  --container-gray-subtle2: var(--colors-gray-800);
+  --container-gray-subtle3: var(--colors-gray-900);
+  --container-gray-subtle4: var(--colors-gray-950);
   --container-gray-white: var(--common-black);
-  --container-primary-default: var(--colors-sky-blue-600);
-  --container-primary-strong: var(--colors-sky-blue-400);
-  --container-primary-subtle: var(--colors-sky-blue-900);
-  --container-primary-subtle-2: var(--colors-sky-blue-950);
-  --container-system-critical-default: var(--colors-red-500);
+  --container-primary-default: var(--colors-skyblue-100);
+  --container-primary-strong: var(--colors-skyblue-300);
+  --container-primary-subtle: var(--colors-skyblue-800);
+  --container-primary-subtle2: var(--colors-skyblue-900);
+  --container-system-critical-default: var(--colors-red-300);
   --container-system-critical-subtle: var(--colors-red-900);
-  --divider-strong: var(--common-overlay-black-300);
-  --divider-subtle: var(--common-overlay-black-100);
-  --scrollbar-handle: var(--common-overlay-black-300);
-  --state-disabled-container-default: var(--common-overlay-black-240);
-  --state-disabled-container-strong: var(--common-overlay-black-300);
-  --state-disabled-stroke-stroke: var(--common-overlay-black-300);
-  --state-disabled-text-icon-default: var(--common-overlay-black-500);
-  --state-pressed-black: var(--common-overlay-white-100);
-  --state-pressed-static-black: var(--common-overlay-white-100);
-  --state-pressed-static-white: var(--common-overlay-black-180);
-  --state-pressed-white: var(--common-overlay-black-180);
+  --divider-strong: var(--common-overlay-white-800);
+  --divider-subtle: var(--common-overlay-white-700);
+  --scrollbar-handle: var(--common-overlay-white-700);
+  --state-disabled-container-default: var(--common-overlay-white-800);
+  --state-disabled-container-strong: var(--common-overlay-white-700);
+  --state-disabled-container-strong2: var(--common-overlay-white-500);
+  --state-disabled-stroke-default: var(--common-overlay-white-800);
+  --state-disabled-stroke-strong: var(--common-overlay-white-700);
+  --state-disabled-texticon-default: var(--common-overlay-white-500);
+  --state-disabled-texticon-invert: var(--common-overlay-black-600);
+  --state-pressed-black: var(--common-overlay-white-700);
+  --state-pressed-gray: var(--common-overlay-white-800);
+  --state-pressed-static-black: var(--common-overlay-white-700);
+  --state-pressed-static-gray: var(--common-overlay-white-800);
+  --state-pressed-static-white: var(--common-overlay-black-800);
+  --state-pressed-white: var(--common-overlay-black-800);
+  --state-readonly-container-default: var(--common-overlay-white-800);
+  --state-readonly-container-invert: var(--common-overlay-black-300);
+  --state-readonly-container-strong: var(--common-overlay-white-800);
+  --state-readonly-container-strong2: var(--common-overlay-white-500);
+  --state-readonly-stroke-default: var(--common-overlay-white-800);
+  --state-readonly-stroke-invert: var(--common-overlay-black-300);
+  --state-readonly-stroke-strong: var(--common-overlay-white-700);
+  --state-readonly-texticon-default: var(--common-overlay-white-500);
+  --state-readonly-texticon-invert: var(--common-overlay-black-300);
   --stroke-gray-default: var(--colors-gray-700);
-  --stroke-gray-strong: var(--colors-gray-800);
-  --stroke-gray-strong-2: var(--colors-gray-700);
-  --stroke-gray-strong-3: var(--colors-gray-500);
-  --stroke-primary-default: var(--colors-sky-blue-800);
-  --stroke-primary-strong: var(--colors-sky-blue-700);
-  --stroke-primary-strong-2: var(--colors-sky-blue-600);
-  --stroke-primary-strong-3: var(--colors-sky-blue-600);
+  --stroke-gray-strong: var(--colors-gray-600);
+  --stroke-gray-strong2: var(--colors-gray-500);
+  --stroke-gray-strong3: var(--colors-gray-400);
+  --stroke-primary-default: var(--colors-skyblue-700);
+  --stroke-primary-strong: var(--colors-skyblue-600);
+  --stroke-primary-strong2: var(--colors-skyblue-500);
+  --stroke-primary-strong3: var(--colors-skyblue-400);
   --stroke-system-critical-default: var(--colors-red-800);
-  --stroke-system-critical-strong: var(--colors-red-500);
-  --text-icon-gray-black: var(--common-white);
-  --text-icon-gray-default: var(--colors-gray-100);
-  --text-icon-gray-subtle: var(--colors-gray-400);
-  --text-icon-gray-subtle-2: var(--colors-gray-600);
-  --text-icon-gray-subtle-3: var(--colors-gray-700);
-  --text-icon-gray-white: var(--common-black);
-  --text-icon-primary-default: var(--colors-sky-blue-300);
-  --text-icon-primary-subtle: var(--colors-sky-blue-400);
-  --text-icon-primary-subtle-2: var(--colors-sky-blue-600);
-  --text-icon-static-white: var(--common-black);
-  --text-icon-static-white-primary: var(--common-black);
-  --text-icon-system-critical-default: var(--colors-red-200);
-  --text-icon-system-critical-subtle: var(--colors-red-300);
-  --text-icon-system-critical-subtle-2: var(--colors-red-500);
+  --stroke-system-critical-strong: var(--colors-red-300);
+  --texticon-gray-black: var(--common-white);
+  --texticon-gray-default: var(--colors-gray-50);
+  --texticon-gray-invert: var(--common-black);
+  --texticon-gray-subtle: var(--colors-gray-300);
+  --texticon-gray-subtle2: var(--colors-gray-400);
+  --texticon-gray-subtle3: var(--colors-gray-500);
+  --texticon-primary-default: var(--colors-skyblue-200);
+  --texticon-primary-subtle: var(--colors-skyblue-300);
+  --texticon-primary-subtle2: var(--colors-skyblue-400);
+  --texticon-static-white: var(--common-black);
+  --texticon-static-whiteprimary: var(--common-black);
+  --texticon-system-critical-default: var(--colors-red-100);
+  --texticon-system-critical-subtle: var(--colors-red-200);
+  --texticon-system-critical-subtle2: var(--colors-red-300);
 }
 
 /* ==================== TEXT STYLES ==================== */
 /* Total: 92 text styles */
 
 .text-style-inter-heading-36-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-36);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-140-36);
-  letter-spacing: var(--letter-spacing-36);
+  font-size: var(--fontsize-36);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-140-36);
+  letter-spacing: var(--letterspacing-36);
 }
 
 .text-style-inter-heading-36-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-36);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-140-36);
-  letter-spacing: var(--letter-spacing-36);
+  font-size: var(--fontsize-36);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-140-36);
+  letter-spacing: var(--letterspacing-36);
 }
 
 .text-style-inter-heading-36-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-36);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-140-36);
-  letter-spacing: var(--letter-spacing-36);
+  font-size: var(--fontsize-36);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-140-36);
+  letter-spacing: var(--letterspacing-36);
 }
 
 .text-style-inter-heading-24-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-24);
-  letter-spacing: var(--letter-spacing-24);
+  font-size: var(--fontsize-24);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-24);
+  letter-spacing: var(--letterspacing-24);
 }
 
 .text-style-inter-heading-24-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-24);
-  letter-spacing: var(--letter-spacing-24);
+  font-size: var(--fontsize-24);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-24);
+  letter-spacing: var(--letterspacing-24);
 }
 
 .text-style-inter-heading-24-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-24);
-  letter-spacing: var(--letter-spacing-24);
+  font-size: var(--fontsize-24);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-24);
+  letter-spacing: var(--letterspacing-24);
 }
 
 .text-style-inter-heading-20-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-heading-20-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-heading-20-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-heading-18-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-heading-18-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-heading-18-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-heading-16-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-heading-16-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-heading-16-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-heading-14-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-heading-14-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-heading-14-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-20-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-label-20-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-label-20-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-inter-label-18-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-label-18-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-label-18-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-inter-label-16-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-label-16-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-label-16-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-label-15-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-label-15-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-label-15-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-label-14-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-14-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-14-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-12-bold {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-12-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-label-12-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-body-16-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-body-16-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-body-16-light {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-inter-body-15-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-body-15-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-body-15-light {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-inter-body-14-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-body-14-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-body-14-light {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-caption-14-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-caption-14-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-inter-caption-12-regular {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-12);
-  letter-spacing: var(--letter-spacing-12);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-12);
+  letter-spacing: var(--letterspacing-12);
 }
 
 .text-style-inter-caption-12-medium {
-  font-family: var(--font-family-inter);
+  font-family: var(--fontfamily-inter);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-12);
-  letter-spacing: var(--letter-spacing-12);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-12);
+  letter-spacing: var(--letterspacing-12);
 }
 
 .text-style-notosanskr-heading-36-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-36);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-140-36);
-  letter-spacing: var(--letter-spacing-36);
+  font-size: var(--fontsize-36);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-140-36);
+  letter-spacing: var(--letterspacing-36);
 }
 
 .text-style-notosanskr-heading-36-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-36);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-140-36);
-  letter-spacing: var(--letter-spacing-36);
+  font-size: var(--fontsize-36);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-140-36);
+  letter-spacing: var(--letterspacing-36);
 }
 
 .text-style-notosanskr-heading-24-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-24);
-  letter-spacing: var(--letter-spacing-24);
+  font-size: var(--fontsize-24);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-24);
+  letter-spacing: var(--letterspacing-24);
 }
 
 .text-style-notosanskr-heading-24-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-24);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-24);
-  letter-spacing: var(--letter-spacing-24);
+  font-size: var(--fontsize-24);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-24);
+  letter-spacing: var(--letterspacing-24);
 }
 
 .text-style-notosanskr-heading-20-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-notosanskr-heading-20-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-notosanskr-heading-18-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-notosanskr-heading-18-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-notosanskr-heading-16-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-heading-16-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-heading-14-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-heading-14-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-20-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-notosanskr-label-20-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-notosanskr-label-20-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-20);
-  letter-spacing: var(--letter-spacing-20);
+  font-size: var(--fontsize-20);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-20);
+  letter-spacing: var(--letterspacing-20);
 }
 
 .text-style-notosanskr-label-18-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-notosanskr-label-18-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-notosanskr-label-18-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-18);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-18);
-  letter-spacing: var(--letter-spacing-18);
+  font-size: var(--fontsize-18);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-18);
+  letter-spacing: var(--letterspacing-18);
 }
 
 .text-style-notosanskr-label-16-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-label-16-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-label-16-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-label-15-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-label-15-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-label-15-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-label-14-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-14-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-14-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-12-bold {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-700);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-700);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-12-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-label-12-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-150-12);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-150-12);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-body-16-light {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-body-16-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-body-16-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-16);
-  letter-spacing: var(--letter-spacing-16);
+  font-size: var(--fontsize-16);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-16);
+  letter-spacing: var(--letterspacing-16);
 }
 
 .text-style-notosanskr-body-15-light {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-body-15-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-body-15-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-15);
-  letter-spacing: var(--letter-spacing-15);
+  font-size: var(--fontsize-15);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-15);
+  letter-spacing: var(--letterspacing-15);
 }
 
 .text-style-notosanskr-body-14-light {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-300);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-300);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-body-14-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-body-14-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-caption-14-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-caption-14-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-14);
-  letter-spacing: var(--letter-spacing-14);
+  font-size: var(--fontsize-14);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-14);
+  letter-spacing: var(--letterspacing-14);
 }
 
 .text-style-notosanskr-caption-12-regular {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-175-12);
-  letter-spacing: var(--letter-spacing-12);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-400);
+  line-height: var(--lineheight-175-12);
+  letter-spacing: var(--letterspacing-12);
 }
 
 .text-style-notosanskr-caption-12-medium {
-  font-family: var(--font-family-noto-sans-kr);
+  font-family: var(--fontfamily-notosanskr);
   font-style: normal;
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-500);
-  line-height: var(--line-height-175-12);
-  letter-spacing: var(--letter-spacing-12);
+  font-size: var(--fontsize-12);
+  font-weight: var(--fontweight-500);
+  line-height: var(--lineheight-175-12);
+  letter-spacing: var(--letterspacing-12);
 }
 
 /* ==================== EFFECT STYLES ==================== */
