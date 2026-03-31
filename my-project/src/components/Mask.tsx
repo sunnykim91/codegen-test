@@ -6,30 +6,33 @@ export interface MaskProps extends HTMLAttributes<HTMLDivElement> {
   direction?: MaskDirection;
 }
 
-const directionStyleMap: Record<MaskDirection, {
-  maskGradient: string;
-  colorMaskGradient: string;
-}> = {
-  top: {
-    maskGradient: "linear-gradient(to bottom, transparent 0%, black 100%)",
-    colorMaskGradient: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
-  },
+const directionStyleMap: Record<
+  MaskDirection,
+  {
+    maskImage: string;
+    WebkitMaskImage: string;
+  }
+> = {
   right: {
-    maskGradient: "linear-gradient(to left, transparent 0%, black 100%)",
-    colorMaskGradient: "linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+    maskImage: "linear-gradient(to left, black 0%, transparent 100%)",
+    WebkitMaskImage: "linear-gradient(to left, black 0%, transparent 100%)",
   },
   bottom: {
-    maskGradient: "linear-gradient(to top, transparent 0%, black 100%)",
-    colorMaskGradient: "linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+    maskImage: "linear-gradient(to top, black 0%, transparent 100%)",
+    WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)",
   },
   left: {
-    maskGradient: "linear-gradient(to right, transparent 0%, black 100%)",
-    colorMaskGradient: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+    maskImage: "linear-gradient(to right, black 0%, transparent 100%)",
+    WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 100%)",
+  },
+  top: {
+    maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+    WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
   },
 };
 
 const MaskComponent = ({
-  direction = "top",
+  direction = "right",
   className = "",
   style,
   ...props
@@ -43,30 +46,16 @@ const MaskComponent = ({
     ...style,
   };
 
-  const baseMaskStyle: React.CSSProperties = {
+  const colorMaskStyle: React.CSSProperties = {
     position: "absolute",
-    top: 0,
-    left: 0,
-    width: 100,
-    height: 100,
+    inset: 0,
+    background: "var(--bg-base)",
+    ...directionConfig,
   };
 
   return (
     <div className={`mask ${className}`} style={maskStyle} {...props}>
-      <div 
-        className="mask"
-        style={{
-          ...baseMaskStyle,
-          background: directionConfig.maskGradient,
-        }}
-      />
-      <div 
-        className="color-mask"
-        style={{
-          ...baseMaskStyle,
-          background: directionConfig.colorMaskGradient,
-        }}
-      />
+      <div className="color-mask" style={colorMaskStyle} />
     </div>
   );
 };
