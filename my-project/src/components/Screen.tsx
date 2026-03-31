@@ -1,11 +1,11 @@
 import React, { memo, ReactNode, HTMLAttributes } from "react";
-import { TopNavi } from "./TopNavi";
+import { TopNavi, TopNaviVariants } from "./TopNavi";
 
 export type ScreenVariants = "sub" | "main";
 
 export interface ScreenProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
   variants?: ScreenVariants;
+  children?: ReactNode;
 }
 
 const ScreenComponent = ({
