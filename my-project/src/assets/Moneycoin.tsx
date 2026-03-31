@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import moneycoin3x from "my-project/src/assets/moneycoin@3x.png";
 
 export interface MoneycoinProps {
@@ -22,7 +23,7 @@ const MoneycoinComponent = ({
   const h = size ? Math.round(size * (320 / 320)) : height;
 
   return (
-    <img
+    <Image
       src={moneycoin3x}
       width={w}
       height={h}

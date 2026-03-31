@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import bank3x from "my-project/src/assets/bank@3x.png";
 
 export interface BankProps {
@@ -22,7 +23,7 @@ const BankComponent = ({
   const h = size ? Math.round(size * (320 / 320)) : height;
 
   return (
-    <img
+    <Image
       src={bank3x}
       width={w}
       height={h}

@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import kblogo3x from "my-project/src/assets/kblogo@3x.png";
 
 export interface KblogoProps {
@@ -22,7 +23,7 @@ const KblogoComponent = ({
   const h = size ? Math.round(size * (24 / 131)) : height;
 
   return (
-    <img
+    <Image
       src={kblogo3x}
       width={w}
       height={h}

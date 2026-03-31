@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import empty_img3x from "my-project/src/assets/empty-img@3x.png";
 
 export interface EmptyImgProps {
@@ -22,7 +23,7 @@ const EmptyImgComponent = ({
   const h = size ? Math.round(size * (100 / 100)) : height;
 
   return (
-    <img
+    <Image
       src={empty_img3x}
       width={w}
       height={h}

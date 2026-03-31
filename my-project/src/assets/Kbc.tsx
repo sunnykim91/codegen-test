@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import kbc3x from "my-project/src/assets/kbc@3x.png";
 
 export interface KbcProps {
@@ -22,7 +23,7 @@ const KbcComponent = ({
   const h = size ? Math.round(size * (64 / 86)) : height;
 
   return (
-    <img
+    <Image
       src={kbc3x}
       width={w}
       height={h}

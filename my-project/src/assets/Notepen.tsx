@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import notepen3x from "my-project/src/assets/notepen@3x.png";
 
 export interface NotepenProps {
@@ -22,7 +23,7 @@ const NotepenComponent = ({
   const h = size ? Math.round(size * (320 / 320)) : height;
 
   return (
-    <img
+    <Image
       src={notepen3x}
       width={w}
       height={h}

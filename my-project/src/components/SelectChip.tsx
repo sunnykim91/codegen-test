@@ -1,5 +1,5 @@
 import React, { memo, ReactNode, HTMLAttributes } from "react";
-import { Chip } from "./Chip";
+import { SelectChipItem } from "./SelectChipItem";
 import { Mask } from "./Mask";
 import { Icon } from "./Icon";
 
@@ -9,71 +9,63 @@ export interface SelectChipProps extends HTMLAttributes<HTMLDivElement> {
   showMaskStart?: boolean;
   showExpendIcon?: boolean;
   showMaskEnd?: boolean;
-  slot?: ReactNode;
+  slotContent?: ReactNode;
   variants?: SelectChipVariants;
   isExpand?: boolean;
 }
 
-const getContainerHeight = (variants: SelectChipVariants, isExpand: boolean): number => {
-  if (isExpand) {
-    return variants === "single" ? 80 : 124;
+const variantStyleMap: Record<
+  SelectChipVariants,
+  {
+    color: string;
+    containerHeight: { collapsed: number; expanded: number };
   }
-  return 36;
+> = {
+  single: {
+    color: "var(--texticon-gray-default)",
+    containerHeight: { collapsed: 36, expanded: 80 },
+  },
+  multi: {
+    color: "var(--texticon-gray-subtle)",
+    containerHeight: { collapsed: 36, expanded: 124 },
+  },
 };
 
 const SelectChipComponent = ({
   showMaskStart = true,
   showExpendIcon = true,
   showMaskEnd = true,
-  slot,
+  slotContent,
   variants = "single",
   isExpand = false,
   className = "",
   style,
   ...props
 }: SelectChipProps) => {
-  const containerHeight = getContainerHeight(variants, isExpand);
-  
+  const config = variantStyleMap[variants];
+  const containerHeight = isExpand
+    ? config.containerHeight.expanded
+    : config.containerHeight.collapsed;
+
   const containerStyle: React.CSSProperties = {
     position: "relative",
     display: "flex",
-    width: 335,
+    width: "100%",
     height: containerHeight,
-    color: variants === "single" ? "var(--texticon-gray-default)" : "var(--texticon-gray-subtle)",
+    color: config.color,
+    overflow: "hidden",
     ...style,
   };
 
   const slotStyle: React.CSSProperties = {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: isExpand ? "wrap" : "nowrap",
     gap: 0,
     alignItems: "flex-start",
     alignContent: "flex-start",
     width: "100%",
     height: "100%",
-    overflow: "hidden",
-  };
-
-  const boxStyle: React.CSSProperties = {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    display: "flex",
-    height: isExpand ? "auto" : 36,
-    alignItems: "center",
-    zIndex: 1,
-  };
-
-  const expandButtonStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "var(--square-32, 32px)",
-    height: isExpand ? "auto" : "100%",
-    padding: isExpand ? "var(--spacing-8, 8px) 0" : "0",
-    backgroundColor: "var(--bg-base)",
-    border: "none",
-    cursor: "pointer",
+    overflow: isExpand ? "visible" : "hidden",
   };
 
   const leftMaskStyle: React.CSSProperties = {
@@ -82,7 +74,18 @@ const SelectChipComponent = ({
     left: 0,
     width: "var(--width-container-md, 80px)",
     height: 36,
-    zIndex: 1,
+    zIndex: 2,
+    pointerEvents: "none",
+  };
+
+  const rightBoxStyle: React.CSSProperties = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    display: "flex",
+    height: isExpand ? "auto" : 36,
+    alignItems: "flex-start",
+    zIndex: 2,
   };
 
   const rightMaskStyle: React.CSSProperties = {
@@ -90,67 +93,94 @@ const SelectChipComponent = ({
     height: 36,
   };
 
-  const renderSlotContent = () => {
-    if (slot) return slot;
-    
-    // 기본 예시 아이템들
-    const defaultItems = Array.from({ length: 12 }, (_, index) => (
-      <div key={index} className="_selectchip_item" style={{ display: "flex" }}>
-        <Chip
-          variants={variants === "single" ? "filled" : "outline"}
-          state="enabled"
-          isSelected={index === 2 || (variants === "multi" && (index === 2 || index === 3))}
-          showStartIcon={variants === "multi" && (index === 2 || index === 3)}
-          startIcon={variants === "multi" && (index === 2 || index === 3) ? <Icon name="check" size={16} /> : undefined}
-        >
-          라벨
-        </Chip>
-      </div>
-    ));
+  const expandBoxStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "var(--square-32, 32px)",
+    height: isExpand ? "auto" : "100%",
+    padding: isExpand ? "var(--spacing-8, 8px) 0" : "0",
+    backgroundColor: "var(--bg-base)",
+  };
 
-    return defaultItems;
+  const renderDefaultContent = () => {
+    const items = Array.from({ length: 12 }, (_, index) => {
+      const isSelected =
+        variants === "single" ? index === 2 : index === 2 || index === 3;
+
+      return (
+        <SelectChipItem
+          key={index}
+          variants={variants}
+          state="enabled"
+          isSelected={isSelected}
+        />
+      );
+    });
+
+    return items;
+  };
+
+  const renderExpandIcon = () => {
+    if (isExpand) {
+      return (
+        <div
+          className="disclosure-item"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "var(--container-gray-subtle3)",
+            borderRadius: 2,
+            overflow: "hidden",
+          }}
+        >
+          <Icon name="direction-icon" size={20} />
+        </div>
+      );
+    }
+
+    return (
+      <Icon
+        name="direction-icon"
+        size={20}
+        style={{ transform: "rotate(180deg)" }}
+      />
+    );
   };
 
   return (
-    <div className={`select-chip ${className}`} style={containerStyle} {...props}>
+    <div
+      className={`select-chip ${className}`}
+      style={containerStyle}
+      {...props}
+    >
       <div className="slot" style={slotStyle}>
-        {renderSlotContent()}
+        {slotContent || renderDefaultContent()}
       </div>
 
-      {showMaskEnd && (
+      {showMaskStart && (
         <div className="left-mask" style={leftMaskStyle}>
           <Mask direction="left" style={{ width: "100%", height: "100%" }} />
         </div>
       )}
 
       {showExpendIcon && (
-        <div className="box" style={boxStyle}>
-          {showMaskStart && (
+        <div className="box" style={rightBoxStyle}>
+          {showMaskEnd && (
             <div style={rightMaskStyle}>
-              <Mask direction="right" style={{ width: "100%", height: "100%" }} />
+              <Mask
+                direction="right"
+                style={{ width: "100%", height: "100%" }}
+              />
             </div>
           )}
           <button
             className="expand-button"
-            style={expandButtonStyle}
+            style={expandBoxStyle}
             aria-label={isExpand ? "접기" : "펼치기"}
           >
-            {isExpand ? (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "var(--container-gray-subtle3)",
-                  borderRadius: 2,
-                  overflow: "hidden",
-                }}
-              >
-                <Icon name="direction-icon" size={20} />
-              </div>
-            ) : (
-              <Icon name="direction-icon" size={20} style={{ transform: "rotate(180deg)" }} />
-            )}
+            {renderExpandIcon()}
           </button>
         </div>
       )}

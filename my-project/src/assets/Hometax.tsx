@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import hometax3x from "my-project/src/assets/hometax@3x.png";
 
 export interface HometaxProps {
@@ -22,7 +23,7 @@ const HometaxComponent = ({
   const h = size ? Math.round(size * (138 / 449)) : height;
 
   return (
-    <img
+    <Image
       src={hometax3x}
       width={w}
       height={h}

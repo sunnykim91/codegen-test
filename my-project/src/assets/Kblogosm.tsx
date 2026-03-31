@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Image from "next/image";
 import kblogosm3x from "my-project/src/assets/kblogosm@3x.png";
 
 export interface KblogosmProps {
@@ -22,7 +23,7 @@ const KblogosmComponent = ({
   const h = size ? Math.round(size * (20 / 20)) : height;
 
   return (
-    <img
+    <Image
       src={kblogosm3x}
       width={w}
       height={h}
