@@ -1,42 +1,112 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SelectChip } from "../components/SelectChip";
 
-const meta: Meta<typeof SelectChip> = {
+const meta = {
   title: "UI/SelectChip",
   component: SelectChip,
+  parameters: {
+    layout: "centered",
+  },
   tags: ["autodocs"],
   argTypes: {
-    showMaskStart: { control: "boolean" },
-    showExpendIcon: { control: "boolean" },
-    showMaskEnd: { control: "boolean" },
+    showMaskStart: {
+      control: "boolean",
+    },
+    showExpendIcon: {
+      control: "boolean",
+    },
+    showMaskEnd: {
+      control: "boolean",
+    },
     variants: {
       control: "select",
       options: ["single", "multi"],
     },
-    isExpand: { control: "boolean" }
+    isExpand: {
+      control: "boolean",
+    },
   },
+} satisfies Meta<typeof SelectChip>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
   args: {
     showMaskStart: true,
     showExpendIcon: true,
     showMaskEnd: true,
     variants: "single",
-    isExpand: false
+    isExpand: false,
   },
 };
 
-export default meta;
-type Story = StoryObj<typeof SelectChip>;
-
-export const Default: Story = {};
-
-export const Single: Story = {
-  args: { variants: "single" },
+export const SingleCollapsed: Story = {
+  args: {
+    showMaskStart: true,
+    showExpendIcon: true,
+    showMaskEnd: true,
+    variants: "single",
+    isExpand: false,
+  },
 };
 
-export const Multi: Story = {
-  args: { variants: "multi" },
+export const SingleExpanded: Story = {
+  args: {
+    showMaskStart: true,
+    showExpendIcon: true,
+    showMaskEnd: true,
+    variants: "single",
+    isExpand: true,
+  },
 };
 
-export const IsExpand: Story = {
-  args: { isExpand: true },
+export const MultiCollapsed: Story = {
+  args: {
+    showMaskStart: true,
+    showExpendIcon: true,
+    showMaskEnd: true,
+    variants: "multi",
+    isExpand: false,
+  },
+};
+
+export const MultiExpanded: Story = {
+  args: {
+    showMaskStart: true,
+    showExpendIcon: true,
+    showMaskEnd: true,
+    variants: "multi",
+    isExpand: true,
+  },
+};
+
+export const WithoutMasks: Story = {
+  args: {
+    showMaskStart: false,
+    showExpendIcon: true,
+    showMaskEnd: false,
+    variants: "single",
+    isExpand: false,
+  },
+};
+
+export const WithoutExpandIcon: Story = {
+  args: {
+    showMaskStart: true,
+    showExpendIcon: false,
+    showMaskEnd: true,
+    variants: "single",
+    isExpand: false,
+  },
+};
+
+export const MinimalConfig: Story = {
+  args: {
+    showMaskStart: false,
+    showExpendIcon: false,
+    showMaskEnd: false,
+    variants: "single",
+    isExpand: false,
+  },
 };
