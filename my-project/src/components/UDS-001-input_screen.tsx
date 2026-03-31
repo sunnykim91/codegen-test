@@ -13,7 +13,7 @@ export interface UDS001InputScreenProps extends HTMLAttributes<HTMLDivElement> {
 const UDS001InputScreenComponent = ({
   children,
   title = "#title",
-  description = "#description",
+  description = "#description", 
   buttonLabel = "버튼 라벨",
   onButtonClick,
   className = "",
@@ -26,6 +26,10 @@ const UDS001InputScreenComponent = ({
     width: "100%",
     minHeight: "100vh",
     gap: 0,
+    padding: 0,
+    borderRadius: 0,
+    backgroundColor: "rgb(255,255,255)",
+    overflow: "hidden",
     ...style,
   };
 
@@ -34,8 +38,7 @@ const UDS001InputScreenComponent = ({
     flex: 1,
     flexDirection: "column",
     gap: "var(--spacing-48, 48px)",
-    paddingTop: "var(--spacing-24, 24px)",
-    paddingBottom: "var(--spacing-24, 24px)",
+    padding: "var(--spacing-24, 24px) 0 var(--spacing-24, 24px) 0",
   };
 
   const titleSectionStyle: React.CSSProperties = {
@@ -43,49 +46,48 @@ const UDS001InputScreenComponent = ({
     width: "100%",
     flexDirection: "column",
     gap: "var(--spacing-24, 24px)",
-    paddingLeft: "var(--spacing-global-side, 20px)",
-    paddingRight: "var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
   };
 
   const buttonStyle: React.CSSProperties = {
     width: "100%",
-    paddingLeft: "var(--spacing-16, 16px)",
-    paddingRight: "var(--spacing-16, 16px)",
+    padding: "0 var(--spacing-16, 16px) 0 var(--spacing-16, 16px)",
   };
 
   return (
     <div className={className} style={screenStyle} {...props}>
       <Screen variants="sub">
-        {children || (
-          <div className="container" style={containerStyle}>
-            <div className="title" style={titleSectionStyle}>
-              <span 
-                className="title text-style-notosanskr-heading-36-bold" 
-                style={{ color: "var(--texticon-gray-default)", margin: 0 }}
-              >
-                {title}
-              </span>
-              <span 
-                className="description text-style-notosanskr-label-16-regular" 
-                style={{ color: "var(--texticon-gray-subtle)", margin: 0 }}
-              >
-                {description}
-              </span>
-            </div>
-            <div style={buttonStyle}>
-              <BoxButton
-                color="primary"
-                isTinted={false}
-                size="lg"
-                state="enabled"
-                variants="filled"
-                onClick={onButtonClick}
-              >
-                {buttonLabel}
-              </BoxButton>
-            </div>
+        <div className="container" style={containerStyle}>
+          <div className="title" style={titleSectionStyle}>
+            <span 
+              className="title text-style-notosanskr-heading-36-bold" 
+              style={{ color: "var(--texticon-gray-default)", margin: 0 }}
+            >
+              {title}
+            </span>
+            <span 
+              className="description text-style-notosanskr-label-16-regular"
+              style={{ color: "var(--texticon-gray-subtle)", margin: 0 }}
+            >
+              {description}
+            </span>
           </div>
-        )}
+          
+          {children}
+          
+          <div style={buttonStyle}>
+            <BoxButton
+              color="primary"
+              isTinted={false}
+              size="lg"
+              state="enabled"
+              variants="filled"
+              onClick={onButtonClick}
+            >
+              {buttonLabel}
+            </BoxButton>
+          </div>
+        </div>
       </Screen>
     </div>
   );
