@@ -1,22 +1,65 @@
 import React, { memo, ReactNode, HTMLAttributes } from "react";
-import { TopNavi } from "./TopNavi";
+import { TopNavi, TopNaviVariants } from "./TopNavi";
 
 export type ScreenVariants = "sub" | "main";
 
 export interface ScreenProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
   variants?: ScreenVariants;
+  children?: ReactNode;
 }
 
-const StatusBar = ({ platform = "ios" }: { platform?: string }) => {
+const variantStyleMap: Record<ScreenVariants, {
+  background: string;
+  foreground: string;
+  topNaviVariants: TopNaviVariants;
+  width: number;
+  height: number;
+}> = {
+  sub: {
+    background: "#FFFFFF",
+    foreground: "var(--texticon-gray-default)",
+    topNaviVariants: "sub",
+    width: 393,
+    height: 852,
+  },
+  main: {
+    background: "#FFFFFF",
+    foreground: "var(--texticon-gray-default)",
+    topNaviVariants: "main",
+    width: 393,
+    height: 852,
+  },
+};
+
+const ScreenComponent = ({
+  variants = "main",
+  children,
+  className = "",
+  style,
+  ...props
+}: ScreenProps) => {
+  const config = variantStyleMap[variants];
+
   const containerStyle: React.CSSProperties = {
     display: "flex",
+    flexDirection: "column",
+    gap: 0,
+    width: config.width,
+    height: config.height,
+    borderRadius: 0,
+    padding: 0,
+    backgroundColor: config.background,
+    color: config.foreground,
+    ...style,
+  };
+
+  const statusBarStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
     width: 393,
     height: 48,
     padding: "21px 16px 19px 16px",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 154,
   };
 
   const timeStyle: React.CSSProperties = {
@@ -30,60 +73,17 @@ const StatusBar = ({ platform = "ios" }: { platform?: string }) => {
   };
 
   return (
-    <div className="status-bar" style={containerStyle}>
-      <div className="time" style={timeStyle}>
-        <span className="text-style-notosanskr-label-14-medium" style={{ color: "var(--texticon-gray-default)" }}>
-          9:41
-        </span>
+    <div className={className} style={containerStyle} {...props}>
+      <div className="status-bar" style={statusBarStyle}>
+        <div className="time" style={timeStyle}></div>
+        <div className="levels" style={levelsStyle}></div>
       </div>
-      <div className="levels" style={levelsStyle}>
-        <span className="text-style-notosanskr-label-14-medium" style={{ color: "var(--texticon-gray-default)" }}>
-          100%
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const ScreenComponent = ({
-  children,
-  variants = "sub",
-  className = "",
-  style,
-  ...props
-}: ScreenProps) => {
-  const screenStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    width: 393,
-    height: 852,
-    padding: 0,
-    gap: 0,
-    borderRadius: 0,
-    backgroundColor: "#FFFFFF",
-    color: "var(--texticon-gray-default)",
-    ...style,
-  };
-
-  const getTopNaviProps = () => {
-    if (variants === "main") {
-      return {
-        variants: "main" as const,
-        showHeading: false,
-        heading: "메인",
-      };
-    }
-    return {
-      variants: "sub" as const,
-      showHeading: true,
-      heading: "서브",
-    };
-  };
-
-  return (
-    <div className={className} style={screenStyle} {...props}>
-      <StatusBar platform="ios" />
-      <TopNavi {...getTopNaviProps()} />
+      
+      <TopNavi 
+        variants={config.topNaviVariants}
+        heading={variants === "sub" ? "서브" : undefined}
+      />
+      
       {children}
     </div>
   );
