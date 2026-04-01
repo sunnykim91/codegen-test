@@ -1,76 +1,79 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
-import { Chip, ChipVariants, ChipState } from "./Chip";
+import { Chip } from "./Chip";
 import { Icon } from "./Icon";
 
 export type SelectChipItemVariants = "multi" | "single";
-export type SelectChipItemState = "enabled" | "pressed" | "readonly" | "disabled";
+export type SelectChipItemState =
+  | "enabled"
+  | "pressed"
+  | "readonly"
+  | "disabled";
 
-export interface SelectChipItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
-  children?: ReactNode;
+export interface SelectChipItemProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "color"
+> {
   variants?: SelectChipItemVariants;
   state?: SelectChipItemState;
   isSelected?: boolean;
+  label?: string;
   fullWidth?: boolean;
 }
 
-const getVariantStyle = (variants: SelectChipItemVariants, state: SelectChipItemState, isSelected: boolean) => {
+const getVariantStyle = (
+  variants: SelectChipItemVariants,
+  isSelected: boolean,
+  state: SelectChipItemState,
+) => {
   if (variants === "multi") {
-    const chipVariants: ChipVariants = "outline";
-    const chipState: ChipState = state === "readonly" ? "readonly" : state === "disabled" ? "disabled" : state === "pressed" ? "pressed" : "enabled";
-    
     return {
-      chipVariants,
-      chipState,
+      chipVariants: "outline" as const,
       showStartIcon: isSelected,
       startIcon: isSelected ? <Icon name="check" size={16} /> : undefined,
     };
+  } else {
+    // single
+    return {
+      chipVariants: "filled" as const,
+      showStartIcon: false,
+      startIcon: undefined,
+    };
   }
-
-  // single
-  const chipVariants: ChipVariants = "filled";
-  const chipState: ChipState = state === "readonly" ? "readonly" : state === "disabled" ? "disabled" : state === "pressed" ? "pressed" : "enabled";
-  
-  return {
-    chipVariants,
-    chipState,
-    showStartIcon: false,
-    startIcon: undefined,
-  };
 };
 
 const SelectChipItemComponent = ({
-  children = "라벨",
   variants = "multi",
   state = "enabled",
   isSelected = false,
+  label = "라벨",
   fullWidth = false,
   className = "",
   style,
   ...props
 }: SelectChipItemProps) => {
-  const config = getVariantStyle(variants, state, isSelected);
-  const isDisabled = state === "disabled";
+  const variantConfig = getVariantStyle(variants, isSelected, state);
 
   const containerStyle: React.CSSProperties = {
     display: "flex",
+    gap: 0,
     width: fullWidth ? "100%" : "auto",
+    flexShrink: 0,
     ...style,
   };
 
   return (
     <div className={`select-chip-item ${className}`} style={containerStyle}>
       <Chip
-        variants={config.chipVariants}
-        state={config.chipState}
+        variants={variantConfig.chipVariants}
+        state={state}
         isSelected={isSelected}
-        showStartIcon={config.showStartIcon}
+        label={label}
+        showStartIcon={variantConfig.showStartIcon}
         showEndIcon={false}
-        startIcon={config.startIcon}
-        disabled={isDisabled}
+        startIcon={variantConfig.startIcon}
+        fullWidth={fullWidth}
         {...props}
-      >
-        {children}
-      </Chip>
+      />
     </div>
   );
 };

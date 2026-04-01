@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
+import "../src/app/globals.css";
 import "../src/app/tokens/figma-variables.css";
 
 const preview: Preview = {

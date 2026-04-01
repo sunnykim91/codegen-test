@@ -6,182 +6,118 @@ import { Icon } from "./Icon";
 export type SelectChipVariants = "single" | "multi";
 
 export interface SelectChipProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
+  variants?: SelectChipVariants;
+  isExpand?: boolean;
   showMaskStart?: boolean;
   showExpendIcon?: boolean;
   showMaskEnd?: boolean;
-  slotContent?: ReactNode;
-  variants?: SelectChipVariants;
-  isExpand?: boolean;
 }
 
-const variantStyleMap: Record<
-  SelectChipVariants,
-  {
-    color: string;
-    containerHeight: { collapsed: number; expanded: number };
-  }
-> = {
-  single: {
-    color: "var(--texticon-gray-default)",
-    containerHeight: { collapsed: 36, expanded: 80 },
-  },
-  multi: {
-    color: "var(--texticon-gray-subtle)",
-    containerHeight: { collapsed: 36, expanded: 124 },
-  },
+const sizeStyleMap = {
+  width: 335,
+  height: "auto",
+};
+
+const getVariantStyle = (variants: SelectChipVariants, isExpand: boolean) => {
+  const baseStyle = {
+    display: "flex" as const,
+    gap: 0,
+    width: sizeStyleMap.width,
+    height: sizeStyleMap.height,
+    position: "relative" as const,
+  };
+
+  return baseStyle;
 };
 
 const SelectChipComponent = ({
-  showMaskStart = true,
-  showExpendIcon = true,
-  showMaskEnd = true,
-  slotContent,
+  children,
   variants = "single",
   isExpand = false,
+  showMaskStart = false,
+  showExpendIcon = false,
+  showMaskEnd = true,
   className = "",
   style,
   ...props
 }: SelectChipProps) => {
-  const config = variantStyleMap[variants];
-  const containerHeight = isExpand
-    ? config.containerHeight.expanded
-    : config.containerHeight.collapsed;
+  const containerStyle = getVariantStyle(variants, isExpand);
 
-  const containerStyle: React.CSSProperties = {
-    position: "relative",
+  const slotContainerStyle: React.CSSProperties = {
     display: "flex",
-    width: "100%",
-    height: containerHeight,
-    color: config.color,
-    overflow: "hidden",
-    ...style,
-  };
-
-  const slotStyle: React.CSSProperties = {
-    display: "flex",
-    flexWrap: isExpand ? "wrap" : "nowrap",
-    gap: 0,
-    alignItems: "flex-start",
-    alignContent: "flex-start",
-    width: "100%",
-    height: "100%",
+    gap: "var(--spacing-8, 8px)",
     overflow: isExpand ? "visible" : "hidden",
-  };
-
-  const leftMaskStyle: React.CSSProperties = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "var(--width-container-md, 80px)",
-    height: 36,
-    zIndex: 2,
-    pointerEvents: "none",
-  };
-
-  const rightBoxStyle: React.CSSProperties = {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    display: "flex",
-    height: isExpand ? "auto" : 36,
-    alignItems: "flex-start",
-    zIndex: 2,
-  };
-
-  const rightMaskStyle: React.CSSProperties = {
-    width: "var(--width-container-detail-24, 24px)",
-    height: 36,
-  };
-
-  const expandBoxStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "var(--square-32, 32px)",
-    height: isExpand ? "auto" : "100%",
-    padding: isExpand ? "var(--spacing-8, 8px) 0" : "0",
-    backgroundColor: "var(--bg-base)",
-  };
-
-  const renderDefaultContent = () => {
-    const items = Array.from({ length: 12 }, (_, index) => {
-      const isSelected =
-        variants === "single" ? index === 2 : index === 2 || index === 3;
-
-      return (
-        <SelectChipItem
-          key={index}
-          variants={variants}
-          state="enabled"
-          isSelected={isSelected}
-        />
-      );
-    });
-
-    return items;
-  };
-
-  const renderExpandIcon = () => {
-    if (isExpand) {
-      return (
-        <div
-          className="disclosure-item"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "var(--container-gray-subtle3)",
-            borderRadius: 2,
-            overflow: "hidden",
-          }}
-        >
-          <Icon name="direction-icon" size={20} />
-        </div>
-      );
-    }
-
-    return (
-      <Icon
-        name="direction-icon"
-        size={20}
-        style={{ transform: "rotate(180deg)" }}
-      />
-    );
+    flexWrap: isExpand ? "wrap" : "nowrap",
+    width: "100%",
   };
 
   return (
     <div
       className={`select-chip ${className}`}
-      style={containerStyle}
+      style={{ ...containerStyle, ...style }}
       {...props}
     >
-      <div className="slot" style={slotStyle}>
-        {slotContent || renderDefaultContent()}
+      <div className="slot" style={slotContainerStyle}>
+        {children}
       </div>
 
       {showMaskStart && (
-        <div className="left-mask" style={leftMaskStyle}>
-          <Mask direction="left" style={{ width: "100%", height: "100%" }} />
-        </div>
+        <Mask
+          direction="left"
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "var(--width-container-md, 80px)",
+            height: 36,
+          }}
+        />
       )}
 
-      {showExpendIcon && (
-        <div className="box" style={rightBoxStyle}>
-          {showMaskEnd && (
-            <div style={rightMaskStyle}>
-              <Mask
-                direction="right"
-                style={{ width: "100%", height: "100%" }}
-              />
-            </div>
-          )}
-          <button
-            className="expand-button"
-            style={expandBoxStyle}
-            aria-label={isExpand ? "접기" : "펼치기"}
+      {showMaskEnd && (
+        <div
+          className="box"
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: 0,
+            height: isExpand ? "auto" : 36,
+            paddingTop: isExpand ? "var(--spacing-8, 8px)" : 0,
+            paddingBottom: isExpand ? "var(--spacing-8, 8px)" : 0,
+          }}
+        >
+          <Mask
+            direction="right"
+            style={{
+              width: "var(--width-container-detail-24, 24px)",
+              height: "100%",
+            }}
+          />
+          <div
+            className="box"
+            style={{
+              width: "var(--square-32, 32px)",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "var(--bg-base)",
+              paddingTop: isExpand ? "var(--spacing-8, 8px)" : 0,
+              paddingBottom: isExpand ? "var(--spacing-8, 8px)" : 0,
+            }}
           >
-            {renderExpandIcon()}
-          </button>
+            {showExpendIcon && (
+              <Icon
+                name={isExpand ? "direction-icon-up" : "direction-icon-down"}
+                size={20}
+                color="var(--texticon-gray-default)"
+              />
+            )}
+          </div>
         </div>
       )}
     </div>

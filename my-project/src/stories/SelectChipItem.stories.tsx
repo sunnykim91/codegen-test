@@ -15,14 +15,14 @@ const meta: Meta<typeof SelectChipItem> = {
       options: ["enabled", "pressed", "readonly", "disabled"],
     },
     isSelected: { control: "boolean" },
-    fullWidth: { control: "boolean" }
+    label: { control: "text" },
+    fullWidth: { control: "boolean" },
   },
   args: {
-    children: "SelectChipItem",
     variants: "multi",
     state: "enabled",
     isSelected: false,
-    fullWidth: false
+    fullWidth: false,
   },
 };
 

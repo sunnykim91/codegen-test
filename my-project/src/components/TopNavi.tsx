@@ -1,39 +1,40 @@
-import React, { memo, HTMLAttributes } from "react";
+import React, { memo, HTMLAttributes, ReactNode } from "react";
+import Image from "next/image";
 import { IconButton } from "./IconButton";
 import { Icon } from "./Icon";
+import kblogo3x from "../assets/kblogo@3x.png";
 
-export type TopNaviVariants = "main" | "sub";
+export type TopNaviVariants = "main" | "sub" | "sub2";
 
 export interface TopNaviProps extends HTMLAttributes<HTMLDivElement> {
   variants?: TopNaviVariants;
   showCloseButton?: boolean;
   showHeading?: boolean;
-  heading?: string;
+  heading?: ReactNode;
 }
 
-const variantStyleMap: Record<TopNaviVariants, {
-  height: string;
-  padding: string;
-  gap: string;
-  logoFontSize: string;
-  logoTextStyle: string;
-  headingTextStyle: string;
-}> = {
+const variantStyleMap: Record<
+  TopNaviVariants,
+  {
+    height: string;
+    padding: string;
+    gap: string;
+  }
+> = {
   main: {
     height: "var(--height-container-lg, 56px)",
-    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    logoFontSize: "24px",
-    logoTextStyle: "text-style-notosanskr-heading-24-bold",
-    headingTextStyle: "text-style-notosanskr-heading-16-medium",
   },
   sub: {
     height: "var(--height-container-md, 48px)",
-    padding: "0 var(--spacing-global-side, 20px) 0 var(--spacing-global-side, 20px)",
+    padding: "0 var(--spacing-global-side, 20px)",
     gap: "var(--spacing-16, 16px)",
-    logoFontSize: "16px",
-    logoTextStyle: "text-style-notosanskr-heading-16-medium",
-    headingTextStyle: "text-style-notosanskr-heading-16-medium",
+  },
+  sub2: {
+    height: "var(--height-container-lg, 56px)",
+    padding: "0 var(--spacing-global-side, 20px)",
+    gap: "var(--spacing-16, 16px)",
   },
 };
 
@@ -51,108 +52,124 @@ const TopNaviComponent = ({
   const containerStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    width: 375,
     height: config.height,
     padding: config.padding,
     gap: config.gap,
-    borderRadius: 0,
-    color: "var(--texticon-gray-default)",
+    backgroundColor: "transparent",
     ...style,
   };
 
   const leftStyle: React.CSSProperties = {
     display: "flex",
-    flex: 1,
-    height: "100%",
-    gap: variants === "main" ? "var(--spacing-12, 12px)" : 0,
-  };
-
-  const centerStyle: React.CSSProperties = {
-    display: "flex",
-    flex: 1,
-    height: "100%",
     alignItems: "center",
+    flex: 1,
+    gap: variants === "main" ? "var(--spacing-12, 12px)" : "0",
   };
 
   const rightStyle: React.CSSProperties = {
     display: "flex",
-    flex: 1,
-    height: "100%",
     alignItems: "center",
+    flex: 1,
     justifyContent: "flex-end",
     gap: "var(--spacing-20, 20px)",
   };
 
-  const boxStyle: React.CSSProperties = {
-    display: "flex",
-    width: "var(--width-container-detail-12, 12px)",
-    height: "100%",
-    alignItems: "center",
-  };
+  const renderLeftContent = () => {
+    if (variants === "main") {
+      return (
+        <span
+          className="text-style-kbfgtext-heading-24-bold"
+          style={{ color: "var(--texticon-gray-default)" }}
+        >
+          홈
+        </span>
+      );
+    }
 
-  return (
-    <nav className={className} style={containerStyle} {...props}>
-      <div className="left" style={leftStyle}>
-        {variants === "main" ? (
-          <span 
-            className={`h2타이틀 ${config.logoTextStyle}`} 
-            style={{ color: "var(--texticon-gray-default)", margin: 0 }}
+    if (variants === "sub2") {
+      return (
+        <Image
+          src={kblogo3x}
+          width={131}
+          height={24}
+          alt="KB Logo"
+          style={{ objectFit: "contain" }}
+        />
+      );
+    }
+
+    if (variants === "sub") {
+      return (
+        <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              width: "var(--width-container-detail-12, 12px)",
+            }}
           >
-            LOGO
-          </span>
-        ) : (
-          <div className="box" style={boxStyle}>
             <IconButton
               variants="gray"
               state="enabled"
               size={24}
               icon={<Icon name="direction-icon" />}
-              aria-label="뒤로 가기"
             />
           </div>
-        )}
-      </div>
-
-      {variants === "sub" && showHeading && (
-        <div className="center" style={centerStyle}>
-          <span 
-            className={`heading ${config.headingTextStyle}`}
-            style={{ color: "var(--texticon-gray-default)", margin: 0 }}
-          >
-            {heading}
-          </span>
+          {showHeading && (
+            <div style={{ display: "flex", flex: 1, justifyContent: "center" }}>
+              <span
+                className="text-style-kbfgtext-heading-16-medium"
+                style={{ color: "var(--texticon-gray-default)" }}
+              >
+                {heading}
+              </span>
+            </div>
+          )}
         </div>
-      )}
+      );
+    }
+  };
 
-      <div className="right" style={rightStyle}>
-        {variants === "main" && (
-          <>
-            <IconButton
-              variants="gray"
-              state="enabled"
-              size={20}
-              icon={<Icon name="user-line" />}
-              aria-label="사용자 메뉴"
-            />
-            <IconButton
-              variants="gray"
-              state="enabled"
-              size={20}
-              icon={<Icon name="menu-line" />}
-              aria-label="메뉴"
-            />
-          </>
-        )}
-        {variants === "sub" && showCloseButton && (
+  const renderRightContent = () => {
+    if (variants === "main") {
+      return (
+        <>
           <IconButton
             variants="gray"
             state="enabled"
-            size={24}
-            icon={<Icon name="close" />}
-            aria-label="닫기"
+            size={20}
+            icon={<Icon name="notification-line" />}
           />
-        )}
+          <IconButton
+            variants="gray"
+            state="enabled"
+            size={20}
+            icon={<Icon name="search-line" />}
+          />
+        </>
+      );
+    }
+
+    if (variants === "sub2" && showCloseButton) {
+      return (
+        <IconButton
+          variants="gray"
+          state="enabled"
+          size={20}
+          icon={<Icon name="close-large" />}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <nav className={`top-navi ${className}`} style={containerStyle} {...props}>
+      <div className="left" style={leftStyle}>
+        {renderLeftContent()}
+      </div>
+      <div className="right" style={rightStyle}>
+        {renderRightContent()}
       </div>
     </nav>
   );
