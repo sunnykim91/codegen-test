@@ -8,6 +8,7 @@ const meta: Meta<typeof TopNavi> = {
   argTypes: {
     showCloseButton: { control: "boolean" },
     showHeading: { control: "boolean" },
+    heading: { control: "text" },
     variants: {
       control: "select",
       options: ["main", "sub", "sub2"],
