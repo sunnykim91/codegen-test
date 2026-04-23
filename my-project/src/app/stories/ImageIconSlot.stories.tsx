@@ -1,177 +1,184 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+import { action } from "@storybook/addon-actions";
 import { ImageIconSlot } from "../components/ImageIconSlot";
 
-// Mock BlanCIImg for Storybook context, as it's an external dependency assumed to exist.
-// In a real project, BlanCIImg would be properly imported and configured.
-const MockBlanCIImg = ({ width, height, borderRadius, style }: any) => (
-  <img
-    src="https://via.placeholder.com/600x400?text=Image"
-    alt="Placeholder"
-    style={{
-      width: width,
-      height: height,
-      borderRadius: borderRadius,
-      objectFit: "cover",
-      ...style, // BlanCIImg receives calculated styles
-    }}
-  />
-);
+// Define a placeholder image URL for stories that use `Img`
+const placeholderImageUrl = "https://via.placeholder.com/150/0000FF/FFFFFF?text=Image";
+const placeholderImageElement = <img src={placeholderImageUrl} alt="Example" />;
 
 const meta = {
   title: "UI/ImageIconSlot",
   component: ImageIconSlot,
   tags: ["autodocs"],
   argTypes: {
-    imgSlot: {
-      control: false, // ReactNode type is hard to control directly in Storybook UI
-      description: "Optional custom content to replace the default image.",
-    },
+    // `Img` prop is `ReactNode`, which is not typically controlled by standard Storybook controls.
+    // We demonstrate its usage directly in specific story args.
     size: {
       control: "select",
-      options: [24, 32, 48, 60, 72], // Defined by ImageIconSlotSize type and sizeStyleMap
-      description: "Sets the width and height of the image slot.",
+      options: [24, 32, 48, 60, 72], // Number union type
+      description: "The size of the image slot in pixels.",
     },
     circle: {
       control: "boolean",
-      description: "If true, the image slot will be rendered as a circle.",
+      description: "If true, the image slot will have a full circle border radius.",
     },
-    onClick: { action: "clicked" }, // Inherited from HTMLAttributes<HTMLDivElement>
+    onClick: {
+      action: "clicked", // Event handler
+      description: "Optional click handler for the slot's container.",
+    },
+    className: {
+      control: "text",
+      description: "Optional CSS class name for the slot's container div.",
+    },
+    style: {
+      control: "object",
+      description: "Optional inline style object for the slot's container div.",
+    },
   },
   args: {
+    // Default values from the component's implementation
     size: 24,
     circle: false,
-    // imgSlot is undefined by default in the component
-  },
-  parameters: {
-    // Optional: Add a decorator to provide the mocked BlanCIImg
-    // This assumes BlanCIImg is a global or context-provided component.
-    // For this example, we'll manually replace it in stories that need it or
-    // ensure the story environment can handle the import.
+    onClick: action("clicked"), // Assign a default action for click events
   },
 } satisfies Meta<typeof ImageIconSlot>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-type Story = StoryObj<typeof ImageIconSlot>;
-
+/**
+ * The default story for ImageIconSlot, showing the BlanCIImg placeholder.
+ */
 export const Default: Story = {
   args: {
-    // Default values are handled by the component's default props
-    // BlanCIImg will be rendered internally
+    // No `Img` prop provided, so the component's default `BlanCIImg` will be rendered.
   },
 };
 
-export const Size24: Story = {
-  args: {
-    size: 24,
-  },
-};
-
+/**
+ * ImageIconSlot with a size of 32px.
+ */
 export const Size32: Story = {
   args: {
     size: 32,
   },
 };
 
+/**
+ * ImageIconSlot with a size of 48px.
+ */
 export const Size48: Story = {
   args: {
     size: 48,
   },
 };
 
+/**
+ * ImageIconSlot with a size of 60px.
+ */
 export const Size60: Story = {
   args: {
     size: 60,
   },
 };
 
+/**
+ * ImageIconSlot with a size of 72px.
+ */
 export const Size72: Story = {
   args: {
     size: 72,
   },
 };
 
-export const CircleSize24: Story = {
+/**
+ * ImageIconSlot with a circular shape (border-radius: 9999px).
+ */
+export const Circle: Story = {
   args: {
-    size: 24,
+    size: 48, // A larger size makes the circle more apparent
     circle: true,
   },
 };
 
-export const CircleSize48: Story = {
+/**
+ * A large ImageIconSlot with a circular shape.
+ */
+export const LargeCircle: Story = {
+  args: {
+    size: 60,
+    circle: true,
+  },
+};
+
+/**
+ * ImageIconSlot rendering an actual `<img>` element provided via the `Img` prop.
+ */
+export const WithImage: Story = {
+  args: {
+    size: 48,
+    Img: placeholderImageElement,
+  },
+};
+
+/**
+ * ImageIconSlot rendering an actual `<img>` element in a circular shape.
+ */
+export const CircleWithImage: Story = {
   args: {
     size: 48,
     circle: true,
+    Img: placeholderImageElement,
   },
 };
 
-export const CircleSize72: Story = {
+/**
+ * A large, circular ImageIconSlot rendering an actual `<img>` element.
+ */
+export const LargeCircleWithImage: Story = {
   args: {
     size: 72,
     circle: true,
+    Img: placeholderImageElement,
   },
 };
 
-export const WithCustomImageSlot: Story = {
+/**
+ * ImageIconSlot rendering a simple text string as its content.
+ * Custom styling is applied to center the text.
+ */
+export const WithText: Story = {
+  args: {
+    size: 48,
+    Img: "TXT", // `ReactNode` can be a string
+    style: {
+      backgroundColor: "#e0e0e0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#555",
+      fontSize: "1.2em",
+      fontWeight: "bold",
+    },
+  },
+};
+
+/**
+ * ImageIconSlot rendering a simple text string in a circular shape.
+ */
+export const CircleWithText: Story = {
   args: {
     size: 48,
     circle: true,
-    imgSlot: (
-      // For demonstration, use a simple img tag for the custom slot
-      // In a real scenario, this might be another component or a styled div
-      <img
-        src="https://via.placeholder.com/150/0000FF/FFFFFF?text=Custom+Image"
-        alt="Custom Slot"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-        }}
-      />
-    ),
-  },
-};
-
-export const WithIconSlot: Story = {
-  args: {
-    size: 32,
-    imgSlot: (
-      // Example with an SVG icon or a simple text icon
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#ccc",
-          color: "#333",
-          fontSize: "16px",
-          fontWeight: "bold",
-        }}
-      >
-        IC
-      </div>
-    ),
-  },
-};
-
-export const WithMockBlanCIImgSlot: Story = {
-  args: {
-    size: 60,
-    circle: false,
-    // Demonstrating imgSlot being another BlanCIImg instance (e.g., for different source)
-    // Note: This relies on MockBlanCIImg being available in this context.
-    imgSlot: (
-      <MockBlanCIImg
-        src="https://via.placeholder.com/300x200?text=Custom+BlanCI"
-        width="100%"
-        height="100%"
-        objectFit="cover"
-        borderRadius="inherit" // Inherit from parent, ImageIconSlot will set it
-      />
-    ),
+    Img: "TXT",
+    style: {
+      backgroundColor: "#e0e0e0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#555",
+      fontSize: "1.2em",
+      fontWeight: "bold",
+    },
   },
 };
