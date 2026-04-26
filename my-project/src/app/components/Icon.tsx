@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-export type IconName = "arrowleftupicon" | "arrowupicon" | "arrowrightupicon" | "arrowrighticon" | "arrowrightdownicon" | "arrowdownicon" | "arrowleftdownicon" | "arrowlefticon" | "directionupicon" | "directionlefticon" | "directiondownicon" | "directionrighticon" | "largedirectionlefticon" | "largedirectionupicon" | "largedirectionrighticon" | "largedirectiondownicon" | "expandupdownicon" | "expandleftrighticon" | "skiplefticon" | "skiprighticon" | "boldarrowuplineicon" | "boldarrow-up-fill" | "moreicon" | "playfillicon" | "pauselineicon" | "checklineicon" | "closlineicon" | "largecloselineicon" | "blanklineicon" | "menulineicon" | "dragablelineicon" | "changelineicon" | "faceidlineicon" | "fingerprintlineicon" | "starlineicon" | "heartlineicon" | "pluslineicon" | "minuslineicon" | "searchlineicon" | "homelineicon" | "editlineicon" | "notificationlineicon" | "resizehandlelineicon" | "userlineicon" | "calendarlineicon" | "locklineicon" | "filecopylineicon" | "starfillicon" | "heartfillicon" | "circlefillicon" | "deletebackfillicon" | "infocirclelineicon" | "timecirclelineicon" | "helpcirclelineicon" | "closecirclefillicon" | "pluscirclefillicon" | "minuscirclefillicon" | "checkboxcirclefillicon" | "errorcirclefillicon";
+export type IconName = "ArrowLeftUpIcon" | "ArrowUpIcon" | "ArrowRightUpIcon" | "ArrowRightIcon" | "ArrowRightDownIcon" | "ArrowDownIcon" | "ArrowLeftDownIcon" | "ArrowLeftIcon" | "DirectionUpIcon" | "DirectionLeftIcon" | "DirectionDownIcon" | "DirectionRightIcon" | "LargeDirectionLeftIcon" | "LargeDirectionUpIcon" | "LargeDirectionRightIcon" | "LargeDirectionDownIcon" | "ExpandUpDownIcon" | "ExpandLeftRightIcon" | "SkipLeftIcon" | "SkipRightIcon" | "BoldArrowUpLineIcon" | "BoldArrowUpFill" | "MoreIcon" | "PlayFillIcon" | "PauseLineIcon" | "CheckLineIcon" | "ClosLineIcon" | "LargeCloseLineIcon" | "BlankLineIcon" | "MenuLineIcon" | "DragableLineIcon" | "ChangeLineIcon" | "FaceIdLineIcon" | "FingerprintLineIcon" | "StarLineIcon" | "HeartLineIcon" | "PlusLineIcon" | "MinusLineIcon" | "SearchLineIcon" | "HomeLineIcon" | "EditLineIcon" | "NotificationLineIcon" | "ResizeHandleLineIcon" | "UserLineIcon" | "CalendarLineIcon" | "LockLineIcon" | "FileCopyLineIcon" | "StarFillIcon" | "HeartFillIcon" | "CircleFillIcon" | "DeleteBackFillIcon" | "InfoCircleLineIcon" | "TimeCircleLineIcon" | "HelpCircleLineIcon" | "CloseCircleFillIcon" | "PlusCircleFillIcon" | "MinusCircleFillIcon" | "CheckboxCircleFillIcon" | "ErrorCircleFillIcon";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -12,7 +12,7 @@ const iconMap: Record<IconName, {
   viewBox: string;
   path: (color: string) => React.ReactNode;
 }> = {
-  "arrowleftupicon": {
+  "ArrowLeftUpIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -20,7 +20,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowupicon": {
+  "ArrowUpIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -28,7 +28,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowrightupicon": {
+  "ArrowRightUpIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -36,7 +36,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowrighticon": {
+  "ArrowRightIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -44,7 +44,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowrightdownicon": {
+  "ArrowRightDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -52,7 +52,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowdownicon": {
+  "ArrowDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -60,7 +60,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowleftdownicon": {
+  "ArrowLeftDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -68,7 +68,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "arrowlefticon": {
+  "ArrowLeftIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -76,7 +76,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "directionupicon": {
+  "DirectionUpIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -84,7 +84,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "directionlefticon": {
+  "DirectionLeftIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -92,7 +92,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "directiondownicon": {
+  "DirectionDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -100,7 +100,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "directionrighticon": {
+  "DirectionRightIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -108,7 +108,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "largedirectionlefticon": {
+  "LargeDirectionLeftIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -116,7 +116,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "largedirectionupicon": {
+  "LargeDirectionUpIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -124,7 +124,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "largedirectionrighticon": {
+  "LargeDirectionRightIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -132,7 +132,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "largedirectiondownicon": {
+  "LargeDirectionDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -140,7 +140,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "expandupdownicon": {
+  "ExpandUpDownIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -148,7 +148,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "expandleftrighticon": {
+  "ExpandLeftRightIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -156,7 +156,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "skiplefticon": {
+  "SkipLeftIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -164,7 +164,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "skiprighticon": {
+  "SkipRightIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -172,7 +172,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "boldarrowuplineicon": {
+  "BoldArrowUpLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -180,7 +180,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "boldarrow-up-fill": {
+  "BoldArrowUpFill": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -188,7 +188,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "moreicon": {
+  "MoreIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -196,7 +196,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "playfillicon": {
+  "PlayFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -204,7 +204,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "pauselineicon": {
+  "PauseLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -213,7 +213,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "checklineicon": {
+  "CheckLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -221,7 +221,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "closlineicon": {
+  "ClosLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -229,7 +229,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "largecloselineicon": {
+  "LargeCloseLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -237,7 +237,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "blanklineicon": {
+  "BlankLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -245,7 +245,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "menulineicon": {
+  "MenuLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -253,7 +253,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "dragablelineicon": {
+  "DragableLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -261,7 +261,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "changelineicon": {
+  "ChangeLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -269,7 +269,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "faceidlineicon": {
+  "FaceIdLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -277,7 +277,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "fingerprintlineicon": {
+  "FingerprintLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -285,7 +285,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "starlineicon": {
+  "StarLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -293,7 +293,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "heartlineicon": {
+  "HeartLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -301,7 +301,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "pluslineicon": {
+  "PlusLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -309,7 +309,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "minuslineicon": {
+  "MinusLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -317,7 +317,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "searchlineicon": {
+  "SearchLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -325,7 +325,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "homelineicon": {
+  "HomeLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -333,7 +333,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "editlineicon": {
+  "EditLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -341,7 +341,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "notificationlineicon": {
+  "NotificationLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -349,7 +349,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "resizehandlelineicon": {
+  "ResizeHandleLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -357,7 +357,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "userlineicon": {
+  "UserLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -365,7 +365,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "calendarlineicon": {
+  "CalendarLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -373,7 +373,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "locklineicon": {
+  "LockLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -381,7 +381,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "filecopylineicon": {
+  "FileCopyLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -389,7 +389,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "starfillicon": {
+  "StarFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -397,7 +397,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "heartfillicon": {
+  "HeartFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -405,7 +405,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "circlefillicon": {
+  "CircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -413,7 +413,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "deletebackfillicon": {
+  "DeleteBackFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -421,7 +421,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "infocirclelineicon": {
+  "InfoCircleLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -431,7 +431,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "timecirclelineicon": {
+  "TimeCircleLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -439,7 +439,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "helpcirclelineicon": {
+  "HelpCircleLineIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -447,7 +447,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "closecirclefillicon": {
+  "CloseCircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -455,7 +455,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "pluscirclefillicon": {
+  "PlusCircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -463,7 +463,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "minuscirclefillicon": {
+  "MinusCircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -471,7 +471,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "checkboxcirclefillicon": {
+  "CheckboxCircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -479,7 +479,7 @@ const iconMap: Record<IconName, {
       </>
     ),
   },
-  "errorcirclefillicon": {
+  "ErrorCircleFillIcon": {
     viewBox: "0 0 24 24",
     path: (color: string) => (
       <>
@@ -522,63 +522,63 @@ export { Icon };
 
 /** 전체 아이콘 이름 목록 */
 export const iconNames: IconName[] = [
-  "arrowleftupicon",
-  "arrowupicon",
-  "arrowrightupicon",
-  "arrowrighticon",
-  "arrowrightdownicon",
-  "arrowdownicon",
-  "arrowleftdownicon",
-  "arrowlefticon",
-  "directionupicon",
-  "directionlefticon",
-  "directiondownicon",
-  "directionrighticon",
-  "largedirectionlefticon",
-  "largedirectionupicon",
-  "largedirectionrighticon",
-  "largedirectiondownicon",
-  "expandupdownicon",
-  "expandleftrighticon",
-  "skiplefticon",
-  "skiprighticon",
-  "boldarrowuplineicon",
-  "boldarrow-up-fill",
-  "moreicon",
-  "playfillicon",
-  "pauselineicon",
-  "checklineicon",
-  "closlineicon",
-  "largecloselineicon",
-  "blanklineicon",
-  "menulineicon",
-  "dragablelineicon",
-  "changelineicon",
-  "faceidlineicon",
-  "fingerprintlineicon",
-  "starlineicon",
-  "heartlineicon",
-  "pluslineicon",
-  "minuslineicon",
-  "searchlineicon",
-  "homelineicon",
-  "editlineicon",
-  "notificationlineicon",
-  "resizehandlelineicon",
-  "userlineicon",
-  "calendarlineicon",
-  "locklineicon",
-  "filecopylineicon",
-  "starfillicon",
-  "heartfillicon",
-  "circlefillicon",
-  "deletebackfillicon",
-  "infocirclelineicon",
-  "timecirclelineicon",
-  "helpcirclelineicon",
-  "closecirclefillicon",
-  "pluscirclefillicon",
-  "minuscirclefillicon",
-  "checkboxcirclefillicon",
-  "errorcirclefillicon",
+  "ArrowLeftUpIcon",
+  "ArrowUpIcon",
+  "ArrowRightUpIcon",
+  "ArrowRightIcon",
+  "ArrowRightDownIcon",
+  "ArrowDownIcon",
+  "ArrowLeftDownIcon",
+  "ArrowLeftIcon",
+  "DirectionUpIcon",
+  "DirectionLeftIcon",
+  "DirectionDownIcon",
+  "DirectionRightIcon",
+  "LargeDirectionLeftIcon",
+  "LargeDirectionUpIcon",
+  "LargeDirectionRightIcon",
+  "LargeDirectionDownIcon",
+  "ExpandUpDownIcon",
+  "ExpandLeftRightIcon",
+  "SkipLeftIcon",
+  "SkipRightIcon",
+  "BoldArrowUpLineIcon",
+  "BoldArrowUpFill",
+  "MoreIcon",
+  "PlayFillIcon",
+  "PauseLineIcon",
+  "CheckLineIcon",
+  "ClosLineIcon",
+  "LargeCloseLineIcon",
+  "BlankLineIcon",
+  "MenuLineIcon",
+  "DragableLineIcon",
+  "ChangeLineIcon",
+  "FaceIdLineIcon",
+  "FingerprintLineIcon",
+  "StarLineIcon",
+  "HeartLineIcon",
+  "PlusLineIcon",
+  "MinusLineIcon",
+  "SearchLineIcon",
+  "HomeLineIcon",
+  "EditLineIcon",
+  "NotificationLineIcon",
+  "ResizeHandleLineIcon",
+  "UserLineIcon",
+  "CalendarLineIcon",
+  "LockLineIcon",
+  "FileCopyLineIcon",
+  "StarFillIcon",
+  "HeartFillIcon",
+  "CircleFillIcon",
+  "DeleteBackFillIcon",
+  "InfoCircleLineIcon",
+  "TimeCircleLineIcon",
+  "HelpCircleLineIcon",
+  "CloseCircleFillIcon",
+  "PlusCircleFillIcon",
+  "MinusCircleFillIcon",
+  "CheckboxCircleFillIcon",
+  "ErrorCircleFillIcon",
 ];
