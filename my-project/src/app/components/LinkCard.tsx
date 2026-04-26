@@ -1,117 +1,142 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
-import { ComponentBlank } from "./ComponentBlank";
+import { ComponentBlank, ComponentBlankVariants } from "./ComponentBlank";
 
+// 1. type/interface 정의
 export type LinkCardState = "enabled" | "pressed" | "disabled";
 export type LinkCardVariants = "shadow" | "outlined" | "filled";
 
-export interface LinkCardProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
+export interface LinkCardProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+  instanceSwap?: ReactNode;
   state?: LinkCardState;
   variants?: LinkCardVariants;
-  instanceSwap?: ReactNode; // Figma property 🔄InstanceSwap#1450:43
+  fullWidth?: boolean;
 }
 
-// Helper function to get combined styles based on state and variants
-const getVariantStyle = (
-  state: LinkCardState,
-  variants: LinkCardVariants,
-) => {
-  let background: string;
-  let border: string;
-  let boxShadow: string = "none";
-  let textColor = "#9747FF"; // Default foreground color from summary table
-
-  // 1. Base styles from variants (for enabled state initially)
-  if (variants === "outlined") {
-    background = "var(--container-gray-white)";
-    border = "1px solid var(--stroke-gray-default)";
-  } else if (variants === "shadow") {
-    background = "var(--container-gray-white)";
-    border = "none";
-    boxShadow = "0px 10px 10px rgba(0, 0, 0, 0.05), 0px 5px 5px rgba(0, 0, 0, 0.05), 0px 0px 5px rgba(0, 0, 0, 0.05)";
-  } else { // filled
-    background = "var(--container-gray-subtle3)";
-    border = "none";
-  }
-
-  // 2. State overrides
-  if (state === "pressed") {
-    if (variants === "filled") {
-      background = "var(--container-gray-subtle2)"; // Specific override for filled pressed
-    } else {
-      background = "var(--container-gray-subtle3)"; // General pressed background for outlined/shadow
-    }
-    // Border for outlined variant is kept from its base, for shadow/filled it's none.
-  } else if (state === "disabled") {
-    background = "var(--state-disabled-container-default)";
-    border = variants === "outlined" ? "1px solid var(--state-disabled-stroke-default)" : "none";
-    textColor = "var(--state-disabled-texticon-default)"; // Override text color for disabled
-  }
-
-  return { background, border, boxShadow, textColor };
+// 3. sizeStyleMap (Record) 또는 고정 스타일
+const fixedStyles = {
+  height: 84,
+  padding: "var(--spacing-20, 20px)",
+  borderRadius: "var(--borderradius-2xl, 16px)",
+  gap: 0,
 };
 
+// 4. getVariantStyle 함수
+type LinkCardConfig = {
+  backgroundColor: string;
+  border?: string; // 예: "1px solid var(--stroke-gray-default)"
+  boxShadow?: string;
+  pressedOverlay?: string; // pressed 상태 시 오버레이
+};
+
+const getVariantStyle = (state: LinkCardState, variants: LinkCardVariants): LinkCardConfig => {
+  const boxShadowValue = `
+    0px 10px 10px 0px rgba(0, 0, 0, 0.05),
+    0px 5px 5px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 5px 0px rgba(0, 0, 0, 0.05)
+  `;
+
+  if (state === "disabled") {
+    return {
+      backgroundColor: "var(--state-disabled-container-default)",
+      border: variants === "outlined" ? "1px solid var(--state-disabled-stroke-default)" : undefined,
+      boxShadow: variants === "shadow" ? boxShadowValue : undefined,
+    };
+  }
+
+  // enabled 또는 pressed 상태
+  if (variants === "outlined") {
+    return {
+      backgroundColor: state === "pressed" ? "var(--container-gray-subtle3)" : "var(--container-gray-white)",
+      border: "1px solid var(--stroke-gray-default)",
+      pressedOverlay: "var(--state-pressed-black)",
+    };
+  } else if (variants === "shadow") {
+    return {
+      backgroundColor: state === "pressed" ? "var(--container-gray-subtle3)" : "var(--container-gray-white)",
+      boxShadow: boxShadowValue,
+      pressedOverlay: "var(--state-pressed-black)",
+    };
+  } else { // variants === "filled"
+    return {
+      backgroundColor: state === "pressed" ? "var(--container-gray-subtle2)" : "var(--container-gray-subtle3)",
+      pressedOverlay: "var(--state-pressed-black)",
+    };
+  }
+};
+
+// 6. LinkCardComponent (함수 컴포넌트)
 const LinkCardComponent = ({
-  state = "enabled",
-  variants = "shadow",
   instanceSwap,
+  state = "enabled",
+  variants = "outlined",
+  fullWidth = false,
   className = "",
   style,
   onClick,
   ...props
 }: LinkCardProps) => {
-  const { background, border, boxShadow, textColor } = getVariantStyle(state, variants);
+  const config = getVariantStyle(state, variants);
   const isDisabled = state === "disabled";
+  const isPressed = state === "pressed";
 
-  const linkCardStyle: React.CSSProperties = {
+  // Figma 트리에서 제시된 default instanceSwap (ComponentBlank)
+  const defaultInstanceSwap = (
+    <ComponentBlank variants="instanceSwap" />
+  );
+
+  const cardStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column", // layout: VERTICAL
-    gap: 0, // gap: 0
-    width: "100%", // horizontal=fill(fill)
-    height: 84, // fixed 84px from summary table
-    padding: "var(--spacing-20, 20px)", // pad: var(--spacing-20, 20px) on all sides
-    borderRadius: "var(--cornerradius-2xl, 16px)", // radius: 16
-    backgroundColor: background,
-    border: border,
-    boxShadow: boxShadow,
+    alignItems: "stretch", // 가로축으로 컨텐츠가 부모를 채우도록 함
+    justifyContent: "center", // 세로축으로 컨텐츠를 중앙 정렬 (내부 컴포넌트 높이가 고정되어 있다면)
+    gap: fixedStyles.gap,
+    height: fixedStyles.height,
+    padding: fixedStyles.padding,
+    borderRadius: fixedStyles.borderRadius,
+    width: fullWidth ? "100%" : "auto", // horizontal=fill (fullWidth) 또는 hug (auto)
     cursor: isDisabled ? "not-allowed" : "pointer",
-    overflow: "hidden", // Good practice for cards with border radius
-    textAlign: "left", // Default text alignment
+    position: "relative",
+    overflow: "hidden", // borderRadius가 자식 요소나 pressed overlay에 적용되도록 함
+    backgroundColor: config.backgroundColor,
+    border: config.border,
+    boxShadow: config.boxShadow,
     ...style,
   };
 
-  // When instanceSwap is provided, it replaces the default ComponentBlank content.
-  const content = instanceSwap ? (
-    React.isValidElement(instanceSwap) ? (
-      React.cloneElement(
-        instanceSwap as React.ReactElement<any>, // Explicitly cast to React.ReactElement<any>
-        {
-          style: {
-            ...instanceSwap.props.style,
-            color: textColor, // Apply text color if the instance has text
-          },
-        }
-      )
-    ) : (
-      instanceSwap
-    )
-  ) : (
-    <ComponentBlank variants="instanceSwap" />
-  );
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isDisabled) {
+      onClick?.(e);
+    }
+  };
 
   return (
     <button
       className={`link-card ${className}`}
-      style={linkCardStyle as React.CSSProperties} // Ensure style prop type matches
-      onClick={isDisabled ? undefined : onClick}
+      style={cardStyle}
       disabled={isDisabled}
+      onClick={handleClick}
       aria-disabled={isDisabled}
+      role="button"
       {...props}
     >
-      {content}
+      {instanceSwap ?? defaultInstanceSwap}
+
+      {isPressed && !isDisabled && (
+        <span
+          className="pressed-overlay"
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: config.pressedOverlay,
+            pointerEvents: "none",
+          }}
+        />
+      )}
     </button>
   );
 };
 
+// 7. memo + displayName + export
 const LinkCard = memo(LinkCardComponent);
 LinkCard.displayName = "LinkCard";
 export { LinkCard };
