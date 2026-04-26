@@ -2,6 +2,11 @@ import React, { memo, ReactNode } from "react";
 
 export type IconSlotSize = 14 | 16 | 18 | 20 | 22 | 24 | 28 | 30 | 32 | 40;
 
+interface IconChildProps {
+  size?: number;
+  color?: string;
+}
+
 export interface IconSlotProps {
   children?: ReactNode;
   size?: IconSlotSize;
@@ -18,7 +23,7 @@ const IconSlotImpl = ({
   style,
 }: IconSlotProps) => {
   const cloned = children
-    ? React.cloneElement(children as React.ReactElement<any>, { size, color })
+    ? React.cloneElement(children as React.ReactElement<IconChildProps>, { size, color })
     : null;
 
   return (
