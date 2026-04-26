@@ -1,4 +1,10 @@
-import React, { memo, ReactNode, HTMLAttributes, isValidElement, cloneElement } from "react";
+import React, {
+  memo,
+  ReactNode,
+  HTMLAttributes,
+  isValidElement,
+  cloneElement,
+} from "react";
 import { Icon } from "./Icon";
 import { NoticeBadge } from "./NoticeBadge";
 
@@ -29,29 +35,56 @@ interface FieldLabelItemConfig {
   // badgeSize: string; // NoticeBadge handles its own sizing based on variants="dot"
 }
 
-const configMap: Record<FieldLabelItemState, Record<FieldLabelItemSize, FieldLabelItemConfig>> = {
+const configMap: Record<
+  FieldLabelItemState,
+  Record<FieldLabelItemSize, FieldLabelItemConfig>
+> = {
   enabled: {
     sm: {
-      height: "24px", paddingX: "var(--spacing-2, 2px)", paddingY: "0px", gap: "var(--spacing-2, 2px)",
-      borderRadius: 0, backgroundColor: "#FFFFFF", color: "var(--texticon-gray-subtle)",
-      typographyClass: "text-style-notosanskr-label-xs-bold", iconSize: 16,
+      height: "24px",
+      paddingX: "var(--spacing-2, 2px)",
+      paddingY: "0px",
+      gap: "var(--spacing-2, 2px)",
+      borderRadius: 0,
+      backgroundColor: "#FFFFFF",
+      color: "var(--texticon-gray-subtle)",
+      typographyClass: "text-style-notosanskr-label-xs-bold",
+      iconSize: 16,
     },
     md: {
-      height: "28px", paddingX: "var(--spacing-2, 2px)", paddingY: "0px", gap: "var(--spacing-2, 2px)",
-      borderRadius: 0, backgroundColor: "#FFFFFF", color: "var(--texticon-gray-subtle)",
-      typographyClass: "text-style-notosanskr-label-md-bold", iconSize: 20,
+      height: "28px",
+      paddingX: "var(--spacing-2, 2px)",
+      paddingY: "0px",
+      gap: "var(--spacing-2, 2px)",
+      borderRadius: 0,
+      backgroundColor: "#FFFFFF",
+      color: "var(--texticon-gray-subtle)",
+      typographyClass: "text-style-notosanskr-label-md-bold",
+      iconSize: 20,
     },
   },
   disabled: {
     sm: {
-      height: "24px", paddingX: "var(--spacing-2, 2px)", paddingY: "0px", gap: "var(--spacing-2, 2px)",
-      borderRadius: 0, backgroundColor: "#FFFFFF", color: "var(--state-disabled-texticon-default)",
-      typographyClass: "text-style-notosanskr-label-xs-bold", iconSize: 16,
+      height: "24px",
+      paddingX: "var(--spacing-2, 2px)",
+      paddingY: "0px",
+      gap: "var(--spacing-2, 2px)",
+      borderRadius: 0,
+      backgroundColor: "#FFFFFF",
+      color: "var(--state-disabled-texticon-default)",
+      typographyClass: "text-style-notosanskr-label-xs-bold",
+      iconSize: 16,
     },
     md: {
-      height: "28px", paddingX: "var(--spacing-2, 2px)", paddingY: "0px", gap: "var(--spacing-2, 2px)",
-      borderRadius: 0, backgroundColor: "#FFFFFF", color: "var(--state-disabled-texticon-default)",
-      typographyClass: "text-style-notosanskr-label-md-bold", iconSize: 20,
+      height: "28px",
+      paddingX: "var(--spacing-2, 2px)",
+      paddingY: "0px",
+      gap: "var(--spacing-2, 2px)",
+      borderRadius: 0,
+      backgroundColor: "#FFFFFF",
+      color: "var(--state-disabled-texticon-default)",
+      typographyClass: "text-style-notosanskr-label-md-bold",
+      iconSize: 20,
     },
   },
 };
@@ -92,17 +125,24 @@ const FieldLabelItemComponent = ({
 
     if (icon) {
       if (isValidElement(icon)) {
-        return cloneElement(icon as React.ReactElement<{ size?: number; color?: string }>, {
-          size: config.iconSize,
-          color: iconColor,
-        });
+        return cloneElement(
+          icon as React.ReactElement<{ size?: number; color?: string }>,
+          {
+            size: config.iconSize,
+            color: iconColor,
+          },
+        );
       }
       return icon; // Render raw ReactNode if not an element
     }
 
     // Default icon: InfoCricleLineIcon (mapped to "info-line")
     return (
-      <Icon name="info-line" size={config.iconSize} color={iconColor} />
+      <Icon
+        name="infocirclelineicon"
+        size={config.iconSize}
+        color={iconColor}
+      />
     );
   };
 
@@ -114,7 +154,12 @@ const FieldLabelItemComponent = ({
     >
       <span
         className={`${config.typographyClass}`}
-        style={{ color: config.color, margin: 0, whiteSpace: "nowrap", flexShrink: 0 }}
+        style={{
+          color: config.color,
+          margin: 0,
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+        }}
       >
         {label}
       </span>
