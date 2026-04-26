@@ -1,33 +1,28 @@
-import React, { memo, ButtonHTMLAttributes, ReactNode } from "react";
+import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
 import { Icon, IconName } from "./Icon";
 
-// 1. Type Definitions
 export type ReadMoreButtonSize = "sm" | "xs";
 export type ReadMoreButtonState = "enabled" | "pressed" | "disabled";
 
 export interface ReadMoreButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode; // Optional: allows overriding the default "더보기" / "닫기" text
   size?: ReadMoreButtonSize;
   isExpand?: boolean;
   state?: ReadMoreButtonState;
   fullWidth?: boolean;
-  children?: ReactNode; // For the "더보기" / "닫기" text
 }
 
-// 2. sizeStyleMap
-const sizeStyleMap: Record<
-  ReadMoreButtonSize,
-  {
-    height: number;
-    paddingX: string;
-    paddingY: string;
-    gap: string;
-    borderRadius: string | number;
-    typographyClass: string;
-    iconSize: number;
-  }
-> = {
+const sizeStyleMap: Record<ReadMoreButtonSize, {
+  height: string;
+  paddingX: string;
+  paddingY: string;
+  gap: string;
+  borderRadius: string;
+  typographyClass: string;
+  iconSize: number;
+}> = {
   sm: {
-    height: 40,
+    height: "40px",
     paddingX: "var(--spacing-12, 12px)",
     paddingY: "var(--spacing-8, 8px)",
     gap: "var(--spacing-4, 4px)",
@@ -36,17 +31,16 @@ const sizeStyleMap: Record<
     iconSize: 16,
   },
   xs: {
-    height: 32,
+    height: "32px",
     paddingX: "var(--spacing-10, 10px)",
     paddingY: "var(--spacing-6, 6px)",
     gap: "var(--spacing-4, 4px)",
-    borderRadius: 8,
+    borderRadius: "var(--borderradius-md, 8px)",
     typographyClass: "text-style-notosanskr-label-xs-medium",
     iconSize: 16,
   },
 };
 
-// 3. getVariantStyle
 const getVariantStyle = (state: ReadMoreButtonState) => {
   if (state === "pressed") {
     return {
@@ -54,26 +48,24 @@ const getVariantStyle = (state: ReadMoreButtonState) => {
       color: "var(--texticon-gray-default)",
     };
   }
-  if (state === "disabled") {
-    return {
-      backgroundColor: "transparent",
-      color: "var(--state-disabled-texticon-default)",
-    };
-  }
   // enabled
   return {
-    backgroundColor: "transparent",
+    backgroundColor: "transparent", // No explicit background for enabled state in summary
     color: "var(--texticon-gray-default)",
   };
 };
 
-// 4. Component
+const disabledStyle = {
+  backgroundColor: "transparent", // No explicit background for disabled state in summary
+  color: "var(--state-disabled-texticon-default)",
+};
+
 const ReadMoreButtonComponent = ({
+  children,
   size = "sm",
   isExpand = false,
   state = "enabled",
   fullWidth = false,
-  children,
   className = "",
   style,
   ...props
@@ -83,8 +75,13 @@ const ReadMoreButtonComponent = ({
 
   const isDisabled = state === "disabled";
 
-  const buttonText = isExpand ? "닫기" : "더보기";
-  const iconName: IconName = isExpand ? "directionupicon" : "directiondownicon";
+  const buttonBackgroundColor = isDisabled ? disabledStyle.backgroundColor : stateConfig.backgroundColor;
+  const buttonTextColor = isDisabled ? disabledStyle.color : stateConfig.color;
+
+  const iconName: IconName = isExpand ? "DirectionUpIcon" : "DirectionDownIcon";
+  const iconColor = buttonTextColor;
+
+  const buttonText = children ?? (isExpand ? "닫기" : "더보기");
 
   const buttonStyle: React.CSSProperties = {
     display: "inline-flex",
@@ -95,30 +92,42 @@ const ReadMoreButtonComponent = ({
     paddingBottom: sizeConfig.paddingY,
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
+    gap: sizeConfig.gap,
     borderRadius: sizeConfig.borderRadius,
+    backgroundColor: buttonBackgroundColor,
+    color: buttonTextColor,
     cursor: isDisabled ? "not-allowed" : "pointer",
-    whiteSpace: "nowrap",
-    width: fullWidth ? "100%" : "auto",
-    backgroundColor: stateConfig.backgroundColor,
-    border: "none", // No border mentioned in properties for any state
+    width: fullWidth ? "100%" : "auto", // fullWidth handling
+    flexShrink: 0, // Ensure button hugs its content when not fullWidth
+    border: "none", // No border specified in the summary
     ...style,
   };
 
   return (
-    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
-      <div className="container" style={{ display: "flex", gap: sizeConfig.gap, alignItems: "center", flexShrink: 0 }}>
-        <span className={sizeConfig.typographyClass} style={{ color: stateConfig.color, margin: 0, whiteSpace: "nowrap" }}>
-          {children || buttonText}
-        </span>
-        <div className="icon-slot" style={{ display: "flex", gap: 0, alignItems: "center", flexShrink: 0 }}>
-          <Icon name={iconName} size={sizeConfig.iconSize} color={stateConfig.color} />
-        </div>
+    <button
+      className={`${className} read-more-button`}
+      style={buttonStyle}
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      {...props}
+    >
+      <span
+        className={`${sizeConfig.typographyClass}`}
+        style={{
+          color: buttonTextColor,
+          margin: 0, // Reset default margin from text styles
+          whiteSpace: "nowrap", // As per Figma data: nowrap
+        }}
+      >
+        {buttonText}
+      </span>
+      <div className="icon-slot" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+        <Icon name={iconName} size={sizeConfig.iconSize} color={iconColor} />
       </div>
     </button>
   );
 };
 
-// 5. memo + displayName + export
 const ReadMoreButton = memo(ReadMoreButtonComponent);
 ReadMoreButton.displayName = "ReadMoreButton";
 export { ReadMoreButton };
