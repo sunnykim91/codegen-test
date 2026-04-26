@@ -1,145 +1,86 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ReadMoreButton } from "../components/ReadMoreButton";
 
-const meta = {
+const meta: Meta<typeof ReadMoreButton> = {
   title: "UI/ReadMoreButton",
   component: ReadMoreButton,
   tags: ["autodocs"],
   argTypes: {
+    children: {
+      control: "text",
+      description: "Optional: allows overriding the default '더보기' / '닫기' text.",
+    },
     size: {
       control: "select",
       options: ["sm", "xs"],
-      description: "버튼의 크기를 결정합니다.",
+      description: "Determines the size of the button.",
     },
     isExpand: {
       control: "boolean",
-      description: "버튼의 확장 상태를 결정합니다. (텍스트와 아이콘 변경)",
+      description: "If true, the button indicates an expanded state, showing '닫기' and 'DirectionUpIcon'.",
     },
     state: {
       control: "select",
       options: ["enabled", "pressed", "disabled"],
-      description: "버튼의 상태를 결정합니다.",
+      description: "Visual state of the button.",
     },
     fullWidth: {
       control: "boolean",
-      description: "버튼이 부모 컨테이너의 전체 너비를 차지할지 결정합니다.",
+      description: "If true, the button will take up the full width of its parent container.",
     },
-    children: {
-      control: "text",
-      description: "버튼 내부에 표시될 텍스트입니다. 설정하지 않으면 '더보기'/'닫기'가 기본값입니다.",
-    },
-    onClick: {
-      action: "clicked",
-      description: "버튼 클릭 시 발생하는 이벤트 핸들러입니다.",
-    },
+    onClick: { action: "clicked" }, // Event handler for button clicks
   },
   args: {
     size: "sm",
     isExpand: false,
     state: "enabled",
     fullWidth: false,
-    children: undefined, // Let component handle default "더보기"/"닫기"
   },
-} satisfies Meta<typeof ReadMoreButton>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+type Story = StoryObj<typeof ReadMoreButton>;
 
 export const Default: Story = {
   args: {
-    children: "더보기", // Explicitly set for story clarity
-  },
-};
-
-export const Expanded: Story = {
-  args: {
-    isExpand: true,
-    children: "닫기", // Explicitly set for story clarity
-  },
-};
-
-export const Pressed: Story = {
-  args: {
-    state: "pressed",
-    children: "더보기",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    state: "disabled",
-    children: "더보기",
-  },
-};
-
-export const ExpandedPressed: Story = {
-  args: {
-    isExpand: true,
-    state: "pressed",
-    children: "닫기",
-  },
-};
-
-export const ExpandedDisabled: Story = {
-  args: {
-    isExpand: true,
-    state: "disabled",
-    children: "닫기",
+    // Inherits default args from meta: size="sm", isExpand=false, state="enabled", fullWidth=false
   },
 };
 
 export const SizeXs: Story = {
   args: {
     size: "xs",
-    children: "더보기",
   },
 };
 
-export const SizeXsExpanded: Story = {
+export const StatePressed: Story = {
   args: {
-    size: "xs",
-    isExpand: true,
-    children: "닫기",
-  },
-};
-
-export const SizeXsPressed: Story = {
-  args: {
-    size: "xs",
     state: "pressed",
-    children: "더보기",
   },
 };
 
-export const SizeXsDisabled: Story = {
+export const StateDisabled: Story = {
   args: {
-    size: "xs",
     state: "disabled",
-    children: "더보기",
+  },
+};
+
+export const Expanded: Story = {
+  args: {
+    isExpand: true,
   },
 };
 
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
-    children: "더보기",
   },
-};
-
-export const FullWidthExpanded: Story = {
-  args: {
-    fullWidth: true,
-    isExpand: true,
-    children: "닫기",
-  },
-};
-
-export const FullWidthDisabled: Story = {
-  args: {
-    fullWidth: true,
-    state: "disabled",
-    children: "더보기",
-  },
+  render: (args) => (
+    <div style={{ width: "300px", border: "1px solid #eee", padding: "10px" }}>
+      <ReadMoreButton {...args} />
+    </div>
+  ),
 };
 
 export const CustomText: Story = {
@@ -150,7 +91,28 @@ export const CustomText: Story = {
 
 export const CustomTextExpanded: Story = {
   args: {
+    children: "접기",
     isExpand: true,
-    children: "간략히 보기",
   },
+};
+
+export const XsExpandedDisabled: Story = {
+  args: {
+    size: "xs",
+    isExpand: true,
+    state: "disabled",
+  },
+};
+
+export const SmPressedFullWidth: Story = {
+  args: {
+    size: "sm",
+    state: "pressed",
+    fullWidth: true,
+  },
+  render: (args) => (
+    <div style={{ width: "300px", border: "1px solid #eee", padding: "10px" }}>
+      <ReadMoreButton {...args} />
+    </div>
+  ),
 };
