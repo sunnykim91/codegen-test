@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { NoticeBadge } from "../components/NoticeBadge";
 
 const meta: Meta<typeof NoticeBadge> = {
@@ -11,12 +11,12 @@ const meta: Meta<typeof NoticeBadge> = {
     variants: {
       control: "select",
       options: ["number", "dot"],
-    }
+    },
   },
   args: {
     children: "NoticeBadge",
     showPlusIcon: true,
-    variants: "number"
+    variants: "number",
   },
 };
 

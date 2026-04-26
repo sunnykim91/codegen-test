@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FieldLabelItem } from "../components/FieldLabelItem";
 
 const meta: Meta<typeof FieldLabelItem> = {
@@ -16,13 +16,13 @@ const meta: Meta<typeof FieldLabelItem> = {
     size: {
       control: "select",
       options: ["sm", "md"],
-    }
+    },
   },
   args: {
     showIcon: true,
     isRequired: true,
     state: "enabled",
-    size: "sm"
+    size: "sm",
   },
 };
 

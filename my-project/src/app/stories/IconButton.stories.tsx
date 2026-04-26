@@ -1,16 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { IconButton } from "../components/IconButton";
 
 const meta: Meta<typeof IconButton> = {
   title: "UI/IconButton",
   component: IconButton,
   tags: ["autodocs"],
-  argTypes: {
-
-  },
-  args: {
-
-  },
+  argTypes: {},
+  args: {},
 };
 
 export default meta;

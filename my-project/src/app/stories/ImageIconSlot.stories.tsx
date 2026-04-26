@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { ImageIconSlot } from "../components/ImageIconSlot";
 import React from "react"; // For JSX in children prop
 
@@ -18,7 +18,8 @@ const meta = {
     },
     children: {
       control: false, // ReactNode props are typically not controlled via Storybook controls.
-      description: "Custom content to render inside the slot, overriding the default image.",
+      description:
+        "Custom content to render inside the slot, overriding the default image.",
     },
     className: {
       control: "text",
@@ -119,7 +120,11 @@ export const WithCustomTextChildren: Story = {
   args: {
     size: 48,
     circle: false,
-    children: <span style={{ fontSize: "20px", fontWeight: "bold", color: "purple" }}>TXT</span>,
+    children: (
+      <span style={{ fontSize: "20px", fontWeight: "bold", color: "purple" }}>
+        TXT
+      </span>
+    ),
   },
 };
 
@@ -140,16 +145,13 @@ export const ClickableWithCustomContent: Story = {
     size: 48,
     circle: true,
     onClick: meta.argTypes.onClick.action, // Assign the action from argTypes
-    children: (
-      <span style={{ fontSize: "24px", color: "red" }}>
-        👆
-      </span>
-    ),
+    children: <span style={{ fontSize: "24px", color: "red" }}>👆</span>,
   },
   parameters: {
     docs: {
       description: {
-        story: "Demonstrates a clickable icon slot with custom content. Check the Actions tab for logs.",
+        story:
+          "Demonstrates a clickable icon slot with custom content. Check the Actions tab for logs.",
       },
     },
   },

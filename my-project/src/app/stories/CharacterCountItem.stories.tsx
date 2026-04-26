@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { CharacterCountItem } from "../components/CharacterCountItem";
 
 const meta: Meta<typeof CharacterCountItem> = {
@@ -10,10 +10,10 @@ const meta: Meta<typeof CharacterCountItem> = {
     variants: {
       control: "select",
       options: ["enabled", "error", "disabled"],
-    }
+    },
   },
   args: {
-    variants: "enabled"
+    variants: "enabled",
   },
 };
 

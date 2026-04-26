@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { TextField } from "../components/TextField";
 
 const meta: Meta<typeof TextField> = {
@@ -20,13 +20,13 @@ const meta: Meta<typeof TextField> = {
     },
     label: { control: "text" },
     helperText: { control: "text" },
-    characterCount: { control: "text" }
+    characterCount: { control: "text" },
   },
   args: {
     showHelperText: true,
     showLabel: true,
     state: "enabled",
-    status: "none"
+    status: "none",
   },
 };
 

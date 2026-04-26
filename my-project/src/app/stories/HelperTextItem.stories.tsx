@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { HelperTextItem } from "../components/HelperTextItem";
 
 const meta: Meta<typeof HelperTextItem> = {
@@ -13,13 +13,13 @@ const meta: Meta<typeof HelperTextItem> = {
     variants: {
       control: "select",
       options: ["enabled", "error", "success", "disabled"],
-    }
+    },
   },
   args: {
     showText: true,
     showCharacterCount: true,
     showIcon: true,
-    variants: "enabled"
+    variants: "enabled",
   },
 };
 
