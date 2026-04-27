@@ -1,6 +1,6 @@
 import React, { memo, ReactNode, HTMLAttributes } from "react";
-import Image from "next/image";
-import blanciimg3x from "../../../public/images/blanciimg@3x.png"; // Per USER_PROMPT item 7
+
+const blanciimg3x = "/images/blanciimg@3x.png";
 
 // Type/Interface Definition
 export interface ImageIconSlotProps extends HTMLAttributes<HTMLDivElement> {
@@ -59,11 +59,11 @@ const ImageIconSlotComponent = ({
       {children ? (
         children
       ) : (
-        <Image
+        <img
           src={blanciimg3x}
           width={sizeConfig.width}
           height={sizeConfig.height}
-          alt="BlanCIImg" // Default alt for the specific image asset
+          alt="BlanCIImg"
           style={{ objectFit: "contain" }}
         />
       )}

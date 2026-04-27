@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import Image from "next/image";
 import { StatusBar } from "../components/StatusBar";
 import { LinkCard } from "../components/LinkCard";
 import { LinkListItem } from "../components/LinkListItem";
@@ -38,8 +37,7 @@ const CustomIconMembershipComponent = ({
 const CustomIconMembership = memo(CustomIconMembershipComponent);
 CustomIconMembership.displayName = "CustomIconMembership";
 
-// Image asset imports
-import imgkb3x from "../../../public/images/imgkb@3x.png";
+const imgkb3x = "/images/img-kb@3x.png";
 
 // Type definitions for the page component
 export type UDSTT01Props = React.HTMLAttributes<HTMLDivElement>;
@@ -230,7 +228,7 @@ const UDSTT01Component = ({
                 pointerEvents: "none", // Allow clicks to pass through
               }}
             >
-              <Image
+              <img
                 src={imgkb3x}
                 width={214}
                 height={172}

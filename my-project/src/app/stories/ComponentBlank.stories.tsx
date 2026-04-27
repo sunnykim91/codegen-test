@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ComponentBlank } from "../components/ComponentBlank";
 
 const meta: Meta<typeof ComponentBlank> = {
