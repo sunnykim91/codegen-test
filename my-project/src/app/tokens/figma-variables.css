@@ -117,9 +117,9 @@
   --component-list-height-metadivder: 14px;
   --component-radio-square-radiopoint: 10px;
   --component-slider-height-indicator: 6px;
-  --component-slider-width-value20%: 20px;
-  --component-slider-width-value40%: 40px;
-  --component-slider-width-value50%: 50px;
+  --component-slider-width-value20pct: 20px;
+  --component-slider-width-value40pct: 40px;
+  --component-slider-width-value50pct: 50px;
   --component-swiper-square-indicatordot: 8px;
   --component-table-width-lg: 104px;
   --component-table-width-md: 80px;
