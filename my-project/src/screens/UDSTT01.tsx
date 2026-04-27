@@ -2,223 +2,201 @@ import React, { memo, HTMLAttributes } from "react";
 import { StatusBar } from "../app/components/StatusBar";
 import { LinkCard } from "../app/components/LinkCard";
 import { LinkListItem } from "../app/components/LinkListItem";
-import { Icon } from "../app/components/Icon";
+
+// Image asset imports
 import imgkb3x from "../../public/images/imgkb@3x.png";
 
-// IconMembershipComponent (Inline SVG placeholder as the component definition is not provided and it's not in Icon.tsx)
-const IconMembershipComponent = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-membership">
-    {/* Placeholder content for Union [VECTOR] (w:24, h:25) */}
-    <rect x={(size - 24) / 2} y={(size - 25) / 2} width="24" height="25" fill={color} opacity="0.5" />
-    {/* Real path data for icon_membership's Union [VECTOR] would be inserted here if provided */}
-  </svg>
-);
+export interface UDSTT01Props extends HTMLAttributes<HTMLDivElement> {
+  welcomeTitle?: string;
+  signUpTitle?: string;
+  signUpDescription?: string;
+  signUpUnderDescription?: string;
+  loginTitle?: string;
+  loginDescription?: string;
+  loginUnderDescription?: string;
+  onSignUpClick?: () => void;
+  onLoginClick?: () => void;
+}
 
-export type UDSTT01Props = HTMLAttributes<HTMLDivElement>;
-
-const UDSTT01Component = ({ className = "", style, ...props }: UDSTT01Props) => {
+const UDSTT01Component = ({
+  welcomeTitle = "KB국민은행에  오신 것을 환영합니다.",
+  signUpTitle = "회원 가입",
+  signUpDescription = "#desc",
+  signUpUnderDescription = "KB스타뱅킹, 처음이세요?",
+  loginTitle = "로그인",
+  loginDescription = "#desc",
+  loginUnderDescription = "이미 사용 중이신가요?",
+  onSignUpClick,
+  onLoginClick,
+  className = "",
+  style,
+  ...props
+}: UDSTT01Props) => {
   return (
     <div
       className={`udstt01 ${className}`}
       style={{
-        width: "100%",
-        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         gap: 0,
+        padding: 0,
+        borderRadius: 0,
+        width: "100%",
+        height: "100%", // Fill container for page
+        overflow: "hidden",
         backgroundColor: "var(--bg-base)",
         ...style,
       }}
       {...props}
     >
       <div
-        className="screen"
+        className="header-layout"
         style={{
           display: "flex",
           flexDirection: "column",
+          gap: 0,
           alignItems: "flex-start",
           width: "100%",
-          height: "100%",
+          height: "auto",
+        }}
+      >
+        <StatusBar className="status-bar" platform="ios" />
+      </div>
+
+      <div
+        className="body-layout"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 0,
+          alignItems: "flex-start",
+          width: "100%",
+          height: "100%", // Fill container
           overflow: "hidden",
         }}
       >
         <div
-          className="header-layout"
+          className="title-section"
           style={{
             display: "flex",
             flexDirection: "column",
+            gap: 0,
             alignItems: "flex-start",
             width: "100%",
+            height: "auto",
+            padding: "var(--spacing-40, 40px) var(--spacing-32, 32px)",
           }}
         >
-          <StatusBar platform="ios" />
+          <span
+            className="kb-gukmin-eunhaeng-e-osin-geos-eul-hwanyeonghabnida text-style-notosanskr-display-md-medium"
+            style={{
+              color: "var(--texticon-gray-default)",
+              margin: 0,
+              width: "100%", // Fill width, not fixed 329px
+              height: "auto", // Hug height, not fixed 80px
+            }}
+          >
+            {welcomeTitle}
+          </span>
         </div>
+
         <div
-          className="body-layout"
+          className="container-wrapper" // Renamed from "container" to avoid Tailwind clash
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
+            gap: "var(--spacing-10, 10px)",
+            alignItems: "center",
             width: "100%",
-            height: "100%",
+            height: "100%", // Fill container
+            padding: "var(--spacing-96, 96px) var(--spacing-24, 24px)",
             overflow: "hidden",
           }}
         >
           <div
-            className="title-section"
+            className="img-slot-block"
             style={{
               display: "flex",
               flexDirection: "column",
+              gap: 0,
+              alignItems: "flex-end", // items=end for the image
+              width: "100%",
+              height: "100%", // Fill container
+              paddingTop: "var(--spacing-24, 24px)",
+            }}
+          >
+            <img
+              src={imgkb3x}
+              width={214}
+              height={234}
+              alt="img_kb"
+              className="img-kb"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+
+          <div
+            className="card-button-block"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--spacing-12, 12px)",
               alignItems: "flex-start",
               width: "100%",
-              padding: "var(--spacing-40, 40px) var(--spacing-32, 32px)",
+              height: "auto",
+              borderRadius: "var(--borderradius-lg, 10px)",
             }}
           >
-            <span
-              className="kb-welcome-text text-style-notosanskr-display-md-medium"
+            <LinkCard
+              className="link-card"
+              state="enabled"
+              variants="filled"
+              fullWidth={true}
               style={{
-                color: "var(--texticon-gray-default)",
-                margin: 0,
-                width: 329,
-                height: 80,
+                backgroundColor: "var(--container-gray-subtle3)",
+                borderRadius: "var(--borderradius-2xl, 16px)",
+                padding: "var(--spacing-20, 20px)",
+                // The LinkCard component already applies a height based on its internal logic.
+                // It has horizontal=fill, vertical=hug so it takes fullWidth and auto height.
               }}
-            >
-              KB국민은행에  오신 것을 환영합니다.
-            </span>
-          </div>
-          <div
-            className="box"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              width: "100%",
-              height: "100%",
-              padding: "var(--spacing-96, 96px) var(--spacing-24, 24px)",
-              gap: "var(--spacing-10, 10px)",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              className="img-slot-block"
+              onClick={onSignUpClick}
+              instanceSwap={
+                <LinkListItem
+                  className="link-list-item"
+                  variants="enabled"
+                  title={signUpTitle}
+                  description={signUpDescription}
+                  underDescription={signUpUnderDescription}
+                  // startSlot and endSlot are not provided, LinkListItem will use its defaults.
+                  // showStartItem, showUnderDesc, showDesc default to true.
+                />
+              }
+            />
+
+            <LinkCard
+              className="link-card"
+              state="enabled"
+              variants="filled"
+              fullWidth={true}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                width: "100%",
-                height: "100%",
-                paddingTop: "var(--spacing-24, 24px)",
+                backgroundColor: "var(--container-gray-subtle3)",
+                borderRadius: "var(--borderradius-2xl, 16px)",
+                padding: "var(--spacing-20, 20px)",
+                // LinkCard component handles its height based on content.
               }}
-            >
-              <img
-                src={imgkb3x}
-                width={214}
-                height={234}
-                alt="KB Image"
-                style={{ objectFit: "contain" }}
-                className="img-kb"
-              />
-            </div>
-            <div
-              className="card-button-block"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                width: "100%",
-                gap: "var(--spacing-12, 12px)",
-                borderRadius: "var(--borderradius-lg, 10px)",
-              }}
-            >
-              <LinkCard
-                className="link-card-member"
-                state="enabled"
-                variants="filled"
-                fullWidth={true}
-                onClick={() => console.log("회원 가입 LinkCard clicked")}
-                // backgroundColor, borderRadius, padding are default for variants="filled"
-                // and fixedStyles, so no need to override via 'style' prop
-                instanceSwap={
-                  <LinkListItem
-                    className="link-list-item-member"
-                    variants="enabled"
-                    fullWidth={true}
-                    title="회원 가입"
-                    description="#desc"
-                    underDescription="KB스타뱅킹, 처음이세요?"
-                    startSlot={
-                      <div
-                        className="start-container"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 0,
-                          flexShrink: 0,
-                        }}
-                      >
-                        <div
-                          className="icon-slot"
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexShrink: 0,
-                            width: "var(--square-40, 40px)",
-                            height: "var(--square-40, 40px)",
-                          }}
-                        >
-                          <IconMembershipComponent size={40} color="var(--texticon-gray-default)" />
-                        </div>
-                      </div>
-                    }
-                  />
-                }
-              />
-              <LinkCard
-                className="link-card-login"
-                state="enabled"
-                variants="filled"
-                fullWidth={true}
-                onClick={() => console.log("로그인 LinkCard clicked")}
-                // backgroundColor, borderRadius, padding are default for variants="filled"
-                // and fixedStyles, so no need to override via 'style' prop
-                instanceSwap={
-                  <LinkListItem
-                    className="link-list-item-login"
-                    variants="enabled"
-                    fullWidth={true}
-                    title="로그인"
-                    description="#desc"
-                    underDescription="이미 사용 중이신가요?"
-                    startSlot={
-                      <div
-                        className="start-container"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 0,
-                          flexShrink: 0,
-                        }}
-                      >
-                        <div
-                          className="icon-slot"
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexShrink: 0,
-                            width: "var(--square-40, 40px)",
-                            height: "var(--square-40, 40px)",
-                          }}
-                        >
-                          <Icon name="IconLogin" size={40} color="var(--texticon-gray-default)" />
-                        </div>
-                      </div>
-                    }
-                  />
-                }
-              />
-            </div>
+              onClick={onLoginClick}
+              instanceSwap={
+                <LinkListItem
+                  className="link-list-item"
+                  variants="enabled"
+                  title={loginTitle}
+                  description={loginDescription}
+                  underDescription={loginUnderDescription}
+                  // startSlot and endSlot are not provided, LinkListItem will use its defaults.
+                  // showStartItem, showUnderDesc, showDesc default to true.
+                />
+              }
+            />
           </div>
         </div>
       </div>
