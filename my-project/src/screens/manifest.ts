@@ -21,6 +21,15 @@ export const screens: ScreenMeta[] = [
     name: "버튼 예시",
     category: { major: "예시", middle: "버튼", minor: "기본버튼" },
   },
+  {
+    id: "u-d-s-t-t01",
+    name: "화면 이름",  // TODO: 표시 이름 수정
+    category: {
+      major: "",  // TODO: 대분류
+      middle: "",  // TODO: 중분류
+    },
+  },
+
 ];
 
 // Webpack-compatible dynamic import map (각 스크린이 별도 chunk로 분리됨)
@@ -31,4 +40,5 @@ export const screenImports: Record<
 > = {
   "example-form-screen": () => import("./ExampleFormScreen"),
   "example-button-screen": () => import("./ExampleButtonScreen"),
+  "u-d-s-t-t01": () => import("./UDSTT01"),
 };
