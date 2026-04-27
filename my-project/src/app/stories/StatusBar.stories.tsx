@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 import { StatusBar } from "../components/StatusBar";
 
 const meta: Meta<typeof StatusBar> = {
@@ -8,23 +8,36 @@ const meta: Meta<typeof StatusBar> = {
   argTypes: {
     platform: {
       control: "select",
-      options: ["samsung", "ios"],
-    }
+      options: ["ios", "samsung"],
+      description: "Controls the visual style and layout of the status bar for different mobile platforms.",
+    },
   },
   args: {
-    platform: "ios"
+    platform: "ios",
+  },
+  parameters: {
+    // Status bar is a fixed width component, centered layout helps visualize it.
+    layout: "centered",
   },
 };
 
 export default meta;
+
 type Story = StoryObj<typeof StatusBar>;
 
-export const Default: Story = {};
-
-export const Samsung: Story = {
-  args: { platform: "samsung" },
+export const Default: Story = {
+  // Renders with default args: platform="ios"
+  args: {},
 };
 
-export const Ios: Story = {
-  args: { platform: "ios" },
+export const PlatformIOS: Story = {
+  args: {
+    platform: "ios",
+  },
+};
+
+export const PlatformSamsung: Story = {
+  args: {
+    platform: "samsung",
+  },
 };
