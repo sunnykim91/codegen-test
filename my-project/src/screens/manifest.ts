@@ -35,6 +35,15 @@ export const screens: ScreenMeta[] = [
       middle: "",
     },
   },
+  {
+    id: "u-d-s-t-t01",
+    name: "UDS_TT_01",
+    category: {
+      major: "",
+      middle: "",
+    },
+  },
+
 
 
 ];
@@ -43,6 +52,7 @@ export const screenImports: Record<
   string,
   () => Promise<{ default: ComponentType }>
 > = {
+  "u-d-s-t-t01": () => import("./UDSTT01"),
   "u-d-s-t-t01": () => import("./UDSTT01"),
   "u-d-s-t-t01": () => import("./UDSTT01"),
   "u-d-s-t-t01": () => import("./UDSTT01"),
