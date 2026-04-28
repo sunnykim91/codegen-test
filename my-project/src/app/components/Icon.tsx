@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-export type IconName = "ArrowLeftUpIcon" | "ArrowUpIcon" | "ArrowRightUpIcon" | "ArrowRightIcon" | "ArrowRightDownIcon" | "ArrowDownIcon" | "ArrowLeftDownIcon" | "ArrowLeftIcon" | "DirectionUpIcon" | "DirectionLeftIcon" | "DirectionDownIcon" | "DirectionRightIcon" | "LargeDirectionLeftIcon" | "LargeDirectionUpIcon" | "LargeDirectionRightIcon" | "LargeDirectionDownIcon" | "ExpandUpDownIcon" | "ExpandLeftRightIcon" | "SkipLeftIcon" | "SkipRightIcon" | "BoldArrowUpLineIcon" | "BoldArrowUpFill" | "MoreIcon" | "PlayFillIcon" | "PauseLineIcon" | "CheckLineIcon" | "ClosLineIcon" | "LargeCloseLineIcon" | "BlankLineIcon" | "MenuLineIcon" | "DragableLineIcon" | "ChangeLineIcon" | "FaceIdLineIcon" | "FingerprintLineIcon" | "StarLineIcon" | "HeartLineIcon" | "PlusLineIcon" | "MinusLineIcon" | "SearchLineIcon" | "HomeLineIcon" | "EditLineIcon" | "NotificationLineIcon" | "ResizeHandleLineIcon" | "UserLineIcon" | "CalendarLineIcon" | "LockLineIcon" | "FileCopyLineIcon" | "StarFillIcon" | "HeartFillIcon" | "CircleFillIcon" | "DeleteBackFillIcon" | "InfoCircleLineIcon" | "TimeCircleLineIcon" | "HelpCircleLineIcon" | "CloseCircleFillIcon" | "PlusCircleFillIcon" | "MinusCircleFillIcon" | "CheckboxCircleFillIcon" | "ErrorCircleFillIcon" | "IconMembership";
+export type IconName = "ArrowLeftUpIcon" | "ArrowUpIcon" | "ArrowRightUpIcon" | "ArrowRightIcon" | "ArrowRightDownIcon" | "ArrowDownIcon" | "ArrowLeftDownIcon" | "ArrowLeftIcon" | "DirectionUpIcon" | "DirectionLeftIcon" | "DirectionDownIcon" | "DirectionRightIcon" | "LargeDirectionLeftIcon" | "LargeDirectionUpIcon" | "LargeDirectionRightIcon" | "LargeDirectionDownIcon" | "ExpandUpDownIcon" | "ExpandLeftRightIcon" | "SkipLeftIcon" | "SkipRightIcon" | "BoldArrowUpLineIcon" | "BoldArrowUpFill" | "MoreIcon" | "PlayFillIcon" | "PauseLineIcon" | "CheckLineIcon" | "ClosLineIcon" | "LargeCloseLineIcon" | "BlankLineIcon" | "MenuLineIcon" | "DragableLineIcon" | "ChangeLineIcon" | "FaceIdLineIcon" | "FingerprintLineIcon" | "StarLineIcon" | "HeartLineIcon" | "PlusLineIcon" | "MinusLineIcon" | "SearchLineIcon" | "HomeLineIcon" | "EditLineIcon" | "NotificationLineIcon" | "ResizeHandleLineIcon" | "UserLineIcon" | "CalendarLineIcon" | "LockLineIcon" | "FileCopyLineIcon" | "StarFillIcon" | "HeartFillIcon" | "CircleFillIcon" | "DeleteBackFillIcon" | "InfoCircleLineIcon" | "TimeCircleLineIcon" | "HelpCircleLineIcon" | "CloseCircleFillIcon" | "PlusCircleFillIcon" | "MinusCircleFillIcon" | "CheckboxCircleFillIcon" | "ErrorCircleFillIcon" | "IconLogin";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
@@ -487,12 +487,12 @@ const iconMap: Record<IconName, {
       </>
     ),
   },,
-  "IconMembership": {
+  "IconLogin": {
     viewBox: "0 0 40 40",
     path: (color: string) => (
       <>
-    <path d="M20 21.668C26.4567 21.668 32 25.8317 32 32.168C32 32.7203 31.5523 33.168 31 33.168C30.4477 33.168 30 32.7203 30 32.168C30 27.2494 25.6936 23.668 20 23.668C14.3064 23.668 10 27.2494 10 32.168C10 32.7203 9.55228 33.168 9 33.168C8.44772 33.168 8 32.7203 8 32.168C8 25.8317 13.5433 21.668 20 21.668Z" fill={color}/>
-    <path fillRule="evenodd" clipRule="evenodd" d="M20 8C23.3137 8 26 10.6863 26 14C26 17.3137 23.3137 20 20 20C16.6863 20 14 17.3137 14 14C14 10.6863 16.6863 8 20 8ZM20 10C17.7909 10 16 11.7909 16 14C16 16.2091 17.7909 18 20 18C22.2091 18 24 16.2091 24 14C24 11.7909 22.2091 10 20 10Z" fill={color}/>
+    <path d="M30.5 7C32.1569 7 33.5 8.34315 33.5 10V30C33.5 31.6569 32.1569 33 30.5 33H21.5C20.9477 33 20.5 32.5523 20.5 32C20.5 31.4477 20.9477 31 21.5 31H30.5C31.0523 31 31.5 30.5523 31.5 30V10C31.5 9.44772 31.0523 9 30.5 9H21.5C20.9477 9 20.5 8.55228 20.5 8C20.5 7.44772 20.9477 7 21.5 7H30.5Z" fill={color}/>
+    <path d="M15.2705 11.916C15.6481 11.5134 16.2807 11.4928 16.6836 11.8701L23.9062 18.6406C24.7486 19.4307 24.7485 20.7685 23.9062 21.5586L16.6836 28.3291C16.2807 28.7067 15.6482 28.6861 15.2705 28.2832C14.8931 27.8803 14.9136 27.2477 15.3164 26.8701L21.5781 21H7C6.44772 21 6 20.5523 6 20C6 19.4477 6.44772 19 7 19H21.3652L15.3164 13.3291C14.9137 12.9514 14.893 12.3189 15.2705 11.916Z" fill={color}/>
       </>
     ),
   },
@@ -590,5 +590,5 @@ export const iconNames: IconName[] = [
   "MinusCircleFillIcon",
   "CheckboxCircleFillIcon",
   "ErrorCircleFillIcon",
-  "IconMembership",
+  "IconLogin",
 ];
