@@ -4,14 +4,24 @@ import { FilledButton, FilledButtonProps } from "./FilledButton";
 import { OutlinedButton, OutlinedButtonProps } from "./OutlinedButton";
 
 // --- ButtonGroup Component (Assumed dependency, minimal implementation) ---
-export type ButtonGroupVariants = "sinlge" | "subGray" | "halfTinted" | "halfOutlined";
+export type ButtonGroupVariants =
+  | "sinlge"
+  | "subGray"
+  | "halfTinted"
+  | "halfOutlined";
 
 export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement> {
   variants?: ButtonGroupVariants;
   children: ReactNode;
 }
 
-const ButtonGroupComponent = ({ variants, children, className = "", style, ...props }: ButtonGroupProps) => {
+const ButtonGroupComponent = ({
+  variants,
+  children,
+  className = "",
+  style,
+  ...props
+}: ButtonGroupProps) => {
   let groupStyle: React.CSSProperties = {
     display: "flex",
     width: "100%",
@@ -25,14 +35,27 @@ const ButtonGroupComponent = ({ variants, children, className = "", style, ...pr
       groupStyle = { ...groupStyle, flexDirection: "column", gap: 0 };
       break;
     case "subGray": // GRID, gap=10 items=start -> flex with wrap and gap
-      groupStyle = { ...groupStyle, flexDirection: "row", gap: 10, flexWrap: "wrap" };
+      groupStyle = {
+        ...groupStyle,
+        flexDirection: "row",
+        gap: 10,
+        flexWrap: "wrap",
+      };
       break;
     case "halfTinted": // HORIZONTAL, gap=var(--spacing-8, 8px) items=start
     case "halfOutlined": // HORIZONTAL, gap=var(--spacing-8, 8px) items=start
-      groupStyle = { ...groupStyle, flexDirection: "row", gap: "var(--spacing-8, 8px)" };
+      groupStyle = {
+        ...groupStyle,
+        flexDirection: "row",
+        gap: "var(--spacing-8, 8px)",
+      };
       break;
     default:
-      groupStyle = { ...groupStyle, flexDirection: "row", gap: "var(--spacing-8, 8px)" };
+      groupStyle = {
+        ...groupStyle,
+        flexDirection: "row",
+        gap: "var(--spacing-8, 8px)",
+      };
       break;
   }
 
@@ -40,12 +63,12 @@ const ButtonGroupComponent = ({ variants, children, className = "", style, ...pr
   const childrenWithFlex = React.Children.map(children, (child) => {
     if (React.isValidElement<FilledButtonProps | OutlinedButtonProps>(child)) {
       if (
-        (groupStyle.flexDirection === "row") &&
+        groupStyle.flexDirection === "row" &&
         ((child.type === FilledButton && child.props.fullWidth) ||
-         (child.type === OutlinedButton && child.props.fullWidth))
+          (child.type === OutlinedButton && child.props.fullWidth))
       ) {
         return React.cloneElement(child, {
-          style: { ...child.props.style, flex: 1 }
+          style: { ...child.props.style, flex: 1 },
         });
       }
     }
@@ -64,7 +87,11 @@ ButtonGroup.displayName = "ButtonGroup";
 // --- End ButtonGroup Component ---
 
 // --- Type/Interface Definitions ---
-export type BottomStickyButtonVariants = "solo" | "halfStrong" | "halfSubtle" | "mainSub";
+export type BottomStickyButtonVariants =
+  | "solo"
+  | "halfStrong"
+  | "halfSubtle"
+  | "mainSub";
 
 export interface BottomStickyButtonProps extends HTMLAttributes<HTMLDivElement> {
   variants?: BottomStickyButtonVariants;
@@ -91,7 +118,6 @@ const BottomStickyButtonComponent = ({
   style,
   ...props
 }: BottomStickyButtonProps) => {
-
   const baseContainerStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
@@ -209,9 +235,7 @@ const BottomStickyButtonComponent = ({
   switch (variants) {
     case "solo":
       buttonsContent = (
-        <ButtonGroup variants="sinlge">
-          {mainButton}
-        </ButtonGroup>
+        <ButtonGroup variants="sinlge">{mainButton}</ButtonGroup>
       );
       break;
     case "halfStrong":
@@ -240,20 +264,26 @@ const BottomStickyButtonComponent = ({
       break;
     default:
       buttonsContent = (
-        <ButtonGroup variants="sinlge">
-          {mainButton}
-        </ButtonGroup>
+        <ButtonGroup variants="sinlge">{mainButton}</ButtonGroup>
       );
   }
 
   return (
-    <div className={`bottom-sticky-button ${className}`} style={baseContainerStyle} {...props}>
+    <div
+      className={`bottom-sticky-button ${className}`}
+      style={baseContainerStyle}
+      {...props}
+    >
       {/* gradientBack [FRAME] */}
       <div className="gradient-back" style={gradientBackStyle}>
         {/* top [FRAME] */}
         <div className="top" style={topGradientFrameStyle}>
           {/* Mask [INSTANCE] component="Mask" */}
-          <Mask direction="bottom" className="mask" style={{ width: "100%", height: "100%" }} />
+          <Mask
+            direction="bottom"
+            className="mask"
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* bottom [FRAME] */}
         <div className="bottom" style={bottomSurfaceFrameStyle} />

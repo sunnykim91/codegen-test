@@ -7,7 +7,13 @@ import imgkb3x from "../../../public/images/img-kb@3x.png";
 export type TT01Props = HTMLAttributes<HTMLDivElement>;
 
 // Helper component for IconMembership (Vector SVG)
-const IconMembershipSVG = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
+const IconMembershipSVG = ({
+  size = 40,
+  color = "currentColor",
+}: {
+  size?: number;
+  color?: string;
+}) => (
   <div
     className="icon-slot"
     style={{
@@ -32,7 +38,13 @@ const IconMembershipSVG = ({ size = 40, color = "currentColor" }: { size?: numbe
 );
 
 // Helper component for IconLogin (Vector SVG)
-const IconLoginSVG = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
+const IconLoginSVG = ({
+  size = 40,
+  color = "currentColor",
+}: {
+  size?: number;
+  color?: string;
+}) => (
   <div
     className="icon-slot"
     style={{
@@ -118,7 +130,7 @@ const TT01Component = ({ className = "", style, ...props }: TT01Props) => {
             gap: 0,
           }}
         >
-          {/* KB국민은행에  오신 것을 환영합니다. [TEXT] */}
+          {/* KB국민은행에 오신 것을 환영합니다. [TEXT] */}
           <span
             className="kb-gugmin-eunhaeng-e-osin-geos-eul-hwangyeonghabnida text-style-notosanskr-display-md-medium"
             style={{
@@ -181,7 +193,12 @@ const TT01Component = ({ className = "", style, ...props }: TT01Props) => {
                   showUnderDesc={false} // Figma tree doesn't show description below title
                   title="회원가입"
                   description="KB스타뱅킹, 처음이신가요?"
-                  startSlot={<IconMembershipSVG size={40} color="var(--texticon-gray-default)" />}
+                  startSlot={
+                    <IconMembershipSVG
+                      size={40}
+                      color="var(--texticon-gray-default)"
+                    />
+                  }
                   fullWidth={true} // horizontal=fill
                 />
               }
@@ -202,7 +219,12 @@ const TT01Component = ({ className = "", style, ...props }: TT01Props) => {
                   showUnderDesc={false} // Figma tree doesn't show description below title
                   title="로그인"
                   description="이미 사용중이신가요?"
-                  startSlot={<IconLoginSVG size={40} color="var(--texticon-gray-default)" />}
+                  startSlot={
+                    <IconLoginSVG
+                      size={40}
+                      color="var(--texticon-gray-default)"
+                    />
+                  }
                   fullWidth={true} // horizontal=fill
                 />
               }

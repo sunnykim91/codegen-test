@@ -95,7 +95,12 @@ const TT07Component = ({ className = "", style, ...props }: TT07Props) => {
             />
 
             {/* Divider [INSTANCE] */}
-            <Divider color="strong" weight="thin" direction="horizontal" className="divider" />
+            <Divider
+              color="strong"
+              weight="thin"
+              direction="horizontal"
+              className="divider"
+            />
 
             {/* LinkList_Item [INSTANCE] for "[선택] 통합자산관리 동의" */}
             <LinkListItem

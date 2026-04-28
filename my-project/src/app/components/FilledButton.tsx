@@ -1,13 +1,14 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
-import { Icon } from "./Icon";
 
 // --- Type/Interface Definitions ---
 export type FilledButtonState = "enabled" | "pressed" | "disabled";
 export type FilledButtonColor = "primary" | "gray";
 export type FilledButtonSize = "lg" | "md" | "sm" | "xs";
 
-export interface FilledButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "children"> {
+export interface FilledButtonProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "color" | "children"
+> {
   startIcon?: ReactNode; // INSTANCE_SWAP
   endIcon?: ReactNode; // INSTANCE_SWAP
   showStartIcon?: boolean; // BOOLEAN (default: true)
@@ -77,35 +78,35 @@ type ColorSet = {
 };
 
 const variantStyleMap: Record<string, ColorSet> = {
-  "enabled_false_primary": {
+  enabled_false_primary: {
     background: "var(--container-primary-default)",
     color: "var(--texticon-static-whiteprimary)",
   },
-  "pressed_false_primary": {
+  pressed_false_primary: {
     background: "var(--container-primary-strong)",
     color: "var(--texticon-static-whiteprimary)",
   },
-  "enabled_true_primary": {
+  enabled_true_primary: {
     background: "var(--container-primary-subtle2)",
     color: "var(--texticon-primary-subtle)",
   },
-  "pressed_true_primary": {
+  pressed_true_primary: {
     background: "var(--container-primary-subtle)",
     color: "var(--texticon-primary-subtle)",
   },
-  "enabled_false_gray": {
+  enabled_false_gray: {
     background: "var(--container-gray-subtle2)",
     color: "var(--texticon-gray-subtle)",
   },
-  "pressed_false_gray": {
+  pressed_false_gray: {
     background: "var(--container-gray-subtle)",
     color: "var(--texticon-gray-subtle)",
   },
-  "enabled_true_gray": {
+  enabled_true_gray: {
     background: "var(--container-gray-subtle2)",
     color: "var(--texticon-gray-subtle)",
   },
-  "pressed_true_gray": {
+  pressed_true_gray: {
     background: "var(--container-gray-subtle)",
     color: "var(--texticon-gray-subtle)",
   },
@@ -137,7 +138,8 @@ const FilledButtonComponent = ({
   const isDisabled = state === "disabled";
 
   const key = `${state}_${isTinted}_${color}`;
-  const colorConfig = variantStyleMap[key] || variantStyleMap["enabled_false_primary"]; // Fallback to default if key not found
+  const colorConfig =
+    variantStyleMap[key] || variantStyleMap["enabled_false_primary"]; // Fallback to default if key not found
 
   const finalColorConfig = isDisabled ? disabledStyle : colorConfig;
 
@@ -149,17 +151,21 @@ const FilledButtonComponent = ({
     [key: string]: unknown;
   }
 
-  const renderIcon = (iconNode: ReactNode, iconColor: string, iconSize: number) => {
-    if (!iconNode) {
-      // Render the default BlankLineIcon if no custom icon is provided
-      return <Icon name="BlankLineIcon" size={iconSize} color={iconColor} />;
-    }
+  const renderIcon = (
+    iconNode: ReactNode,
+    iconColor: string,
+    iconSize: number,
+  ) => {
+    if (!iconNode) return null;
     if (React.isValidElement(iconNode)) {
       // Clone the icon to apply size and color props if it's a React element
       return React.cloneElement(iconNode as React.ReactElement<SwapProps>, {
         size: iconSize,
         color: iconColor,
-        style: { ...(iconNode as React.ReactElement<SwapProps>).props.style, flexShrink: 0 }, // Ensure icon doesn't shrink
+        style: {
+          ...(iconNode as React.ReactElement<SwapProps>).props.style,
+          flexShrink: 0,
+        }, // Ensure icon doesn't shrink
       });
     }
     // For other ReactNode types (e.g., string, number, array), just render as is
@@ -190,9 +196,17 @@ const FilledButtonComponent = ({
   const iconColor = finalColorConfig.color;
 
   return (
-    <button className={className} style={buttonStyle} disabled={isDisabled} {...props}>
+    <button
+      className={className}
+      style={buttonStyle}
+      disabled={isDisabled}
+      {...props}
+    >
       {showStartIcon && renderIcon(startIcon, iconColor, sizeConfig.iconSize)}
-      <span className={sizeConfig.typographyClass} style={{ color: finalColorConfig.color, margin: 0 }}>
+      <span
+        className={sizeConfig.typographyClass}
+        style={{ color: finalColorConfig.color, margin: 0 }}
+      >
         {label}
       </span>
       {showEndIcon && renderIcon(endIcon, iconColor, sizeConfig.iconSize)}

@@ -6,6 +6,13 @@ const meta = {
   component: TT01,
   parameters: {
     layout: "fullscreen",
+    viewports: {
+      mobile: {
+        name: "Mobile",
+        styles: { width: "390px", height: "844px" },
+        type: "mobile",
+      },
+    },
   },
 } satisfies Meta<typeof TT01>;
 
