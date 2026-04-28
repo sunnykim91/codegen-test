@@ -59,6 +59,15 @@ export const screens: ScreenMeta[] = [
       middle: "",
     },
   },
+  {
+    id: "t-t01",
+    name: "UDS_TT_01",
+    category: {
+      major: "",
+      middle: "",
+    },
+  },
+
 ];
 
 export const screenImports: Record<
@@ -68,4 +77,5 @@ export const screenImports: Record<
   "u-d-s-t-t01": () => import("./UDSTT01"),
   "t-t01": () => import("./TT01"),
   "t-t07": () => import("./TT07"),
+  "t-t01": () => import("./TT01"),
 };
