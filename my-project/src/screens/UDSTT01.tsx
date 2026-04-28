@@ -1,5 +1,4 @@
 import React, { memo, HTMLAttributes, ReactNode } from "react";
-import { StatusBar } from "../app/components/StatusBar";
 import { LinkCard } from "../app/components/LinkCard";
 import { LinkListItem } from "../app/components/LinkListItem";
 import { Icon } from "../app/components/Icon";
@@ -128,18 +127,6 @@ const UDSTT01Component = ({
       }}
       {...props}
     >
-      <div
-        className="header-layout"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: 0,
-          width: "100%", // horizontal=fill
-        }}
-      >
-        <StatusBar platform="ios" />
-      </div>
       <div
         className="body-layout"
         style={{
