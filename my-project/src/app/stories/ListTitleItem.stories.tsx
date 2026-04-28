@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import type { Meta, StoryObj } from "@storybook/react-vite";
-=======
 import type { Meta, StoryObj } from "@storybook/react";
->>>>>>> origin/feat/test2
 import { ListTitleItem } from "../components/ListTitleItem";
 
 const meta: Meta<typeof ListTitleItem> = {
@@ -26,13 +22,13 @@ const meta: Meta<typeof ListTitleItem> = {
     fontWeight: {
       control: "select",
       options: ["bold", "medium"],
-    }
+    },
   },
   args: {
     variants: "enabled",
     size: "lg",
     color: "gray",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 };
 

@@ -59,20 +59,12 @@ export const screens: ScreenMeta[] = [
       middle: "",
     },
   },
-
-
-
-
-
 ];
 
 export const screenImports: Record<
   string,
   () => Promise<{ default: ComponentType }>
 > = {
-  "u-d-s-t-t01": () => import("./UDSTT01"),
-  "u-d-s-t-t01": () => import("./UDSTT01"),
-  "u-d-s-t-t01": () => import("./UDSTT01"),
   "u-d-s-t-t01": () => import("./UDSTT01"),
   "t-t01": () => import("./TT01"),
   "t-t07": () => import("./TT07"),

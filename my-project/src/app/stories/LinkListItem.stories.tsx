@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import type { Meta, StoryObj } from "@storybook/react-vite";
-=======
 import type { Meta, StoryObj } from "@storybook/react";
->>>>>>> origin/feat/test2
 import { LinkListItem } from "../components/LinkListItem";
 
 const meta: Meta<typeof LinkListItem> = {
@@ -21,7 +17,7 @@ const meta: Meta<typeof LinkListItem> = {
     title: { control: "text" },
     description: { control: "text" },
     underDescription: { control: "text" },
-    fullWidth: { control: "boolean" }
+    fullWidth: { control: "boolean" },
   },
   args: {
     showStartItem: true,
@@ -29,7 +25,7 @@ const meta: Meta<typeof LinkListItem> = {
     showEndItem: true,
     showDesc: true,
     variants: "enabled",
-    fullWidth: false
+    fullWidth: false,
   },
 };
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import type { Meta, StoryObj } from "@storybook/react-vite";
-=======
 import type { Meta, StoryObj } from "@storybook/react";
->>>>>>> origin/feat/test2
 import { ListLeftItem } from "../components/ListLeftItem";
 
 const meta: Meta<typeof ListLeftItem> = {
@@ -13,10 +9,10 @@ const meta: Meta<typeof ListLeftItem> = {
     variants: {
       control: "select",
       options: ["imageSlot", "iconSlot", "check"],
-    }
+    },
   },
   args: {
-    variants: "iconSlot"
+    variants: "iconSlot",
   },
 };
 

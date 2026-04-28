@@ -3,7 +3,6 @@ import { TopNavi } from "./TopNavi";
 import { BottomStickyButton } from "./BottomStickyButton";
 import { Mask } from "./Mask";
 import { ComponentBlank, ComponentBlankProps } from "./ComponentBlank"; // Assumed minimal ComponentBlank
-import { Scrollbar } from "./Scrollbar"; // Assumed minimal Scrollbar
 
 // Minimal ComponentBlank definition (as it's used as instanceSwap default)
 // If this component already exists, its actual definition should be imported.
@@ -106,7 +105,10 @@ type VariantConfig = {
   scrollbarHeight?: number;
 };
 
-const getVariantConfig = (isFullHeight: boolean, hauButton: boolean): VariantConfig => {
+const getVariantConfig = (
+  isFullHeight: boolean,
+  hauButton: boolean,
+): VariantConfig => {
   const baseConfig: Partial<VariantConfig> = {
     paddingBottom: hauButton ? "0px" : "var(--spacing-40, 40px)",
   };
@@ -168,13 +170,22 @@ const BottomSheetComponent = ({
   if (React.isValidElement(instanceSwap)) {
     clonedSlotContent = React.cloneElement(
       instanceSwap as React.ReactElement<ComponentBlankProps>,
-      { children: children }
+      { children: children },
     );
   }
 
   return (
-    <div className={`bottom-sheet ${className}`} style={bottomSheetStyle} {...props}>
-      <TopNavi variants="dialog" showHeading={showHeading} heading="heading" showCloseButton={true} />
+    <div
+      className={`bottom-sheet ${className}`}
+      style={bottomSheetStyle}
+      {...props}
+    >
+      <TopNavi
+        variants="dialog"
+        showHeading={showHeading}
+        heading="heading"
+        showCloseButton={true}
+      />
 
       <div
         className="body-container"
@@ -186,7 +197,9 @@ const BottomSheetComponent = ({
           paddingTop: "var(--spacing-4, 4px)",
           paddingBottom: "var(--spacing-24, 24px)",
           width: "100%", // horizontal=fill
-          height: hauButton ? config.contentsContainerHeight : config.contentsContainerHeight, // vertical=hug/fill
+          height: hauButton
+            ? config.contentsContainerHeight
+            : config.contentsContainerHeight, // vertical=hug/fill
           overflow: isFullHeight ? "auto" : "visible", // Enable scrolling if full height
           position: "relative",
           flex: isFullHeight ? 1 : "unset", // Allow it to take up remaining space if full height
@@ -208,22 +221,7 @@ const BottomSheetComponent = ({
           }}
         >
           {clonedSlotContent}
-
-          {isFullHeight && config.scrollbarHeight && !hauButton && (
-            <Scrollbar
-              direction="vertical"
-              style={{ height: config.scrollbarHeight, position: "absolute", right: 0 }}
-              className="scrollbar"
-            />
-          )}
         </div>
-        {isFullHeight && config.scrollbarHeight && hauButton && (
-          <Scrollbar
-            direction="vertical"
-            style={{ height: config.scrollbarHeight, position: "absolute", right: 0 }}
-            className="scrollbar"
-          />
-        )}
       </div>
 
       {hauButton && (
