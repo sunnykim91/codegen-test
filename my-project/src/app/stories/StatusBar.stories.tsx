@@ -8,16 +8,25 @@ const meta: Meta<typeof StatusBar> = {
   argTypes: {
     platform: {
       control: "select",
-      options: ["ios", "samsung"],
-      description: "Controls the visual style and layout of the status bar for different mobile platforms.",
+      options: ["samsung", "ios"],
+      description: "Determines the platform-specific styling and layout of the status bar.",
     },
+    // HTMLAttributes<HTMLDivElement> are not typically exposed as controls
+    // If specific HTML attributes like `className` or `style` are desired as controls,
+    // they would need to be explicitly added here.
   },
   args: {
-    platform: "ios",
+    platform: "ios", // Default value from component definition
   },
   parameters: {
-    // Status bar is a fixed width component, centered layout helps visualize it.
-    layout: "centered",
+    layout: 'fullscreen', // Status bars typically span the full width/top
+    backgrounds: {
+      default: 'light',
+      values: [
+        { name: 'light', value: '#FFFFFF' },
+        { name: 'dark', value: '#333333' },
+      ],
+    },
   },
 };
 
@@ -26,17 +35,17 @@ export default meta;
 type Story = StoryObj<typeof StatusBar>;
 
 export const Default: Story = {
-  // Renders with default args: platform="ios"
-  args: {},
+  // Uses default args
+  // This story will render with platform="ios"
 };
 
-export const PlatformIOS: Story = {
+export const IOSPlatform: Story = {
   args: {
     platform: "ios",
   },
 };
 
-export const PlatformSamsung: Story = {
+export const SamsungPlatform: Story = {
   args: {
     platform: "samsung",
   },
