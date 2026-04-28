@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Read(//private/tmp/**)",
+      "Bash(npx tsc *)",
+      "Bash(node -e ' *)",
+      "Bash(npm install *)",
+      "Bash(npx vite *)"
+    ]
+  }
+}
