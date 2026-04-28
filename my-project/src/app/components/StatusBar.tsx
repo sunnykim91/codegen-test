@@ -10,35 +10,30 @@ const platformStyleMap: Record<
   StatusBarPlatform,
   {
     height: number;
-    width: number;
     paddingTop: number;
+    paddingRight: number;
     paddingBottom: number;
     paddingLeft: number;
-    paddingRight: number;
     gap?: number;
-    justifyContent?: React.CSSProperties["justifyContent"];
-    alignItems: React.CSSProperties["alignItems"];
+    justifyContent?: "space-between" | "flex-start";
   }
 > = {
   ios: {
     height: 48,
-    width: 375,
     paddingTop: 21,
-    paddingBottom: 14, // 48 (height) - 21 (top padding) - 13 (max child height) = 14
-    paddingLeft: 16,
     paddingRight: 16,
+    paddingBottom: 19,
+    paddingLeft: 16,
     gap: 154,
-    alignItems: "flex-start", // Aligns children to the top due to padding distribution
+    justifyContent: "flex-start",
   },
   samsung: {
     height: 52,
-    width: 375,
     paddingTop: 10,
-    paddingBottom: 18, // 52 (height) - 10 (top padding) - 24 (max child height: Camera Cutout) = 18
-    paddingLeft: 24,
     paddingRight: 24,
-    justifyContent: "space-between", // From gap: auto(space-between)
-    alignItems: "center", // Vertically centers children
+    paddingBottom: 10,
+    paddingLeft: 24,
+    justifyContent: "space-between",
   },
 };
 
@@ -50,41 +45,33 @@ const StatusBarComponent = ({
 }: StatusBarProps) => {
   const config = platformStyleMap[platform];
 
-  const statusBarContainerStyle: React.CSSProperties = {
-    display: "flex",
-    width: config.width,
-    height: config.height,
-    paddingTop: config.paddingTop,
-    paddingBottom: config.paddingBottom,
-    paddingLeft: config.paddingLeft,
-    paddingRight: config.paddingRight,
-    alignItems: config.alignItems,
-    flexShrink: 0, // Ensure it doesn't shrink in a flex parent
-    ...style,
-  };
-
-  if (config.gap) {
-    statusBarContainerStyle.gap = config.gap;
-  }
-  if (config.justifyContent) {
-    statusBarContainerStyle.justifyContent = config.justifyContent;
-  }
-
   return (
-    <div className={`status-bar ${className}`} style={statusBarContainerStyle} {...props}>
+    <div
+      className={`status-bar ${className}`}
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        height: config.height,
+        paddingTop: config.paddingTop,
+        paddingRight: config.paddingRight,
+        paddingBottom: config.paddingBottom,
+        paddingLeft: config.paddingLeft,
+        gap: config.gap,
+        justifyContent: config.justifyContent,
+        ...style,
+      }}
+      {...props}
+    >
       {platform === "ios" && (
         <>
           {/* Time [GROUP] */}
           <div className="time" style={{ width: 33, height: 13, flexShrink: 0 }}>
-            <span className="text-style-notosanskr-label-14-medium" style={{ color: "var(--texticon-gray-black)", margin: 0 }}>
-              9:41
-            </span>
+            {/* Content for Time group (e.g., text like "9:41") would go here if provided */}
           </div>
           {/* Levels [GROUP] */}
           <div className="levels" style={{ width: 76, height: 13, flexShrink: 0 }}>
-            <span className="text-style-notosanskr-label-14-medium" style={{ color: "var(--texticon-gray-black)", margin: 0 }}>
-              Levels
-            </span>
+            {/* Content for Levels group (e.g., battery, signal icons) would go here if provided */}
           </div>
         </>
       )}
@@ -93,23 +80,20 @@ const StatusBarComponent = ({
         <>
           {/* Time [GROUP] */}
           <div className="time" style={{ width: 27, height: 10, flexShrink: 0 }}>
-            <span className="text-style-notosanskr-label-12-regular" style={{ color: "var(--texticon-gray-black)", margin: 0 }}>
-              9:41
-            </span>
-          </div>
-          {/* right icons [GROUP] */}
-          <div className="right-icons" style={{ width: 46, height: 15, flexShrink: 0 }}>
-            <span className="text-style-notosanskr-label-12-regular" style={{ color: "var(--texticon-gray-black)", margin: 0 }}>
-              Icons
-            </span>
+            {/* Content for Time group */}
           </div>
           {/* Camera Cutout [VECTOR] */}
-          {/* svgContent not provided in prompt for VECTOR, using a div placeholder */}
+          {/* SVG content for "Camera Cutout" was not provided in the prompt. */}
+          {/* Rendering a placeholder div based on its dimensions and marking it as decorative. */}
           <div
             className="camera-cutout"
             aria-hidden="true"
-            style={{ width: 24, height: 24, flexShrink: 0, borderRadius: "50%", backgroundColor: "black" }}
+            style={{ width: 24, height: 24, flexShrink: 0 }}
           />
+          {/* right icons [GROUP] */}
+          <div className="right-icons" style={{ width: 46, height: 15, flexShrink: 0 }}>
+            {/* Content for right icons group */}
+          </div>
         </>
       )}
     </div>
