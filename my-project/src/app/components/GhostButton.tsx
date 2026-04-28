@@ -1,8 +1,7 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
-import { Icon } from "./Icon"; // Assuming Icon is in the same directory
+import { Icon } from "./Icon";
 
-// 1. type/interface 정의
-export type GhostButtonState = "enabeld" | "pressed" | "disabled"; // Figma typo: "enabeld" instead of "enabled"
+export type GhostButtonState = "enabeld" | "pressed" | "disabled"; // Figma typo: "enabeld"
 export type GhostButtonColor = "primary" | "gray" | "grayTinted" | "invert";
 export type GhostButtonTextSize = "lg" | "md" | "xs";
 
@@ -37,26 +36,24 @@ interface SwapProps {
   [key: string]: unknown; // Allow other props
 }
 
-// 3. textSizeStyleMap (Record)
 const textSizeStyleMap: Record<GhostButtonTextSize, TextSizeConfig> = {
   lg: {
     height: "26px",
     typographyClass: "text-style-notosanskr-label-lg-medium",
-    iconSize: 20, // var(--square-20, 20px)
+    iconSize: 20, // Corresponds to var(--square-20, 20px)
   },
   md: {
     height: "24px",
     typographyClass: "text-style-notosanskr-label-md-medium",
-    iconSize: 16, // var(--square-16, 16px)
+    iconSize: 16, // Corresponds to var(--square-16, 16px)
   },
   xs: {
     height: "20px",
     typographyClass: "text-style-notosanskr-label-xs-medium",
-    iconSize: 16, // var(--square-16, 16px)
+    iconSize: 16, // Corresponds to var(--square-16, 16px)
   },
 };
 
-// 4. getVariantStyle 함수 (color, state 기반)
 const getColorConfig = (color: GhostButtonColor): ColorConfig => {
   switch (color) {
     case "primary":
@@ -67,7 +64,7 @@ const getColorConfig = (color: GhostButtonColor): ColorConfig => {
       return { textColor: "var(--texticon-gray-subtle2)" };
     case "invert":
       return { textColor: "var(--texticon-gray-invert)" };
-    default: // Should not happen
+    default: // Fallback for safety, though types should prevent it
       return { textColor: "var(--texticon-primary-subtle2)" };
   }
 };
@@ -79,17 +76,14 @@ const getBackgroundColorForState = (state: GhostButtonState): string | undefined
   return undefined; // enabled, disabled typically transparent for ghost button
 };
 
-// 5. disabledStyle
 const disabledStyle = {
   textColor: "var(--state-disabled-texticon-default)",
 };
 
-// Default BlankLineIcon component
 const DefaultBlankLineIcon = (props: { size?: number; color?: string }) => (
   <Icon name="BlankLineIcon" {...props} />
 );
 
-// 6. GhostButtonComponent (함수 컴포넌트)
 const GhostButtonComponent = ({
   label = "버튼 라벨",
   state = "enabeld", // Figma typo: "enabeld"
@@ -119,7 +113,7 @@ const GhostButtonComponent = ({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: 0, // Outer button has no gap, inner container has gap
+    gap: 0, // Outer button has no explicit gap, inner container handles it
     height: textSizeConfig.height,
     paddingLeft: "var(--spacing-4, 4px)",
     paddingRight: "var(--spacing-4, 4px)",
@@ -148,8 +142,8 @@ const GhostButtonComponent = ({
     return iconNode;
   };
 
-  const currentStartIcon = showStartIcon ? (startIcon || <DefaultBlankLineIcon />) : null;
-  const currentEndIcon = showEndIcon ? (endIcon || <DefaultBlankLineIcon />) : null;
+  const currentStartIcon = showStartIcon ? (startIcon ?? <DefaultBlankLineIcon />) : null;
+  const currentEndIcon = showEndIcon ? (endIcon ?? <DefaultBlankLineIcon />) : null;
 
   return (
     <button
@@ -214,7 +208,6 @@ const GhostButtonComponent = ({
   );
 };
 
-// 7. memo + displayName + export
 const GhostButton = memo(GhostButtonComponent);
 GhostButton.displayName = "GhostButton";
 export { GhostButton };
