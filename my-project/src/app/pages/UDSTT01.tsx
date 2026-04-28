@@ -1,5 +1,5 @@
-import React, { memo, HTMLAttributes, ReactNode } from "react";
-import { StatusBar } from "../components/StatusBar";
+import { memo, HTMLAttributes } from "react";
+
 import { LinkCard } from "../components/LinkCard";
 import { LinkListItem } from "../components/LinkListItem";
 
@@ -87,23 +87,7 @@ const UDSTT01Component = ({
           height: "auto", // vertical=hug h:hug
           gap: 0,
         }}
-      >
-        {/* StatusBar [INSTANCE] component="StatusBar" */}
-        {/* The StatusBar component internally renders Time and Levels groups. */}
-        <StatusBar
-          platform="ios"
-          className="status-bar"
-          style={{
-            height: 48, // Fixed height from StatusBar definition
-            paddingTop: 21,
-            paddingRight: 16,
-            paddingBottom: 19,
-            paddingLeft: 16,
-            gap: 154,
-            justifyContent: "flex-start",
-          }}
-        />
-      </div>
+      ></div>
 
       {/* BodyLayout [FRAME] */}
       <div

@@ -15,11 +15,11 @@ export interface ListDescriptionItemProps extends HTMLAttributes<HTMLDivElement>
 
 const sizeConfigMap: Record<ListDescriptionItemSize, {
   height: number;
-  typographySize: "xs" | "sm" | "md"; // Maps to Figma textStyle size e.g. Label/xs, Label/sm, Label/md
+  typographySizePrefix: "xs" | "sm" | "md"; // Maps to Figma textStyle size e.g. Label/xs, Label/sm, Label/md
 }> = {
-  xs: { height: 20, typographySize: "xs" }, // Maps to 14px font
-  sm: { height: 22, typographySize: "sm" }, // Maps to 15px font
-  md: { height: 24, typographySize: "md" }, // Maps to 16px font
+  xs: { height: 20, typographySizePrefix: "xs" },
+  sm: { height: 22, typographySizePrefix: "sm" },
+  md: { height: 24, typographySizePrefix: "md" },
 };
 
 const colorMap: Record<ListDescriptionItemColor, string> = {
@@ -28,16 +28,17 @@ const colorMap: Record<ListDescriptionItemColor, string> = {
   primary: "var(--texticon-primary-subtle2)",
 };
 
-const getTextStyleClass = (size: ListDescriptionItemSize, fontWeight: ListDescriptionItemFontWeight) => {
-  const sizePrefix = sizeConfigMap[size].typographySize;
-  return `text-style-notosanskr-label-${sizePrefix}-${fontWeight}`;
-};
-
-const getTextColor = (variants: ListDescriptionItemVariants, color: ListDescriptionItemColor) => {
+const getTextColor = (variants: ListDescriptionItemVariants, color: ListDescriptionItemColor): string => {
   if (variants === "disabled") {
     return "var(--state-disabled-texticon-default)";
   }
   return colorMap[color];
+};
+
+const getTextStyleClass = (size: ListDescriptionItemSize, fontWeight: ListDescriptionItemFontWeight): string => {
+  const sizePrefix = sizeConfigMap[size].typographySizePrefix;
+  // textStyle format from Figma: NotoSansKR/Label/xs-bold -> text-style-notosanskr-label-xs-bold
+  return `text-style-notosanskr-label-${sizePrefix}-${fontWeight}`;
 };
 
 const ListDescriptionItemComponent = ({
@@ -58,17 +59,16 @@ const ListDescriptionItemComponent = ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start", // Default for HORIZONTAL with gap:0
+    justifyContent: "flex-start", // For HORIZONTAL with gap: 0
     width: "100%", // horizontal=fill
     height: sizeConfig.height, // Fixed height from summary table
-    // gap is 0, padding is 0, radius is 0
+    // padding, gap, radius are 0 from summary table
     ...style,
   };
 
   const titleTextStyle: React.CSSProperties = {
     color: resolvedTextColor,
     margin: 0, // Ensure no default margin from browser
-    // text will naturally wrap unless white-space: nowrap is applied (not specified here)
   };
 
   return (

@@ -145,8 +145,6 @@ const LinkListItemComponent = ({
             color="gray"
             fontWeight="medium"
             title={title}
-            // ListTitleItem has horizontal=hug, but within a flex container, it takes space as needed
-            // No explicit width needed here, it will hug its content.
           />
           {showDesc && description && (
             // ListDescriptionItem for additional description next to title

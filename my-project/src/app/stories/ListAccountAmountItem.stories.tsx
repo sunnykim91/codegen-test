@@ -1,27 +1,19 @@
-<<<<<<< HEAD
-import type { Meta, StoryObj } from "@storybook/react-vite";
-=======
 import type { Meta, StoryObj } from "@storybook/react";
->>>>>>> origin/feat/test2
-import { ListTitleItem } from "../components/ListTitleItem";
+import { ListAccountAmountItem } from "../components/ListAccountAmountItem";
 
-const meta: Meta<typeof ListTitleItem> = {
-  title: "UI/ListTitleItem",
-  component: ListTitleItem,
+const meta: Meta<typeof ListAccountAmountItem> = {
+  title: "UI/ListAccountAmountItem",
+  component: ListAccountAmountItem,
   tags: ["autodocs"],
   argTypes: {
-    title: { control: "text" },
+    amount: { control: "text" },
     variants: {
       control: "select",
       options: ["enabled", "disabled"],
     },
     size: {
       control: "select",
-      options: ["lg", "md", "sm", "xs"],
-    },
-    color: {
-      control: "select",
-      options: ["gray", "grayTinted", "primary"],
+      options: ["lg", "md", "3xl", "xl"],
     },
     fontWeight: {
       control: "select",
@@ -31,13 +23,12 @@ const meta: Meta<typeof ListTitleItem> = {
   args: {
     variants: "enabled",
     size: "lg",
-    color: "gray",
     fontWeight: "bold"
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof ListTitleItem>;
+type Story = StoryObj<typeof ListAccountAmountItem>;
 
 export const Default: Story = {};
 
@@ -57,24 +48,12 @@ export const Md: Story = {
   args: { size: "md" },
 };
 
-export const Sm: Story = {
-  args: { size: "sm" },
+export const Size3xl: Story = {
+  args: { size: "3xl" },
 };
 
-export const Xs: Story = {
-  args: { size: "xs" },
-};
-
-export const Gray: Story = {
-  args: { color: "gray" },
-};
-
-export const GrayTinted: Story = {
-  args: { color: "grayTinted" },
-};
-
-export const Primary: Story = {
-  args: { color: "primary" },
+export const Xl: Story = {
+  args: { size: "xl" },
 };
 
 export const Bold: Story = {

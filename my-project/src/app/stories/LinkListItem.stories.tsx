@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { Meta, StoryObj } from "@storybook/react-vite";
+=======
+import type { Meta, StoryObj } from "@storybook/react";
+>>>>>>> origin/feat/test2
 import { LinkListItem } from "../components/LinkListItem";
 
 const meta: Meta<typeof LinkListItem> = {

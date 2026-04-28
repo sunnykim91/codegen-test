@@ -1,4 +1,5 @@
 import React, { memo, ReactNode, ButtonHTMLAttributes } from "react";
+import { Icon } from "./Icon"; // Correct import path for Icon
 
 export type FilledIconButtonState = "enabled" | "pressed" | "disabled";
 export type FilledIconButtonSize = "sm" | "xs";
@@ -28,8 +29,8 @@ const sizeStyleMap: Record<FilledIconButtonSize, {
     gap: "0px",
   },
   xs: {
-    height: "var(--height-container-xs, 32px)",
-    minWidth: "var(--height-container-xs, 32px)",
+    height: "var(--component-button-height-xs, 32px)",
+    minWidth: "var(--component-button-height-xs, 32px)",
     iconSize: 16, // from children tree for size=xs
     gap: "var(--spacing-8, 8px)",
   },
@@ -68,12 +69,12 @@ const getVariantStyle = (
       if (state === "pressed") {
         return {
           backgroundColor: "var(--container-primary-strong)",
-          iconColor: "var(--texticon-static-contrastprimary)",
+          iconColor: "var(--texticon-static-whiteprimary)",
         };
       }
       return { // enabled, not tinted primary
         backgroundColor: "var(--container-primary-default)",
-        iconColor: "var(--texticon-static-contrastprimary)",
+        iconColor: "var(--texticon-static-whiteprimary)",
       };
     }
   } else { // color === "gray"
@@ -129,7 +130,7 @@ const FilledIconButtonComponent = ({
   const isDisabled = state === "disabled";
 
   const borderRadius = isRounded
-    ? "var(--cornerradius-full, 9999px)"
+    ? "var(--borderradius-full, 9999px)"
     : "var(--borderradius-md, 8px)";
 
   const buttonStyle: React.CSSProperties = {
@@ -151,7 +152,16 @@ const FilledIconButtonComponent = ({
   };
 
   const renderIcon = () => {
-    if (!icon) return null;
+    if (!icon) {
+      // Default icon from Figma children tree if no icon prop is provided
+      return (
+        <Icon
+          name="BlankLineIcon"
+          size={sizeConfig.iconSize}
+          color={variantConfig.iconColor}
+        />
+      );
+    }
 
     if (React.isValidElement(icon)) {
       return React.cloneElement(icon as React.ReactElement<IconSwapProps>, {
@@ -164,7 +174,7 @@ const FilledIconButtonComponent = ({
 
   return (
     <button
-      className={className}
+      className={`filled-icon-button ${className}`}
       style={buttonStyle}
       disabled={isDisabled}
       aria-disabled={isDisabled}
