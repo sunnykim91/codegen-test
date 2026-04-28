@@ -1,241 +1,250 @@
-import React, { memo } from "react";
+import React, { memo, HTMLAttributes, ReactNode } from "react";
 import { StatusBar } from "../components/StatusBar";
 import { LinkCard } from "../components/LinkCard";
 import { LinkListItem } from "../components/LinkListItem";
-import { Icon } from "../components/Icon";
 
-// CustomIconMembership definition (since it's an instance with VECTOR child and not provided)
-interface CustomIconMembershipProps extends React.SVGProps<SVGSVGElement> {
-  size?: number;
-  color?: string;
-}
+// Image imports
+import imgkb3x from "../../public/images/imgkb@3x.png";
 
-const CustomIconMembershipComponent = ({
-  size = 40,
-  color = "currentColor",
-  ...props
-}: CustomIconMembershipProps) => {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      {/* Placeholder path for Union from Figma tree */}
-      {/* Figma: Union [VECTOR] (horizontal=fixed w:24, vertical=fixed h:25) */}
-      <rect x="8" y="7.5" width="24" height="25" fill={color} opacity="0.5" />
-      <text x="10" y="25" fill="white" fontSize="10px">
-        Member
-      </text>
-    </svg>
-  );
-};
+// Placeholder components for IconMembership and IconLogin.
+// The actual component code or SVG data for "IconMembership" and "IconLogin"
+// is not provided, and they are not listed in the generic Icon component's `IconName` type.
+// As per rules, we cannot hardcode non-existent icon names or import missing components.
+// These placeholders render a div with the specified dimensions and a descriptive text
+// as a fallback for the missing visual asset.
+const PlaceholderIconMembership = () => (
+  <div
+    className="icon-membership"
+    aria-label="Membership Icon Placeholder"
+    style={{
+      width: "var(--square-40, 40px)",
+      height: "var(--square-40, 40px)",
+      flexShrink: 0,
+      backgroundColor: "var(--container-gray-subtle)", // Neutral background
+      borderRadius: "var(--borderradius-xs, 4px)", // Common small icon radius
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--texticon-gray-default)",
+      fontSize: 12, // Small text for placeholder
+    }}
+  >
+    Memb
+  </div>
+);
 
-const CustomIconMembership = memo(CustomIconMembershipComponent);
-CustomIconMembership.displayName = "CustomIconMembership";
+const PlaceholderIconLogin = () => (
+  <div
+    className="icon-login"
+    aria-label="Login Icon Placeholder"
+    style={{
+      width: "var(--square-40, 40px)",
+      height: "var(--square-40, 40px)",
+      flexShrink: 0,
+      backgroundColor: "var(--container-gray-subtle)", // Neutral background
+      borderRadius: "var(--borderradius-xs, 4px)", // Common small icon radius
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--texticon-gray-default)",
+      fontSize: 12, // Small text for placeholder
+    }}
+  >
+    Login
+  </div>
+);
 
-const imgkb3x = "/images/img-kb@3x.png";
-
-// Type definitions for the page component
-export type UDSTT01Props = React.HTMLAttributes<HTMLDivElement>;
+export type UDSTT01Props = HTMLAttributes<HTMLDivElement>;
 
 const UDSTT01Component = ({
   className = "",
   style,
   ...props
 }: UDSTT01Props) => {
-  const pageStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: 0,
-    width: "100%",
-    minHeight: "100vh", // Fill screen height
-    backgroundColor: "var(--bg-base)",
-    ...style,
-  };
-
   return (
     <div
-      className={`udstt01 ${className}`}
-      style={pageStyle}
-      role="main"
+      className={`screen ${className}`}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start", // items=start
+        width: "100%", // horizontal=fill w:fill
+        height: "100%", // vertical=fill h:fill
+        overflow: "hidden",
+        backgroundColor: "var(--bg-base)",
+        ...style,
+      }}
       {...props}
     >
+      {/* HeaderLayout [FRAME] */}
       <div
         className="header-layout"
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 0,
           alignItems: "flex-start",
-          width: "100%",
+          width: "100%", // horizontal=fill w:fill
+          height: "auto", // vertical=hug h:hug
+          gap: 0,
         }}
       >
-        <StatusBar className="status-bar" platform="ios" />
+        {/* StatusBar [INSTANCE] component="StatusBar" */}
+        {/* The StatusBar component internally renders Time and Levels groups. */}
+        <StatusBar
+          platform="ios"
+          className="status-bar"
+          style={{
+            height: 48, // Fixed height from StatusBar definition
+            paddingTop: 21,
+            paddingRight: 16,
+            paddingBottom: 19,
+            paddingLeft: 16,
+            gap: 154,
+            justifyContent: "flex-start",
+          }}
+        />
       </div>
 
+      {/* BodyLayout [FRAME] */}
       <div
         className="body-layout"
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 0,
           alignItems: "flex-start",
-          width: "100%",
-          flex: 1, // vertical=fill
+          width: "100%", // horizontal=fill w:fill
+          height: "100%", // vertical=fill h:fill
           overflow: "hidden",
+          gap: 0,
+          flex: 1, // Fill remaining vertical space
         }}
       >
+        {/* TitleSection [FRAME] */}
         <div
           className="title-section"
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 0,
             alignItems: "flex-start",
-            width: "100%",
-            padding:
-              "var(--spacing-40, 40px) var(--spacing-32, 32px) var(--spacing-40, 40px) var(--spacing-32, 32px)",
+            width: "100%", // horizontal=fill w:fill
+            height: "auto", // vertical=hug h:hug
+            gap: 0,
+            padding: "var(--spacing-40, 40px) var(--spacing-32, 32px)", // pad=var(--spacing-40, 40px)/var(--spacing-32, 32px)/var(--spacing-40, 40px)/var(--spacing-32, 32px)
           }}
         >
+          {/* KB국민은행에  오신 것을 환영합니다. [TEXT] */}
           <span
             className="kb-welcome-text text-style-notosanskr-display-md-medium"
             style={{
+              width: "auto", // horizontal=fixed, but `auto` allows content sizing in flex
+              height: "auto", // vertical=fixed, but `auto` allows wrapping
               color: "var(--texticon-gray-default)",
+              whiteSpace: "pre-line", // Preserves `\n` for line breaks
               margin: 0,
-              width: "100%", // horizontal=fixed, but within flex container, fill width
-              whiteSpace: "pre-line", // To preserve the newline character in the text
             }}
           >
-            KB국민은행에 <br />
-            오신 것을 환영합니다.
+            KB국민은행에{"\n"}오신 것을 환영합니다.
           </span>
         </div>
 
+        {/* container [FRAME] (renamed to avoid Tailwind CSS class collision) */}
         <div
-          className="card-content-wrapper" // Renamed from "container" to avoid Tailwind conflict
+          className="container-wrapper"
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 0,
-            alignItems: "center",
-            width: "100%",
-            flex: 1, // vertical=fill
-            padding:
-              "var(--spacing-96, 96px) var(--spacing-24, 24px) var(--spacing-96, 96px) var(--spacing-24, 24px)",
+            alignItems: "center", // items=center
+            width: "100%", // horizontal=fill w:fill
+            height: "100%", // vertical=fill h:fill
             overflow: "hidden",
+            flex: 1, // Fill remaining vertical space
+            gap: "var(--spacing-10, 10px)",
+            padding: "var(--spacing-96, 96px) var(--spacing-24, 24px)", // pad=var(--spacing-96, 96px)/var(--spacing-24, 24px)/var(--spacing-96, 96px)/var(--spacing-24, 24px)
           }}
         >
+          {/* ImgSlotBlock [FRAME] */}
+          <div
+            className="img-slot-block"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end", // items=end
+              width: "100%", // horizontal=fill w:fill
+              height: "100%", // vertical=fill h:fill
+              flex: 1, // Fill remaining vertical space
+              gap: 0,
+              paddingTop: "var(--spacing-24, 24px)", // pad=var(--spacing-24, 24px)/0/0/0
+            }}
+          >
+            {/* img_kb [IMAGE_ASSET] */}
+            <img
+              src={imgkb3x}
+              width={214}
+              height={234}
+              alt="KB Logo"
+              style={{ objectFit: "contain", flexShrink: 0 }}
+              className="img-kb"
+            />
+          </div>
+
+          {/* CardButtonBlock [FRAME] */}
           <div
             className="card-button-block"
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "var(--spacing-12, 12px)",
               alignItems: "flex-start",
-              width: "100%", // horizontal=fill
+              width: "100%", // horizontal=fill w:fill
+              height: "auto", // vertical=hug h:hug
+              gap: "var(--spacing-12, 12px)",
               borderRadius: "var(--borderradius-lg, 10px)",
-              position: "relative", // For absolute positioning of img_kb
             }}
           >
+            {/* LinkCard [INSTANCE] component="LinkCard" */}
             <LinkCard
-              className="link-card"
-              fullWidth={true}
+              className="link-card-membership"
               state="enabled"
               variants="filled"
-              // LinkCard's internal styles handle fill, radius, and padding based on variants prop
-              // The default LinkCard component has borderRadius: var(--borderradius-2xl, 16px) which matches Figma's 16
-              // The default LinkCard component has padding: var(--spacing-20, 20px) which matches Figma's 20
+              fullWidth={true} // horizontal=fill w:fill
+              style={{ backgroundColor: "var(--container-gray-subtle3)" }}
               instanceSwap={
                 <LinkListItem
                   variants="enabled"
-                  title="회원가입"
-                  description="KB스타뱅킹, 처음이신가요?"
-                  showStartItem={true}
-                  showDesc={true}
-                  showUnderDesc={false} // Explicitly false as no `underDescription` is present in the Figma tree
-                  fullWidth={true}
-                  startSlot={
-                    <div
-                      className="icon-slot"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                        width: "var(--square-40, 40px)",
-                        height: "var(--square-40, 40px)",
-                      }}
-                    >
-                      <CustomIconMembership size={40} />
-                    </div>
-                  }
+                  showStartItem={true} // Explicitly true, as per Figma tree
+                  startSlot={<PlaceholderIconMembership />} // Use the custom placeholder for the icon
+                  title="회원 가입"
+                  showDesc={true} // Explicitly true
+                  description="#desc"
+                  showUnderDesc={true} // Explicitly true
+                  underDescription="KB스타뱅킹, 처음이세요?"
+                  showEndItem={true} // Explicitly true (LinkListItem's default DirectionRightIcon)
+                  fullWidth={true} // horizontal=fill w:fill
                 />
               }
             />
 
+            {/* LinkCard [INSTANCE] component="LinkCard" */}
             <LinkCard
-              className="link-card"
-              fullWidth={true}
+              className="link-card-login"
               state="enabled"
               variants="filled"
+              fullWidth={true} // horizontal=fill w:fill
+              style={{ backgroundColor: "var(--container-gray-subtle3)" }}
               instanceSwap={
                 <LinkListItem
                   variants="enabled"
+                  showStartItem={true} // Explicitly true, as per Figma tree
+                  startSlot={<PlaceholderIconLogin />} // Use the custom placeholder for the icon
                   title="로그인"
-                  description="이미 사용중이신가요?"
-                  showStartItem={true}
-                  showDesc={true}
-                  showUnderDesc={false} // Explicitly false as no `underDescription` is present in the Figma tree
-                  fullWidth={true}
-                  startSlot={
-                    <div
-                      className="icon-slot"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                        width: "var(--square-40, 40px)",
-                        height: "var(--square-40, 40px)",
-                      }}
-                    >
-                      <Icon name="IconLogin" size={40} color="currentColor" />
-                    </div>
-                  }
+                  showDesc={true} // Explicitly true
+                  description="#desc"
+                  showUnderDesc={true} // Explicitly true
+                  underDescription="이미 사용 중이신가요?"
+                  showEndItem={true} // Explicitly true (LinkListItem's default DirectionRightIcon)
+                  fullWidth={true} // horizontal=fill w:fill
                 />
               }
             />
-
-            <div
-              className="img-slot-block"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 0,
-                alignItems: "flex-end",
-                width: 345, // fixed w:345
-                paddingTop: "var(--spacing-24, 24px)",
-                paddingRight: 0,
-                paddingBottom: 0,
-                paddingLeft: 0,
-                position: "absolute",
-                bottom: 0, // Placed at the bottom of card-button-block
-                right: 0, // Aligned to the right
-                pointerEvents: "none", // Allow clicks to pass through
-              }}
-            >
-              <img
-                src={imgkb3x}
-                width={214}
-                height={172}
-                alt="img_kb"
-                style={{ objectFit: "contain" }}
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -245,4 +254,4 @@ const UDSTT01Component = ({
 
 const UDSTT01 = memo(UDSTT01Component);
 UDSTT01.displayName = "UDSTT01";
-export { UDSTT01 };
+export default UDSTT01;
