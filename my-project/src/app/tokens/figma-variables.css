@@ -2,7 +2,7 @@
 /* Variables, Text Styles, Effect Styles */
 
 /* ==================== VARIABLES ==================== */
-/* Total: 274 variables in 7 collections */
+/* Total: 278 variables in 7 collections */
 
 :root {
   /* Theme-independent variables (spacing, radius, colors, etc.) */
@@ -112,15 +112,19 @@
   --component-button-height-sheetgradienttop: 28px;
   --component-button-height-sm: 40px;
   --component-button-height-underline: 1px;
+  --component-button-height-xl: 72px;
   --component-button-height-xs: 32px;
   --component-chip-width-fillterchipmask: 64px;
   --component-list-height-metadivder: 14px;
   --component-radio-square-radiopoint: 10px;
   --component-slider-height-indicator: 6px;
-  --component-slider-width-value20pct: 20px;
-  --component-slider-width-value40pct: 40px;
-  --component-slider-width-value50pct: 50px;
+  --component-slider-width-value20: 20px;
+  --component-slider-width-value40: 40px;
+  --component-slider-width-value50: 50px;
   --component-swiper-square-indicatordot: 8px;
+  --component-switch-height-md: 24px;
+  --component-switch-square-handle: 20px;
+  --component-switch-width-md: 40px;
   --component-table-width-lg: 104px;
   --component-table-width-md: 80px;
   --component-table-width-sm: 64px;
