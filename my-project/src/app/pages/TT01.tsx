@@ -1,19 +1,249 @@
-```tsx
 import React, { memo, HTMLAttributes, ReactNode } from "react";
 import { StatusBar } from "../components/StatusBar";
 import { LinkCard } from "../components/LinkCard";
 import { LinkListItem } from "../components/LinkListItem";
-import { ListTitleItem } from "../components/ListTitleItem";
-import { ListDescriptionItem } from "../components/ListDescriptionItem";
-
 import imgkb3x from "../../../public/images/img-kb@3x.png";
 
-// Inline SVG components for specific icons not found in the Icon component
-const IconMembership = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Union [VECTOR] (w:24, h:25) */}
-    {/* The SVG content below is for an area scaled to 40x40. 
-        Original Figma data for "Union" child of "icon_membership" was (w:24, h:25).
-        Path data is scaled from a larger context (likely 40x40). 
-        Adjusted viewBox to 40x40 to contain the original paths within this size. */}
-    <path fillRule="evenodd" clipRule="evenodd" d="M21.5 24C21.5 24.1378 21.5034 24.2753 21.51 24.4124C21.5165 24.5495 21.5262 24.6853 21.539 24.8193C21.6166 25.4326 21.9079 26.0145 22.383 26.4897L22.401 26.5077L25.322 29.4287C25.7972 29.9038 26.3791 30.1951 27 30.2727C27.6209 30.1951 28.2028 29.9038 28.678 29.4287L32.228 25.8787C32.7032 25.4036 32.9945 24.8217 33.0721 24.1624C33.1497 23.5031 32.9945 22.8427 32.6186 22.3168L32.5539 22.2521L29.0039 18.7021C28.5288 18.227 27.9469 17.9357 27.3077 17.8581C26.6686 17.7804 26.0145 17.9357 25.4886 18.3116L25.4239 18.3764L24.8193 18.981C24.6853 19.1082 24.5495 19.2079 24.4124 19.2779C24.2753 19.3479 24.1378 19.3879 24 19.3957L24 21.5C24.0041 21.7583 24.093 22.0089 24.2536 22.1989C24.4142 22.3889 24.636 22.502 24.8787 22.5186L24.9787 22.525L27 22.5L27 24C27 24.5523 26.5523 25 26 25C25.4477 25 25 24.5523 25 24L25 23.5L25 22.5C25.0001 22.4477 24.9816 22.3967 24.9461 22.3533C24.9106 22.3099 24.8596 22.2755 24.8077 22.2521L24.7077 22.2021L24.5124 22.0124C24.3828 21.8828 24.2831 21.7247 24.2253 21.5519C24.1675 21.3791 24.1534 21.196 24.1832 21.0187L24.1957 20.9457L24 20.5V20.5C24 20.2239 23.9515 19.9547 23.858 19.7047C23.7645 19.4547 23.627 19.2271 23.4542 19.037L23.3642 18.947L23.2359 18.8187L21.5 17.0857C21.3917 16.9774 21.2842 16.883 21.1832 16.8066C21.0822 16.7302 20.9767 16.6713 20.8679 16.6318C20.7591 16.5923 20.6471 16.5732 20.5342 16.575C20.4213 16.5768 20.3089 16.5996 20.1994 16.6429L20.0864 16.6857L19.9239 16.7561C19.6053 16.8966 19.3243 17.0805 19.0911 17.3096L19.0232 17.3775L17.3077 19.093C17.0694 19.3313 16.872 19.5998 16.7212 19.8906C16.5704 20.1814 16.4715 20.4913 16.4276 20.8124C16.3838 21.1334 16.396 21.455 16.4632 21.7656L16.4732 21.8106L16.5342 22.0945C16.5952 22.3784 16.6994 22.657 16.8436 22.922C16.9877 23.1869 17.1706 23.4357 17.3879 23.6593L17.4727 23.7439L17.653 23.9242C17.9944 24.2655 18.3976 24.5369 18.8471 24.7262C19.2965 24.9155 19.7824 25.0163 20.2749 25.025L20.5 25.025C20.9142 25.025 21.25 25.3608 21.25 25.775V28C21.25 28.5523 20.8023 29 20.25 29H18.5C17.9477 29 17.5 28.5523 17.5 28L17.5 25.775C17.5029 25.5975 17.471 25.4217 17.4061 25.2573C17.3412 25.0929 17.2443 24.9427 17.119 24.813L17.084 24.778L16.9585 24.6525C16.833 24.5271 16.7118 24.4172 16.5986 24.3262C16.4853 24.2352 16.3688 24.1633 16.25 24.113L16.1407 24.0673L16.0357 24.0373export default TT01;
+export type TT01Props = HTMLAttributes<HTMLDivElement>;
+
+// Helper component for IconMembership (Vector SVG)
+const IconMembershipSVG = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
+  <div
+    className="icon-slot"
+    style={{
+      width: size,
+      height: size,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      color,
+    }}
+  >
+    <div
+      aria-hidden="true"
+      style={{ width: 24, height: 25, flexShrink: 0 }}
+      dangerouslySetInnerHTML={{
+        __html:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"><path d="M12 1.00049C5.925 1.00049 1 5.92549 1 12.0005C1 18.0755 5.925 23.0005 12 23.0005C18.075 23.0005 23 18.0755 23 12.0005C23 5.92549 18.075 1.00049 12 1.00049ZM16.25 16.0366L15 14.7866C14.0048 15.6599 12.6074 16.1916 12 16.1916C10.027 16.1916 8.33333 14.5249 8.33333 12.5519C8.33333 10.5789 10.027 8.91221 12 8.91221C12.6074 8.91221 14.0048 9.44391 15 10.3172L16.25 9.06721C14.707 7.74999 12.8333 7.00052 12 7.00052C6.98333 7.00052 2.83333 11.1505 2.83333 16.1672C2.83333 21.1839 6.98333 25.3339 12 25.3339C12.8333 25.3339 14.707 24.5844 16.25 23.2672L16.25 16.0366ZM12 7.75052C10.027 7.75052 8.33333 9.44421 8.33333 11.4172C8.33333 13.3902 10.027 15.0839 12 15.0839C13.973 15.0839 15.6667 13.3902 15.6667 11.4172C15.6667 9.44421 13.973 7.75052 12 7.75052Z" fill="currentColor"></path><path d="M12 11.4172C10.027 11.4172 8.33333 13.1109 8.33333 15.0839C8.33333 17.0569 10.027 18.7505 12 18.7505C13.973 18.7505 15.6667 17.0569 15.6667 15.0839C15.6667 13.1109 13.973 11.4172 12 11.4172Z" fill="currentColor"></path><path d="M12 1.00049C18.075 1.00049 23 5.92549 23 12.0005C23 18.0755 18.075 23.0005 12 23.0005C5.925 23.0005 1 18.0755 1 12.0005C1 5.92549 5.925 1.00049 12 1.00049Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M12 7.75052C13.973 7.75052 15.6667 9.44421 15.6667 11.4172C15.6667 13.3902 13.973 15.0839 12 15.0839C10.027 15.0839 8.33333 13.3902 8.33333 11.4172C8.33333 9.44421 10.027 7.75052 12 7.75052Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>',
+      }}
+    />
+  </div>
+);
+
+// Helper component for IconLogin (Vector SVG)
+const IconLoginSVG = ({ size = 40, color = "currentColor" }: { size?: number; color?: string }) => (
+  <div
+    className="icon-slot"
+    style={{
+      width: size,
+      height: size,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      color,
+    }}
+  >
+    <div
+      aria-hidden="true"
+      style={{ width: 28, height: 26, flexShrink: 0 }}
+      dangerouslySetInnerHTML={{
+        __html:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none"><path d="M14.0005 1C7.88219 1 2.83386 5.86475 2.83386 11.8333V12.75H1.0005V11.8333C1.0005 5.09311 6.64336 0.16666 14.0005 0.16666C21.3576 0.16666 27.0005 5.09311 27.0005 11.8333V12.75H25.1671V11.8333C25.1671 5.86475 20.1188 1 14.0005 1Z" fill="currentColor"></path><path d="M14.0005 12.75C11.5458 12.75 9.18386 13.6293 7.42553 15.191C5.6672 16.7527 4.58386 18.8687 4.58386 21.1667V24.5833H23.4171V21.1667C23.4171 18.8687 22.3338 16.7527 20.5755 15.191C18.8171 13.6293 16.4552 12.75 14.0005 12.75ZM1.0005 14.5833V25.4167C1.0005 25.8769 1.37365 26.25 1.83386 26.25H26.1671C26.6273 26.25 27.0005 25.8769 27.0005 25.4167V14.5833H25.1671V21.1667C25.1671 21.7335 24.9602 22.284 24.5849 22.7099C24.2096 23.1357 23.702 23.375 23.1671 23.375H4.83386C4.29897 23.375 3.79133 23.1357 3.41604 22.7099C3.04075 22.284 2.83386 21.7335 2.83386 21.1667V14.5833H1.0005Z" fill="currentColor"></path><path d="M14.0005 12.75C11.5458 12.75 9.18386 13.6293 7.42553 15.191C5.6672 16.7527 4.58386 18.8687 4.58386 21.1667V24.5833H23.4171V21.1667C23.4171 18.8687 22.3338 16.7527 20.5755 15.191C18.8171 13.6293 16.4552 12.75 14.0005 12.75ZM1.0005 14.5833V25.4167C1.0005 25.8769 1.37365 26.25 1.83386 26.25H26.1671C26.6273 26.25 27.0005 25.8769 27.0005 25.4167V14.5833H25.1671V21.1667C25.1671 21.7335 24.9602 22.284 24.5849 22.7099C24.2096 23.1357 23.702 23.375 23.1671 23.375H4.83386C4.29897 23.375 3.79133 23.1357 3.41604 22.7099C3.04075 22.284 2.83386 21.7335 2.83386 21.1667V14.5833H1.0005Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>',
+      }}
+    />
+  </div>
+);
+
+const TT01Component = ({ className = "", style, ...props }: TT01Props) => {
+  return (
+    <div
+      className={`tt01 ${className}`}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%", // Horizontal=fill
+        minHeight: "100vh", // Vertical=fill
+        backgroundColor: "var(--bg-base)",
+        gap: 0,
+        padding: 0,
+        borderRadius: 0,
+        ...style,
+      }}
+      {...props}
+    >
+      {/* HeaderLayout [FRAME] */}
+      <div
+        className="header-layout"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          width: "100%", // horizontal=fill w:fill
+          flexShrink: 0, // vertical=hug h:hug
+          gap: 0,
+        }}
+      >
+        {/* StatusBar [INSTANCE] */}
+        <StatusBar platform="ios" style={{ width: "100%" }} />
+      </div>
+
+      {/* BodyLayout [FRAME] */}
+      <div
+        className="body-layout"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          width: "100%", // horizontal=fill w:fill
+          flex: 1, // vertical=fill h:fill
+          gap: 0,
+          overflow: "hidden",
+        }}
+      >
+        {/* TitleSection [FRAME] */}
+        <div
+          className="title-section"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            width: "100%", // horizontal=fill w:fill
+            flexShrink: 0, // vertical=hug h:hug
+            paddingTop: "var(--spacing-40, 40px)",
+            paddingRight: "var(--spacing-32, 32px)",
+            paddingBottom: "var(--spacing-40, 40px)",
+            paddingLeft: "var(--spacing-32, 32px)",
+            gap: 0,
+          }}
+        >
+          {/* KB국민은행에  오신 것을 환영합니다. [TEXT] */}
+          <span
+            className="kb-gugmin-eunhaeng-e-osin-geos-eul-hwangyeonghabnida text-style-notosanskr-display-md-medium"
+            style={{
+              width: 329, // fixed w
+              height: 80, // fixed h
+              color: "var(--texticon-gray-default)",
+              margin: 0,
+              whiteSpace: "pre-line", // For multiline text from Figma
+            }}
+          >
+            KB국민은행에 <br />
+            오신 것을 환영합니다.
+          </span>
+        </div>
+
+        {/* container [FRAME] */}
+        <div
+          className="container"
+          style={{
+            position: "relative", // For absolute positioning of ImgSlotBlock
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%", // horizontal=fill w:fill
+            flex: 1, // vertical=fill h:fill
+            paddingTop: "var(--spacing-96, 96px)",
+            paddingRight: "var(--spacing-24, 24px)",
+            paddingBottom: "var(--spacing-96, 96px)",
+            paddingLeft: "var(--spacing-24, 24px)",
+            gap: 0,
+            overflow: "hidden", // overflow=hidden
+          }}
+        >
+          {/* CardButtonBlock [FRAME] */}
+          <div
+            className="card-button-block"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%", // horizontal=fill w:fill
+              flexShrink: 0, // vertical=hug h:hug
+              gap: "var(--spacing-12, 12px)",
+              borderRadius: "var(--borderradius-lg, 10px)",
+              position: "relative", // For z-index context against ImgSlotBlock
+            }}
+          >
+            {/* LinkCard [INSTANCE] #1 */}
+            <LinkCard
+              state="enabled"
+              variants="filled"
+              fullWidth={true} // horizontal=fill
+              style={{
+                backgroundColor: "var(--container-gray-subtle3)",
+                borderRadius: "var(--borderradius-2xl, 16px)",
+              }}
+              instanceSwap={
+                <LinkListItem
+                  variants="enabled"
+                  showUnderDesc={false} // Figma tree doesn't show description below title
+                  title="회원가입"
+                  description="KB스타뱅킹, 처음이신가요?"
+                  startSlot={<IconMembershipSVG size={40} color="var(--texticon-gray-default)" />}
+                  fullWidth={true} // horizontal=fill
+                />
+              }
+            />
+
+            {/* LinkCard [INSTANCE] #2 */}
+            <LinkCard
+              state="enabled"
+              variants="filled"
+              fullWidth={true} // horizontal=fill
+              style={{
+                backgroundColor: "var(--container-gray-subtle3)",
+                borderRadius: "var(--borderradius-2xl, 16px)",
+              }}
+              instanceSwap={
+                <LinkListItem
+                  variants="enabled"
+                  showUnderDesc={false} // Figma tree doesn't show description below title
+                  title="로그인"
+                  description="이미 사용중이신가요?"
+                  startSlot={<IconLoginSVG size={40} color="var(--texticon-gray-default)" />}
+                  fullWidth={true} // horizontal=fill
+                />
+              }
+            />
+          </div>
+
+          {/* ImgSlotBlock [FRAME] */}
+          <div
+            className="img-slot-block"
+            style={{
+              position: "absolute",
+              width: 345, // fixed w
+              height: "auto", // hug h:hug
+              paddingTop: "var(--spacing-24, 24px)",
+              paddingRight: 0,
+              paddingBottom: 0,
+              paddingLeft: 0,
+              display: "flex",
+              flexDirection: "column", // VERTICAL
+              alignItems: "flex-end", // items=end
+              // Position relative to the parent "container"
+              bottom: "var(--spacing-96, 96px)", // Aligns with bottom padding of container
+              right: "var(--spacing-24, 24px)", // Aligns with right padding of container
+              pointerEvents: "none", // Image is decorative
+            }}
+          >
+            {/* img_kb [IMAGE_ASSET] */}
+            <img
+              src={imgkb3x}
+              width={214}
+              height={172}
+              alt="img-kb"
+              style={{ objectFit: "contain", flexShrink: 0 }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TT01 = memo(TT01Component);
+TT01.displayName = "TT01";
+export default TT01;
