@@ -38,7 +38,8 @@ const getTextColor = (
     case "primary":
       return "var(--texticon-primary-subtle2)";
     default:
-      return "var(--texticon-gray-default)"; // Fallback
+      // Fallback, though ideally all combinations are covered by prop defaults or design system
+      return "var(--texticon-gray-default)";
   }
 };
 
@@ -60,11 +61,13 @@ const ListTitleItemComponent = ({
   const containerStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "row", // HORIZONTAL
-    alignItems: "center", // Default alignment for text in a row
+    alignItems: "center", // Default alignment for text in a row to center vertically
     gap: 0,
     padding: 0,
     width: "100%", // horizontal=fill
-    // vertical=hug implies height is determined by content, so no fixed height on container
+    // vertical=hug implies height is determined by content, so no fixed height on container.
+    // The textStyleClass applied to the span will control its line-height,
+    // which then dictates the overall height of this hug container.
     ...style,
   };
 
